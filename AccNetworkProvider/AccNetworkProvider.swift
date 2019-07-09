@@ -8,7 +8,9 @@
 
 import Foundation
 import Combine
+
 // MARK: - AccNetworkProvider
+
 class AccNetworkProvider {
     private lazy var jsonDecoder = JSONDecoder()
     
@@ -16,19 +18,23 @@ class AccNetworkProvider {
     /// - Parameter target: `NetworkTarget`
     /// - Parameter type: Decodable Object Type
     /// - Parameter subscriber: Subscriber of the publisher
-    func request<D: Decodable>(with target: NetworkTarget, class type: D.Type) -> AnyPublisher<D,ProviderError> {
+    /// - Parameter urlSession: `URLSession`
+   func request<D: Decodable>(with target: NetworkTarget, urlSession: URLSession = URLSession.shared, class type: D.Type) -> AnyPublisher<D,ProviderError> {
         var urlRequest = constructURL(with: target)
         urlRequest.allowsCellularAccess = false
-        return URLSession.shared.dataTaskPublisher(for: urlRequest)
+        return urlSession.dataTaskPublisher(for: urlRequest)
             .tryCatch { error -> URLSession.DataTaskPublisher in
                 guard error.networkUnavailableReason == .constrained else {
                     throw ProviderError.connectionError(error)
                 }
-                return URLSession.shared.dataTaskPublisher(for: urlRequest)
+                return urlSession.dataTaskPublisher(for: urlRequest)
         }
         .tryMap { data, response -> D in
-            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode >= 200 && httpResponse.statusCode <= 300  else {
+            guard let httpResponse = response as? HTTPURLResponse else {
                 throw ProviderError.invalidServerResponse
+            }
+            if !httpResponse.isSuccessfull {
+                throw ProviderError.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)
             }
             return try self.jsonDecoder.decode(type.self, from: data)
         }
@@ -42,14 +48,53 @@ class AccNetworkProvider {
         .eraseToAnyPublisher()
     }
     
+    /// Requests for a sepecific call with completionBlock
+    /// - Parameter target: `NetworkTarget`
+    /// - Parameter type: Decodable Object Type
+    /// - Parameter subscriber: Subscriber of the publisher
+    /// - Parameter urlSession: `URLSession`
+    /// - Parameter result: `Completion Block as (Result<D,ProviderError>) -> ()`
+    func request<D: Decodable>(with target: NetworkTarget, urlSession: URLSession = URLSession.shared, class type: D.Type, result: @escaping (Result<D,ProviderError>) -> ()) {
+        var urlRequest = constructURL(with: target)
+        urlRequest.allowsCellularAccess = false
+        urlSession.dataTask(with: urlRequest) { data, response, error in
+            guard error == nil else {
+                result(.failure(.connectionError(error!)))
+                return
+            }
+            guard let httpResponse = response as? HTTPURLResponse else {
+                result(.failure(.invalidServerResponse))
+                return
+            }
+            if !httpResponse.isSuccessfull {
+                result(.failure(.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)))
+                return
+            }
+            do {
+                guard let data = data else {
+                    result(.failure(.missingBodyData))
+                    return
+                }
+                let decoded = try self.jsonDecoder.decode(type.self, from: data)
+                result(.success(decoded))
+            } catch {
+                result(.failure(.decodingError(error)))
+            }
+        }.resume()
+    }
+}
+
+// MARK: - Private Extension
+private extension AccNetworkProvider {
+    
     /// Generates an `URLRequest` based on methodType
     /// - Parameter target: NetworkTarget
-    private func constructURL(with target: NetworkTarget) -> URLRequest {
+    func constructURL(with target: NetworkTarget) -> URLRequest {
         var url = target.baseURL
         url.appendPathComponent(target.path)
         switch target.methodType {
         case .get:
-           return prepareGetRequest(with: target)
+            return prepareGetRequest(with: target)
         case .post:
             return preparePostRequest(with: target)
         case .put:
@@ -58,12 +103,7 @@ class AccNetworkProvider {
             return prepareDeleteRequest(with: target)
         }
     }
-}
-
-// MARK: - Private Extension
-private extension AccNetworkProvider {
     
-    // TODO: - Need to add headers like application\json ...
     func prepareGetRequest(with target: NetworkTarget) -> URLRequest {
         let url = target.pathAppendedURL
         switch target.workType {

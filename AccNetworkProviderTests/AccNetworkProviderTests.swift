@@ -28,7 +28,7 @@ class AccNetworkProviderTests: XCTestCase {
             print(response)
             exp.fulfill()
         }
-        wait(for: [exp], timeout: 5)
+        wait(for: [exp], timeout: 10)
     }
     
     func testFailingResponse() {
@@ -46,6 +46,6 @@ class AccNetworkProviderTests: XCTestCase {
         }) { response in
             XCTFail()
         }
-        wait(for: [exp], timeout: 5)
+        wait(for: [exp], timeout: 10)
     }
 }

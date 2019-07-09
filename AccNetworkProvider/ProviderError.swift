@@ -8,24 +8,30 @@
 
 import Foundation
 
-enum ProviderError: Error {
+public enum ProviderError: Error {
+    case invalidServerResponseWithStatusCode(statusCode: Int)
     case invalidServerResponse
     case decodingError(Error)
+    case missingBodyData
     case connectionError(Error)
     case underlying(Error)
 }
 
-extension ProviderError {
-    var errorDescription: String {
+public extension ProviderError {
+     var errorDescription: String {
         switch self {
         case .invalidServerResponse:
-            return "The server response didn't fall in the given range"
+            return "Failed to parse the response to HTTPResponse"
         case .connectionError(let error):
             return "Network connection seems to be offline:  \(error.localizedDescription)"
         case .decodingError(let error):
             return "Decoding problem: \(error.localizedDescription)"
         case .underlying(let error):
             return error.localizedDescription
+        case .invalidServerResponseWithStatusCode(let statusCode):
+            return "The server response didn't fall in the given range Status Code is: \(statusCode)"
+        case .missingBodyData:
+            return "No body data provided from the server"
         }
     }
 }

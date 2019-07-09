@@ -22,6 +22,8 @@
 		8FE14DF522D480A9006DD1FA /* ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE14DF422D480A9006DD1FA /* ContentType.swift */; };
 		8FE14E1D22D485CD006DD1FA /* URLRequest+prepareRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE14E1C22D485CD006DD1FA /* URLRequest+prepareRequest.swift */; };
 		8FE14E2122D488DF006DD1FA /* URL+GenerateURLQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE14E2022D488DF006DD1FA /* URL+GenerateURLQuery.swift */; };
+		8FE14E2522D49A27006DD1FA /* AccNetworkProviderCompletionBlockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE14E2422D49A27006DD1FA /* AccNetworkProviderCompletionBlockTests.swift */; };
+		8FE14E2722D49F39006DD1FA /* HttpUrlResponse+IsSuccesfull.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE14E2622D49F39006DD1FA /* HttpUrlResponse+IsSuccesfull.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		8FE14DF422D480A9006DD1FA /* ContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentType.swift; sourceTree = "<group>"; };
 		8FE14E1C22D485CD006DD1FA /* URLRequest+prepareRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+prepareRequest.swift"; sourceTree = "<group>"; };
 		8FE14E2022D488DF006DD1FA /* URL+GenerateURLQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+GenerateURLQuery.swift"; sourceTree = "<group>"; };
+		8FE14E2422D49A27006DD1FA /* AccNetworkProviderCompletionBlockTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccNetworkProviderCompletionBlockTests.swift; sourceTree = "<group>"; };
+		8FE14E2622D49F39006DD1FA /* HttpUrlResponse+IsSuccesfull.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HttpUrlResponse+IsSuccesfull.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +134,7 @@
 				8F1ACC7B22D38C2B00A71D5D /* Test Source */,
 				8FCCF06A22D38994002C2CAE /* AccNetworkProviderTests.swift */,
 				8FCCF06C22D38994002C2CAE /* Info.plist */,
+				8FE14E2422D49A27006DD1FA /* AccNetworkProviderCompletionBlockTests.swift */,
 			);
 			path = AccNetworkProviderTests;
 			sourceTree = "<group>";
@@ -139,6 +144,7 @@
 			children = (
 				8FE14E1C22D485CD006DD1FA /* URLRequest+prepareRequest.swift */,
 				8FE14E2022D488DF006DD1FA /* URL+GenerateURLQuery.swift */,
+				8FE14E2622D49F39006DD1FA /* HttpUrlResponse+IsSuccesfull.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -265,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F1ACC6E22D38A2400A71D5D /* ProviderError.swift in Sources */,
+				8FE14E2722D49F39006DD1FA /* HttpUrlResponse+IsSuccesfull.swift in Sources */,
 				8FE14E2122D488DF006DD1FA /* URL+GenerateURLQuery.swift in Sources */,
 				8F1ACC7022D38A2400A71D5D /* AuthProviderType.swift in Sources */,
 				8FE14E1D22D485CD006DD1FA /* URLRequest+prepareRequest.swift in Sources */,
@@ -282,6 +289,7 @@
 			files = (
 				8FCCF06B22D38994002C2CAE /* AccNetworkProviderTests.swift in Sources */,
 				8FD07C0C22D3BB63007D9910 /* TestClass.swift in Sources */,
+				8FE14E2522D49A27006DD1FA /* AccNetworkProviderCompletionBlockTests.swift in Sources */,
 				8FD07C0B22D3BB5F007D9910 /* TestData.swift in Sources */,
 				8FD07C0D22D3BB63007D9910 /* WeatherResponse.swift in Sources */,
 			);
