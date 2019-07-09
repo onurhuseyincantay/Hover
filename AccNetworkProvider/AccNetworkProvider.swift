@@ -17,7 +17,6 @@ class AccNetworkProvider {
     /// Requests for a spesific call with `DataTaskPublisher`
     /// - Parameter target: `NetworkTarget`
     /// - Parameter type: Decodable Object Type
-    /// - Parameter subscriber: Subscriber of the publisher
     /// - Parameter urlSession: `URLSession`
    func request<D: Decodable>(with target: NetworkTarget, urlSession: URLSession = URLSession.shared, class type: D.Type) -> AnyPublisher<D,ProviderError> {
         var urlRequest = constructURL(with: target)
@@ -51,7 +50,6 @@ class AccNetworkProvider {
     /// Requests for a sepecific call with completionBlock
     /// - Parameter target: `NetworkTarget`
     /// - Parameter type: Decodable Object Type
-    /// - Parameter subscriber: Subscriber of the publisher
     /// - Parameter urlSession: `URLSession`
     /// - Parameter result: `Completion Block as (Result<D,ProviderError>) -> ()`
     func request<D: Decodable>(with target: NetworkTarget, urlSession: URLSession = URLSession.shared, class type: D.Type, result: @escaping (Result<D,ProviderError>) -> ()) {
@@ -90,8 +88,6 @@ private extension AccNetworkProvider {
     /// Generates an `URLRequest` based on methodType
     /// - Parameter target: NetworkTarget
     func constructURL(with target: NetworkTarget) -> URLRequest {
-        var url = target.baseURL
-        url.appendPathComponent(target.path)
         switch target.methodType {
         case .get:
             return prepareGetRequest(with: target)
@@ -127,6 +123,12 @@ private extension AccNetworkProvider {
             request.prepareRequest(with: target)
             request.httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
             return request
+        #warning("not tested yet can explode!")
+        case .requestWithEncodable(let encodable):
+            var request = URLRequest(url: url)
+            request.prepareRequest(with: target)
+            request.httpBody = try? JSONSerialization.data(withJSONObject: encodable, options: .prettyPrinted)
+            return request
         @unknown default:
             var request = URLRequest(url: url)
             request.prepareRequest(with: target)
@@ -142,6 +144,12 @@ private extension AccNetworkProvider {
             request.prepareRequest(with: target)
             request.httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
             return request
+        #warning("not tested yet can explode!")
+        case .requestWithEncodable(let encodable):
+            var request = URLRequest(url: url)
+            request.prepareRequest(with: target)
+            request.httpBody = try? JSONSerialization.data(withJSONObject: encodable, options: .prettyPrinted)
+            return request
         @unknown default:
             var request = URLRequest(url: url)
             request.prepareRequest(with: target)
@@ -156,6 +164,12 @@ private extension AccNetworkProvider {
             var request = URLRequest(url: url)
             request.prepareRequest(with: target)
             request.httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+            return request
+        #warning("not tested yet can explode!")
+        case .requestWithEncodable(let encodable):
+            var request = URLRequest(url: url)
+            request.prepareRequest(with: target)
+            request.httpBody = try? JSONSerialization.data(withJSONObject: encodable, options: .prettyPrinted)
             return request
         @unknown default:
             var request = URLRequest(url: url)
