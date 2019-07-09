@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 public protocol NetworkTarget {
     var baseURL: URL { get }
     var path: String { get }

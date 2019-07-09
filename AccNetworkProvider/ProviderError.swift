@@ -11,8 +11,8 @@ import Foundation
 public enum ProviderError: Error {
     case invalidServerResponseWithStatusCode(statusCode: Int)
     case invalidServerResponse
-    case decodingError(Error)
     case missingBodyData
+    case decodingError(Error)
     case connectionError(Error)
     case underlying(Error)
 }
