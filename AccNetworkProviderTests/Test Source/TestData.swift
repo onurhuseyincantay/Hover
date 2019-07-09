@@ -20,6 +20,8 @@ enum TestData {
 
 
 extension TestData: NetworkTarget {
+    
+    
     var path: String {
         switch self {
         case .testEndPoint:
@@ -40,6 +42,13 @@ extension TestData: NetworkTarget {
         switch self {
         case .testEndPoint:
             return .get
+        }
+    }
+    
+    var contentType: ContentType? {
+        switch self {
+        case .testEndPoint:
+            return nil
         }
     }
     

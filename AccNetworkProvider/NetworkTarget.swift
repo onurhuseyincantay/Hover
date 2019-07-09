@@ -15,6 +15,7 @@ protocol NetworkTarget {
     var methodType: MethodType { get }
     var workType: WorkType { get }
     var providerType: AuthProviderType { get }
+    var contentType: ContentType? { get }
 }
 
 extension NetworkTarget {
@@ -24,3 +25,5 @@ extension NetworkTarget {
         return url
     }
 }
+
+

@@ -9,9 +9,9 @@
 import Foundation
 
 enum ProviderError: Error {
-    case decodingError(Error)
-    case connectionError(Error)
     case invalidServerResponse
     case badConstructedUrl
+    case decodingError(Error)
+    case connectionError(Error)
     case underlying(Error)
 }

@@ -8,7 +8,6 @@
 
 import Foundation
 import Combine
-
 // MARK: - AccNetworkProvider
 class AccNetworkProvider {
     private lazy var jsonDecoder = JSONDecoder()
@@ -72,6 +71,9 @@ private extension AccNetworkProvider {
             urlComponents?.queryItems = quearyItems
             guard let url = urlComponents?.url else { return nil }
             var request = URLRequest(url: url)
+            if let contentType = target.contentType?.rawValue {
+                request.addValue(contentType, forHTTPHeaderField: "Content-Type")
+            }
             request.httpMethod = target.methodType.methodName
             return request
         @unknown default:
@@ -87,6 +89,9 @@ private extension AccNetworkProvider {
         case .requestParameters(let parameters, _):
             var request = URLRequest(url: url)
             request.httpMethod = target.methodType.methodName
+            if let contentType = target.contentType?.rawValue {
+                request.addValue(contentType, forHTTPHeaderField: "Content-Type")
+            }
             request.httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
             return request
         @unknown default:
@@ -117,6 +122,9 @@ private extension AccNetworkProvider {
         case .requestParameters(let parameters, _):
             var request = URLRequest(url: url)
             request.httpMethod = target.methodType.methodName
+            if let contentType = target.contentType?.rawValue {
+                request.addValue(contentType, forHTTPHeaderField: "Content-Type")
+            }
             request.httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
             return request
         @unknown default:

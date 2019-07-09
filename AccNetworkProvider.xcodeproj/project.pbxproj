@@ -19,6 +19,7 @@
 		8FD07C0B22D3BB5F007D9910 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC7C22D38C3700A71D5D /* TestData.swift */; };
 		8FD07C0C22D3BB63007D9910 /* TestClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC7E22D38C3700A71D5D /* TestClass.swift */; };
 		8FD07C0D22D3BB63007D9910 /* WeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC7D22D38C3700A71D5D /* WeatherResponse.swift */; };
+		8FE14DF522D480A9006DD1FA /* ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE14DF422D480A9006DD1FA /* ContentType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		8FCCF06522D38994002C2CAE /* AccNetworkProviderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AccNetworkProviderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FCCF06A22D38994002C2CAE /* AccNetworkProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccNetworkProviderTests.swift; sourceTree = "<group>"; };
 		8FCCF06C22D38994002C2CAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8FE14DF422D480A9006DD1FA /* ContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 				8F1ACC6922D38A2400A71D5D /* NetworkTarget.swift */,
 				8F1ACC6822D38A2400A71D5D /* ProviderError.swift */,
 				8F1ACC6D22D38A2400A71D5D /* WorkType.swift */,
+				8FE14DF422D480A9006DD1FA /* ContentType.swift */,
 			);
 			path = AccNetworkProvider;
 			sourceTree = "<group>";
@@ -243,6 +246,7 @@
 				8F1ACC7022D38A2400A71D5D /* AuthenticationProvider.swift in Sources */,
 				8F1ACC7322D38A2400A71D5D /* WorkType.swift in Sources */,
 				8F1ACC7122D38A2400A71D5D /* MethodType.swift in Sources */,
+				8FE14DF522D480A9006DD1FA /* ContentType.swift in Sources */,
 				8F1ACC6F22D38A2400A71D5D /* NetworkTarget.swift in Sources */,
 				8F1ACC7222D38A2400A71D5D /* AccNetworkProvider.swift in Sources */,
 			);
