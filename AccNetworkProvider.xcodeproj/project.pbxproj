@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		8F1ACC6E22D38A2400A71D5D /* ProviderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC6822D38A2400A71D5D /* ProviderError.swift */; };
 		8F1ACC6F22D38A2400A71D5D /* NetworkTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC6922D38A2400A71D5D /* NetworkTarget.swift */; };
-		8F1ACC7022D38A2400A71D5D /* AuthenticationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC6A22D38A2400A71D5D /* AuthenticationProvider.swift */; };
+		8F1ACC7022D38A2400A71D5D /* AuthProviderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC6A22D38A2400A71D5D /* AuthProviderType.swift */; };
 		8F1ACC7122D38A2400A71D5D /* MethodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC6B22D38A2400A71D5D /* MethodType.swift */; };
 		8F1ACC7222D38A2400A71D5D /* AccNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC6C22D38A2400A71D5D /* AccNetworkProvider.swift */; };
 		8F1ACC7322D38A2400A71D5D /* WorkType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC6D22D38A2400A71D5D /* WorkType.swift */; };
@@ -20,6 +20,8 @@
 		8FD07C0C22D3BB63007D9910 /* TestClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC7E22D38C3700A71D5D /* TestClass.swift */; };
 		8FD07C0D22D3BB63007D9910 /* WeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC7D22D38C3700A71D5D /* WeatherResponse.swift */; };
 		8FE14DF522D480A9006DD1FA /* ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE14DF422D480A9006DD1FA /* ContentType.swift */; };
+		8FE14E1D22D485CD006DD1FA /* URLRequest+prepareRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE14E1C22D485CD006DD1FA /* URLRequest+prepareRequest.swift */; };
+		8FE14E2122D488DF006DD1FA /* URL+GenerateURLQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE14E2022D488DF006DD1FA /* URL+GenerateURLQuery.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +37,7 @@
 /* Begin PBXFileReference section */
 		8F1ACC6822D38A2400A71D5D /* ProviderError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProviderError.swift; sourceTree = "<group>"; };
 		8F1ACC6922D38A2400A71D5D /* NetworkTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkTarget.swift; sourceTree = "<group>"; };
-		8F1ACC6A22D38A2400A71D5D /* AuthenticationProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationProvider.swift; sourceTree = "<group>"; };
+		8F1ACC6A22D38A2400A71D5D /* AuthProviderType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthProviderType.swift; sourceTree = "<group>"; };
 		8F1ACC6B22D38A2400A71D5D /* MethodType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MethodType.swift; sourceTree = "<group>"; };
 		8F1ACC6C22D38A2400A71D5D /* AccNetworkProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccNetworkProvider.swift; sourceTree = "<group>"; };
 		8F1ACC6D22D38A2400A71D5D /* WorkType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkType.swift; sourceTree = "<group>"; };
@@ -49,6 +51,8 @@
 		8FCCF06A22D38994002C2CAE /* AccNetworkProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccNetworkProviderTests.swift; sourceTree = "<group>"; };
 		8FCCF06C22D38994002C2CAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8FE14DF422D480A9006DD1FA /* ContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentType.swift; sourceTree = "<group>"; };
+		8FE14E1C22D485CD006DD1FA /* URLRequest+prepareRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+prepareRequest.swift"; sourceTree = "<group>"; };
+		8FE14E2022D488DF006DD1FA /* URL+GenerateURLQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+GenerateURLQuery.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,14 +114,12 @@
 		8FCCF05E22D38994002C2CAE /* AccNetworkProvider */ = {
 			isa = PBXGroup;
 			children = (
+				8FE14E2322D48999006DD1FA /* Types */,
+				8FE14E2222D48989006DD1FA /* Extensions */,
 				8F1ACC6722D38A0A00A71D5D /* Base */,
 				8F1ACC6C22D38A2400A71D5D /* AccNetworkProvider.swift */,
-				8F1ACC6A22D38A2400A71D5D /* AuthenticationProvider.swift */,
-				8F1ACC6B22D38A2400A71D5D /* MethodType.swift */,
 				8F1ACC6922D38A2400A71D5D /* NetworkTarget.swift */,
 				8F1ACC6822D38A2400A71D5D /* ProviderError.swift */,
-				8F1ACC6D22D38A2400A71D5D /* WorkType.swift */,
-				8FE14DF422D480A9006DD1FA /* ContentType.swift */,
 			);
 			path = AccNetworkProvider;
 			sourceTree = "<group>";
@@ -130,6 +132,26 @@
 				8FCCF06C22D38994002C2CAE /* Info.plist */,
 			);
 			path = AccNetworkProviderTests;
+			sourceTree = "<group>";
+		};
+		8FE14E2222D48989006DD1FA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8FE14E1C22D485CD006DD1FA /* URLRequest+prepareRequest.swift */,
+				8FE14E2022D488DF006DD1FA /* URL+GenerateURLQuery.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
+		8FE14E2322D48999006DD1FA /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				8F1ACC6A22D38A2400A71D5D /* AuthProviderType.swift */,
+				8F1ACC6B22D38A2400A71D5D /* MethodType.swift */,
+				8F1ACC6D22D38A2400A71D5D /* WorkType.swift */,
+				8FE14DF422D480A9006DD1FA /* ContentType.swift */,
+			);
+			name = Types;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,7 +265,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F1ACC6E22D38A2400A71D5D /* ProviderError.swift in Sources */,
-				8F1ACC7022D38A2400A71D5D /* AuthenticationProvider.swift in Sources */,
+				8FE14E2122D488DF006DD1FA /* URL+GenerateURLQuery.swift in Sources */,
+				8F1ACC7022D38A2400A71D5D /* AuthProviderType.swift in Sources */,
+				8FE14E1D22D485CD006DD1FA /* URLRequest+prepareRequest.swift in Sources */,
 				8F1ACC7322D38A2400A71D5D /* WorkType.swift in Sources */,
 				8F1ACC7122D38A2400A71D5D /* MethodType.swift in Sources */,
 				8FE14DF522D480A9006DD1FA /* ContentType.swift in Sources */,

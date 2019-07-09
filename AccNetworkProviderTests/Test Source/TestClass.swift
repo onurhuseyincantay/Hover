@@ -14,9 +14,16 @@ class TestClass {
     let provider = AccNetworkProvider()
     var subscriber: AnyPublisher<WeatherResponse, ProviderError>?
     
-    func getWeather() throws {
-        subscriber = try provider.request(
+    func getWeather() {
+        subscriber = provider.request(
             with: TestData.testEndPoint(),
+            class: WeatherResponse.self
+        )
+    }
+    
+    func getFailingResponse() {
+        subscriber = provider.request(
+            with: TestData.testFailingResponse(),
             class: WeatherResponse.self
         )
     }

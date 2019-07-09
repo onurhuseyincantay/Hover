@@ -16,6 +16,11 @@ enum TestData {
         query: String = "Amsterdam"
     )
     
+    case testFailingResponse(
+        units: String = "metric",
+        query: String = "Amsterdam"
+    )
+    
 }
 
 
@@ -24,7 +29,8 @@ extension TestData: NetworkTarget {
     
     var path: String {
         switch self {
-        case .testEndPoint:
+        case .testEndPoint,
+             .testFailingResponse:
             return "weather"
         }
     }
@@ -40,14 +46,16 @@ extension TestData: NetworkTarget {
     
     var methodType: MethodType {
         switch self {
-        case .testEndPoint:
+        case .testEndPoint,
+             .testFailingResponse:
             return .get
         }
     }
     
     var contentType: ContentType? {
         switch self {
-        case .testEndPoint:
+        case .testEndPoint,
+             .testFailingResponse:
             return nil
         }
     }
@@ -58,6 +66,12 @@ extension TestData: NetworkTarget {
             let params = [
                 "APPID": appID,
                 "units": unit,
+                "q": query
+            ]
+            return .requestParameters(parameters: params, encoding: .init())
+        case .testFailingResponse(let units, let query):
+            let params = [
+                "units": units,
                 "q": query
             ]
             return .requestParameters(parameters: params, encoding: .init())

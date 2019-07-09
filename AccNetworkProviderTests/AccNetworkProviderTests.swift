@@ -22,12 +22,30 @@ class AccNetworkProviderTests: XCTestCase {
     
     func testGetRequest() {
         let exp = expectation(description: "Response")
-        XCTAssertNoThrow(try testClass.getWeather()) 
+        testClass.getWeather()
         guard let testSubscriber = testClass.subscriber else { return assertionFailure() }
         testSubscriber.sink { response in
             print(response)
             exp.fulfill()
         }
-        wait(for: [exp], timeout: 20)
+        wait(for: [exp], timeout: 5)
+    }
+    
+    func testFailingResponse() {
+        let exp = expectation(description: "Response")
+        testClass.getFailingResponse()
+        guard let testSubscriber = testClass.subscriber else { return assertionFailure() }
+        testSubscriber.sink(receiveCompletion: { completion in
+            switch completion {
+            case .failure(let error):
+                print("Error:",error.errorDescription)
+                exp.fulfill()
+            case .finished:
+                XCTFail()
+            }
+        }) { response in
+            XCTFail()
+        }
+        wait(for: [exp], timeout: 5)
     }
 }

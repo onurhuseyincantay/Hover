@@ -16,10 +16,8 @@ class AccNetworkProvider {
     /// - Parameter target: `NetworkTarget`
     /// - Parameter type: Decodable Object Type
     /// - Parameter subscriber: Subscriber of the publisher
-    func request<D: Decodable>(with target: NetworkTarget, class type: D.Type) throws -> AnyPublisher<D,ProviderError> {
-        guard var urlRequest = constructURL(with: target) else {
-            throw ProviderError.badConstructedUrl
-        }
+    func request<D: Decodable>(with target: NetworkTarget, class type: D.Type) -> AnyPublisher<D,ProviderError> {
+        var urlRequest = constructURL(with: target)
         urlRequest.allowsCellularAccess = false
         return URLSession.shared.dataTaskPublisher(for: urlRequest)
             .tryCatch { error -> URLSession.DataTaskPublisher in
@@ -34,13 +32,19 @@ class AccNetworkProvider {
             }
             return try self.jsonDecoder.decode(type.self, from: data)
         }
-        .mapError{ ProviderError.decodingError($0) }
+        .mapError{ error in
+            if let error = error as? ProviderError {
+                return error
+            } else {
+                return ProviderError.decodingError(error)
+            }
+        }
         .eraseToAnyPublisher()
     }
     
     /// Generates an `URLRequest` based on methodType
     /// - Parameter target: NetworkTarget
-    private func constructURL(with target: NetworkTarget) -> URLRequest? {
+    private func constructURL(with target: NetworkTarget) -> URLRequest {
         var url = target.baseURL
         url.appendPathComponent(target.path)
         switch target.methodType {
@@ -58,73 +62,59 @@ class AccNetworkProvider {
 
 // MARK: - Private Extension
 private extension AccNetworkProvider {
+    
     // TODO: - Need to add headers like application\json ...
-    func prepareGetRequest(with target: NetworkTarget) -> URLRequest? {
+    func prepareGetRequest(with target: NetworkTarget) -> URLRequest {
         let url = target.pathAppendedURL
         switch target.workType {
         case .requestParameters(let parameters, _):
-            var quearyItems: [URLQueryItem] = []
-            for parameter in parameters {
-                quearyItems.append(URLQueryItem(name: parameter.key, value: parameter.value as? String))
-            }
-            var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)
-            urlComponents?.queryItems = quearyItems
-            guard let url = urlComponents?.url else { return nil }
+            let url = url.generateUrlWithQuery(with: parameters)
             var request = URLRequest(url: url)
-            if let contentType = target.contentType?.rawValue {
-                request.addValue(contentType, forHTTPHeaderField: "Content-Type")
-            }
-            request.httpMethod = target.methodType.methodName
+            request.prepareRequest(with: target)
             return request
         @unknown default:
             var request = URLRequest(url: url)
-            request.httpMethod = target.methodType.methodName
+            request.prepareRequest(with: target)
             return request
         }
     }
     
-    func preparePostRequest(with target: NetworkTarget) -> URLRequest? {
+    func preparePostRequest(with target: NetworkTarget) -> URLRequest {
         let url = target.pathAppendedURL
         switch target.workType {
         case .requestParameters(let parameters, _):
             var request = URLRequest(url: url)
-            request.httpMethod = target.methodType.methodName
-            if let contentType = target.contentType?.rawValue {
-                request.addValue(contentType, forHTTPHeaderField: "Content-Type")
-            }
+            request.prepareRequest(with: target)
             request.httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
             return request
         @unknown default:
             var request = URLRequest(url: url)
-            request.httpMethod = target.methodType.methodName
+            request.prepareRequest(with: target)
             return request
         }
     }
     
-    func preparePutRequest(with target: NetworkTarget) -> URLRequest? {
+    func preparePutRequest(with target: NetworkTarget) -> URLRequest {
         let url = target.pathAppendedURL
         switch target.workType {
         case .requestParameters(let parameters, _):
             var request = URLRequest(url: url)
-            request.httpMethod = target.methodType.methodName
+            request.prepareRequest(with: target)
             request.httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
             return request
         @unknown default:
             var request = URLRequest(url: url)
-            request.httpMethod = target.methodType.methodName
+            request.prepareRequest(with: target)
             return request
         }
     }
     
-    func prepareDeleteRequest(with target: NetworkTarget) -> URLRequest? {
+    func prepareDeleteRequest(with target: NetworkTarget) -> URLRequest {
         let url = target.pathAppendedURL
         switch target.workType {
         case .requestParameters(let parameters, _):
             var request = URLRequest(url: url)
-            request.httpMethod = target.methodType.methodName
-            if let contentType = target.contentType?.rawValue {
-                request.addValue(contentType, forHTTPHeaderField: "Content-Type")
-            }
+            request.prepareRequest(with: target)
             request.httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
             return request
         @unknown default:
