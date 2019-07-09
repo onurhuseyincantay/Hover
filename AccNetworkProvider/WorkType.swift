@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum WorkType {
+public enum WorkType {
     case requestPlain
     case requestData(data: Data)
     case requestParameters(parameters: [String: Any], encoding: JSONEncoder)

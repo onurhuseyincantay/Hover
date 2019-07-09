@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum AuthProviderType {
+public enum AuthProviderType {
     case bearer(token: String)
     case basic(token: String)
     case custom(Any)

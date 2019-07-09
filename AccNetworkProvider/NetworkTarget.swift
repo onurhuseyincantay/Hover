@@ -9,7 +9,7 @@
 import Foundation
 
 
-protocol NetworkTarget {
+public protocol NetworkTarget {
     var baseURL: URL { get }
     var path: String { get }
     var methodType: MethodType { get }
@@ -18,7 +18,7 @@ protocol NetworkTarget {
     var contentType: ContentType? { get }
 }
 
-extension NetworkTarget {
+public extension NetworkTarget {
     var pathAppendedURL: URL {
         var url = baseURL
         url.appendPathComponent(path)

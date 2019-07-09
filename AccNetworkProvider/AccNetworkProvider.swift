@@ -10,14 +10,16 @@ import Foundation
 import Combine
 
 // MARK: - AccNetworkProvider
-class AccNetworkProvider {
+public final class AccNetworkProvider {
+    public init() {}
+    
     private lazy var jsonDecoder = JSONDecoder()
     
     /// Requests for a spesific call with `DataTaskPublisher`
     /// - Parameter target: `NetworkTarget`
     /// - Parameter type: Decodable Object Type
     /// - Parameter urlSession: `URLSession`
-    func request<D: Decodable>(with target: NetworkTarget, urlSession: URLSession = URLSession.shared, class type: D.Type) -> AnyPublisher<D,ProviderError> {
+    public func request<D: Decodable>(with target: NetworkTarget, urlSession: URLSession = URLSession.shared, class type: D.Type) -> AnyPublisher<D,ProviderError> {
         var urlRequest = constructURL(with: target)
         urlRequest.allowsCellularAccess = false
         return urlSession.dataTaskPublisher(for: urlRequest)
@@ -48,7 +50,7 @@ class AccNetworkProvider {
     /// - Parameter type: Decodable Object Type
     /// - Parameter urlSession: `URLSession`
     /// - Parameter result: `Completion Block as (Result<D,ProviderError>) -> ()`
-    func request<D: Decodable>(with target: NetworkTarget, urlSession: URLSession = URLSession.shared, class type: D.Type, result: @escaping (Result<D,ProviderError>) -> ()) {
+    public func request<D: Decodable>(with target: NetworkTarget, urlSession: URLSession = URLSession.shared, class type: D.Type, result: @escaping (Result<D,ProviderError>) -> ()) {
         var urlRequest = constructURL(with: target)
         urlRequest.allowsCellularAccess = false
         urlSession.dataTask(with: urlRequest) { data, response, error in

@@ -8,13 +8,13 @@
 
 import Foundation
 
-enum MethodType: Equatable {
+public enum MethodType: Equatable {
     case get
     case post
     case put
     case delete
     
-    var methodName: String {
+    public var methodName: String {
         switch self {
         case .get:
             return "GET"
