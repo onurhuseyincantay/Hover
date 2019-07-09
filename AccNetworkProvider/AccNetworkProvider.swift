@@ -121,6 +121,11 @@ private extension AccNetworkProvider {
             request.prepareRequest(with: target)
             request.httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
             return request
+        case .requestData(let data):
+            var request = URLRequest(url: url)
+            request.prepareRequest(with: target)
+            request.httpBody = data
+            return request
         case .requestWithEncodable(let encodable):
             #warning("not tested yet can explode!")
             var request = URLRequest(url: url)
@@ -142,6 +147,11 @@ private extension AccNetworkProvider {
             request.prepareRequest(with: target)
             request.httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
             return request
+        case .requestData(let data):
+            var request = URLRequest(url: url)
+            request.prepareRequest(with: target)
+            request.httpBody = data
+            return request
         case .requestWithEncodable(let encodable):
             #warning("not tested yet can explode!")
             var request = URLRequest(url: url)
@@ -162,6 +172,11 @@ private extension AccNetworkProvider {
             var request = URLRequest(url: url)
             request.prepareRequest(with: target)
             request.httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+            return request
+        case .requestData(let data):
+            var request = URLRequest(url: url)
+            request.prepareRequest(with: target)
+            request.httpBody = data
             return request
         case .requestWithEncodable(let encodable):
             #warning("not tested yet can explode!")
