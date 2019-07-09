@@ -27,8 +27,7 @@ class AccNetworkProvider {
                     throw ProviderError.connectionError(error)
                 }
                 return urlSession.dataTaskPublisher(for: urlRequest)
-        }
-        .tryMap { data, response -> D in
+        }.tryMap { data, response -> D in
             guard let httpResponse = response as? HTTPURLResponse else {
                 throw ProviderError.invalidServerResponse
             }
@@ -36,15 +35,13 @@ class AccNetworkProvider {
                 throw ProviderError.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)
             }
             return try self.jsonDecoder.decode(type.self, from: data)
-        }
-        .mapError{ error in
+        }.mapError{ error in
             if let error = error as? ProviderError {
                 return error
             } else {
                 return ProviderError.decodingError(error)
             }
-        }
-        .eraseToAnyPublisher()
+        }.eraseToAnyPublisher()
     }
     
     /// Requests for a sepecific call with completionBlock
