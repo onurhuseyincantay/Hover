@@ -118,9 +118,9 @@
 		8FCCF05E22D38994002C2CAE /* AccNetworkProvider */ = {
 			isa = PBXGroup;
 			children = (
-				8FE14E2322D48999006DD1FA /* Types */,
-				8FE14E2222D48989006DD1FA /* Extensions */,
 				8F1ACC6722D38A0A00A71D5D /* Base */,
+				8FE14E2222D48989006DD1FA /* Extensions */,
+				8FE14E2322D48999006DD1FA /* Types */,
 				8F1ACC6C22D38A2400A71D5D /* AccNetworkProvider.swift */,
 				8F1ACC6922D38A2400A71D5D /* NetworkTarget.swift */,
 				8F1ACC6822D38A2400A71D5D /* ProviderError.swift */,

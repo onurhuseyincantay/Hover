@@ -23,7 +23,7 @@ public extension ProviderError {
         case .invalidServerResponse:
             return "Failed to parse the response to HTTPResponse"
         case .connectionError(let error):
-            return "Network connection seems to be offline:  \(error.localizedDescription)"
+            return "Network connection seems to be offline: \(error.localizedDescription)"
         case .decodingError(let error):
             return "Decoding problem: \(error.localizedDescription)"
         case .underlying(let error):
