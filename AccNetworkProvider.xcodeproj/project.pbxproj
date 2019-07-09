@@ -7,9 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F1ACC6E22D38A2400A71D5D /* ProviderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC6822D38A2400A71D5D /* ProviderError.swift */; };
+		8F1ACC6F22D38A2400A71D5D /* NetworkTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC6922D38A2400A71D5D /* NetworkTarget.swift */; };
+		8F1ACC7022D38A2400A71D5D /* AuthenticationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC6A22D38A2400A71D5D /* AuthenticationProvider.swift */; };
+		8F1ACC7122D38A2400A71D5D /* MethodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC6B22D38A2400A71D5D /* MethodType.swift */; };
+		8F1ACC7222D38A2400A71D5D /* AccNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC6C22D38A2400A71D5D /* AccNetworkProvider.swift */; };
+		8F1ACC7322D38A2400A71D5D /* WorkType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC6D22D38A2400A71D5D /* WorkType.swift */; };
 		8FCCF06622D38994002C2CAE /* AccNetworkProvider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FCCF05C22D38994002C2CAE /* AccNetworkProvider.framework */; };
 		8FCCF06B22D38994002C2CAE /* AccNetworkProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCCF06A22D38994002C2CAE /* AccNetworkProviderTests.swift */; };
 		8FCCF06D22D38994002C2CAE /* AccNetworkProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 8FCCF05F22D38994002C2CAE /* AccNetworkProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8FD07C0B22D3BB5F007D9910 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC7C22D38C3700A71D5D /* TestData.swift */; };
+		8FD07C0C22D3BB63007D9910 /* TestClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC7E22D38C3700A71D5D /* TestClass.swift */; };
+		8FD07C0D22D3BB63007D9910 /* WeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC7D22D38C3700A71D5D /* WeatherResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,6 +32,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8F1ACC6822D38A2400A71D5D /* ProviderError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProviderError.swift; sourceTree = "<group>"; };
+		8F1ACC6922D38A2400A71D5D /* NetworkTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkTarget.swift; sourceTree = "<group>"; };
+		8F1ACC6A22D38A2400A71D5D /* AuthenticationProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationProvider.swift; sourceTree = "<group>"; };
+		8F1ACC6B22D38A2400A71D5D /* MethodType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MethodType.swift; sourceTree = "<group>"; };
+		8F1ACC6C22D38A2400A71D5D /* AccNetworkProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccNetworkProvider.swift; sourceTree = "<group>"; };
+		8F1ACC6D22D38A2400A71D5D /* WorkType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkType.swift; sourceTree = "<group>"; };
+		8F1ACC7C22D38C3700A71D5D /* TestData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
+		8F1ACC7D22D38C3700A71D5D /* WeatherResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherResponse.swift; sourceTree = "<group>"; };
+		8F1ACC7E22D38C3700A71D5D /* TestClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestClass.swift; sourceTree = "<group>"; };
 		8FCCF05C22D38994002C2CAE /* AccNetworkProvider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AccNetworkProvider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FCCF05F22D38994002C2CAE /* AccNetworkProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccNetworkProvider.h; sourceTree = "<group>"; };
 		8FCCF06022D38994002C2CAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -50,6 +68,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8F1ACC6722D38A0A00A71D5D /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				8FCCF05F22D38994002C2CAE /* AccNetworkProvider.h */,
+				8FCCF06022D38994002C2CAE /* Info.plist */,
+			);
+			name = Base;
+			sourceTree = "<group>";
+		};
+		8F1ACC7B22D38C2B00A71D5D /* Test Source */ = {
+			isa = PBXGroup;
+			children = (
+				8F1ACC7E22D38C3700A71D5D /* TestClass.swift */,
+				8F1ACC7C22D38C3700A71D5D /* TestData.swift */,
+				8F1ACC7D22D38C3700A71D5D /* WeatherResponse.swift */,
+			);
+			path = "Test Source";
+			sourceTree = "<group>";
+		};
 		8FCCF05222D38993002C2CAE = {
 			isa = PBXGroup;
 			children = (
@@ -71,8 +108,13 @@
 		8FCCF05E22D38994002C2CAE /* AccNetworkProvider */ = {
 			isa = PBXGroup;
 			children = (
-				8FCCF05F22D38994002C2CAE /* AccNetworkProvider.h */,
-				8FCCF06022D38994002C2CAE /* Info.plist */,
+				8F1ACC6722D38A0A00A71D5D /* Base */,
+				8F1ACC6C22D38A2400A71D5D /* AccNetworkProvider.swift */,
+				8F1ACC6A22D38A2400A71D5D /* AuthenticationProvider.swift */,
+				8F1ACC6B22D38A2400A71D5D /* MethodType.swift */,
+				8F1ACC6922D38A2400A71D5D /* NetworkTarget.swift */,
+				8F1ACC6822D38A2400A71D5D /* ProviderError.swift */,
+				8F1ACC6D22D38A2400A71D5D /* WorkType.swift */,
 			);
 			path = AccNetworkProvider;
 			sourceTree = "<group>";
@@ -80,6 +122,7 @@
 		8FCCF06922D38994002C2CAE /* AccNetworkProviderTests */ = {
 			isa = PBXGroup;
 			children = (
+				8F1ACC7B22D38C2B00A71D5D /* Test Source */,
 				8FCCF06A22D38994002C2CAE /* AccNetworkProviderTests.swift */,
 				8FCCF06C22D38994002C2CAE /* Info.plist */,
 			);
@@ -148,6 +191,7 @@
 				TargetAttributes = {
 					8FCCF05B22D38994002C2CAE = {
 						CreatedOnToolsVersion = 11.0;
+						LastSwiftMigration = 1100;
 					};
 					8FCCF06422D38994002C2CAE = {
 						CreatedOnToolsVersion = 11.0;
@@ -195,6 +239,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F1ACC6E22D38A2400A71D5D /* ProviderError.swift in Sources */,
+				8F1ACC7022D38A2400A71D5D /* AuthenticationProvider.swift in Sources */,
+				8F1ACC7322D38A2400A71D5D /* WorkType.swift in Sources */,
+				8F1ACC7122D38A2400A71D5D /* MethodType.swift in Sources */,
+				8F1ACC6F22D38A2400A71D5D /* NetworkTarget.swift in Sources */,
+				8F1ACC7222D38A2400A71D5D /* AccNetworkProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,6 +253,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FCCF06B22D38994002C2CAE /* AccNetworkProviderTests.swift in Sources */,
+				8FD07C0C22D3BB63007D9910 /* TestClass.swift in Sources */,
+				8FD07C0B22D3BB5F007D9910 /* TestData.swift in Sources */,
+				8FD07C0D22D3BB63007D9910 /* WeatherResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +393,7 @@
 		8FCCF07122D38994002C2CAE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = B4F2B776R3;
@@ -356,6 +410,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Accenture.AccNetworkProvider;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -364,6 +419,7 @@
 		8FCCF07222D38994002C2CAE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = B4F2B776R3;
@@ -388,6 +444,7 @@
 		8FCCF07422D38994002C2CAE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B4F2B776R3;
 				INFOPLIST_FILE = AccNetworkProviderTests/Info.plist;
@@ -406,6 +463,7 @@
 		8FCCF07522D38994002C2CAE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B4F2B776R3;
 				INFOPLIST_FILE = AccNetworkProviderTests/Info.plist;

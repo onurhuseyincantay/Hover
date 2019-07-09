@@ -10,25 +10,24 @@ import XCTest
 @testable import AccNetworkProvider
 
 class AccNetworkProviderTests: XCTestCase {
-
+    var testClass: TestClass!
+    
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        testClass = TestClass()
     }
-
+    
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        testClass = nil
     }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    
+    func testGetRequest() {
+        let exp = expectation(description: "Response")
+        XCTAssertNoThrow(try testClass.getWeather()) 
+        guard let testSubscriber = testClass.subscriber else { return assertionFailure() }
+        testSubscriber.sink { response in
+            print(response)
+            exp.fulfill()
         }
+        wait(for: [exp], timeout: 20)
     }
-
 }
