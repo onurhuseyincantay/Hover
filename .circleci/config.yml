@@ -7,9 +7,7 @@ orbs:
   codecov: codecov/codecov@1.0.2
 jobs:
   build:
-    environment:
-      - CODECOV_TOKEN: "fafb9fb4-511d-4847-a653-5e7080f8b64a"
-        
+
     # Specify the Xcode version to use
     macos:
       xcode: "11.0.0"
