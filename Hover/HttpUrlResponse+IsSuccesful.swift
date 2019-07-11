@@ -1,5 +1,5 @@
 //
-//  HttpUrlResponse+IsSuccesfull.swift
+//  HttpUrlResponse+IsSuccesful.swift
 //  Hover
 //
 //  Created by Onur Hüseyin Çantay on 9.07.2019.
@@ -9,7 +9,7 @@
 import Foundation
 
 extension HTTPURLResponse {
-    var isSuccessfull: Bool {
+    var isSuccessful: Bool {
         return (200..<300).contains(statusCode)
     }
 }

@@ -12,7 +12,7 @@ import Combine
 #endif
 
 public typealias VoidResultCompletion = (Result<URLResponse,ProviderError>) -> Void
-// MARK: - AccNetworkProvider Data Task Publisher
+// MARK: - HoverProvider Data Task Publisher
 public final class HoverProvider {
     public init() {}
 
@@ -34,7 +34,7 @@ public final class HoverProvider {
             guard let httpResponse = response as? HTTPURLResponse else {
                 throw ProviderError.invalidServerResponse
             }
-            if !httpResponse.isSuccessfull {
+            if !httpResponse.isSuccessful {
                 throw ProviderError.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)
             }
             return data
@@ -63,7 +63,7 @@ public final class HoverProvider {
             guard let httpResponse = response as? HTTPURLResponse else {
                 throw ProviderError.invalidServerResponse
             }
-            if !httpResponse.isSuccessfull {
+            if !httpResponse.isSuccessful {
                 throw ProviderError.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)
             }
             return response
@@ -89,7 +89,7 @@ public final class HoverProvider {
             guard let httpResponse = response as? HTTPURLResponse else {
                 throw ProviderError.invalidServerResponse
             }
-            if !httpResponse.isSuccessfull {
+            if !httpResponse.isSuccessful {
                 throw ProviderError.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)
             }
             return data
@@ -118,7 +118,7 @@ public final class HoverProvider {
             guard let httpResponse = response as? HTTPURLResponse else {
                 throw ProviderError.invalidServerResponse
             }
-            if !httpResponse.isSuccessfull {
+            if !httpResponse.isSuccessful {
                 throw ProviderError.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)
             }
             return response
@@ -145,7 +145,7 @@ public extension HoverProvider {
                 result(.failure(.invalidServerResponse))
                 return
             }
-            if !httpResponse.isSuccessfull {
+            if !httpResponse.isSuccessful {
                 result(.failure(.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)))
                 return
             }
@@ -177,7 +177,7 @@ public extension HoverProvider {
                 result(.failure(.invalidServerResponse))
                 return
             }
-            if !httpResponse.isSuccessfull {
+            if !httpResponse.isSuccessful {
                 result(.failure(.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)))
                 return
             }
