@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 
 //! Project version number for AccNetworkProvider.
-FOUNDATION_EXPORT double AccNetworkProviderVersionNumber;
+FOUNDATION_EXPORT double HoverVersionNumber;
 
 //! Project version string for AccNetworkProvider.
-FOUNDATION_EXPORT const unsigned char AccNetworkProviderVersionString[];
+FOUNDATION_EXPORT const unsigned char HoverVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <AccNetworkProvider/PublicHeader.h>
 

@@ -7,23 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F099E3C22D5D8A800A5AC5B /* PostsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F099E3B22D5D8A800A5AC5B /* PostsResponse.swift */; };
+		8F099E3E22D5D95600A5AC5B /* CommentsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F099E3D22D5D95600A5AC5B /* CommentsResponse.swift */; };
+		8F099E4022D5E65B00A5AC5B /* DataTaskPublisherFailingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F099E3F22D5E65B00A5AC5B /* DataTaskPublisherFailingTests.swift */; };
+		8F099E4422D5E6B100A5AC5B /* CompletionBlockFailingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F099E4322D5E6B100A5AC5B /* CompletionBlockFailingTests.swift */; };
 		8F1ACC6E22D38A2400A71D5D /* ProviderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC6822D38A2400A71D5D /* ProviderError.swift */; };
 		8F1ACC6F22D38A2400A71D5D /* NetworkTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC6922D38A2400A71D5D /* NetworkTarget.swift */; };
 		8F1ACC7022D38A2400A71D5D /* AuthProviderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC6A22D38A2400A71D5D /* AuthProviderType.swift */; };
 		8F1ACC7122D38A2400A71D5D /* MethodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC6B22D38A2400A71D5D /* MethodType.swift */; };
-		8F1ACC7222D38A2400A71D5D /* AccNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC6C22D38A2400A71D5D /* AccNetworkProvider.swift */; };
+		8F1ACC7222D38A2400A71D5D /* HoverProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC6C22D38A2400A71D5D /* HoverProvider.swift */; };
 		8F1ACC7322D38A2400A71D5D /* WorkType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC6D22D38A2400A71D5D /* WorkType.swift */; };
-		8FCCF06622D38994002C2CAE /* AccNetworkProvider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FCCF05C22D38994002C2CAE /* AccNetworkProvider.framework */; };
-		8FCCF06B22D38994002C2CAE /* AccNetworkProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCCF06A22D38994002C2CAE /* AccNetworkProviderTests.swift */; };
-		8FCCF06D22D38994002C2CAE /* AccNetworkProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 8FCCF05F22D38994002C2CAE /* AccNetworkProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8FD07C0B22D3BB5F007D9910 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC7C22D38C3700A71D5D /* TestData.swift */; };
+		8FCCF06622D38994002C2CAE /* Hover.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FCCF05C22D38994002C2CAE /* Hover.framework */; };
+		8FCCF06B22D38994002C2CAE /* DataTaskPublisherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCCF06A22D38994002C2CAE /* DataTaskPublisherTests.swift */; };
+		8FCCF06D22D38994002C2CAE /* Hover.h in Headers */ = {isa = PBXBuildFile; fileRef = 8FCCF05F22D38994002C2CAE /* Hover.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8FD07C0B22D3BB5F007D9910 /* TestTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC7C22D38C3700A71D5D /* TestTarget.swift */; };
 		8FD07C0C22D3BB63007D9910 /* TestClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC7E22D38C3700A71D5D /* TestClass.swift */; };
 		8FD07C0D22D3BB63007D9910 /* WeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC7D22D38C3700A71D5D /* WeatherResponse.swift */; };
 		8FE14DF522D480A9006DD1FA /* ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE14DF422D480A9006DD1FA /* ContentType.swift */; };
 		8FE14E1D22D485CD006DD1FA /* URLRequest+prepareRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE14E1C22D485CD006DD1FA /* URLRequest+prepareRequest.swift */; };
 		8FE14E2122D488DF006DD1FA /* URL+GenerateURLQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE14E2022D488DF006DD1FA /* URL+GenerateURLQuery.swift */; };
-		8FE14E2522D49A27006DD1FA /* AccNetworkProviderCompletionBlockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE14E2422D49A27006DD1FA /* AccNetworkProviderCompletionBlockTests.swift */; };
+		8FE14E2522D49A27006DD1FA /* CompletionBlockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE14E2422D49A27006DD1FA /* CompletionBlockTests.swift */; };
 		8FE14E2722D49F39006DD1FA /* HttpUrlResponse+IsSuccesfull.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE14E2622D49F39006DD1FA /* HttpUrlResponse+IsSuccesfull.swift */; };
+		8FF72ED722D733C5008071E9 /* CommentSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF72ED622D733C5008071E9 /* CommentSubscriber.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,26 +42,31 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8F099E3B22D5D8A800A5AC5B /* PostsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsResponse.swift; sourceTree = "<group>"; };
+		8F099E3D22D5D95600A5AC5B /* CommentsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsResponse.swift; sourceTree = "<group>"; };
+		8F099E3F22D5E65B00A5AC5B /* DataTaskPublisherFailingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTaskPublisherFailingTests.swift; sourceTree = "<group>"; };
+		8F099E4322D5E6B100A5AC5B /* CompletionBlockFailingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionBlockFailingTests.swift; sourceTree = "<group>"; };
 		8F1ACC6822D38A2400A71D5D /* ProviderError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProviderError.swift; sourceTree = "<group>"; };
 		8F1ACC6922D38A2400A71D5D /* NetworkTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkTarget.swift; sourceTree = "<group>"; };
 		8F1ACC6A22D38A2400A71D5D /* AuthProviderType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthProviderType.swift; sourceTree = "<group>"; };
 		8F1ACC6B22D38A2400A71D5D /* MethodType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MethodType.swift; sourceTree = "<group>"; };
-		8F1ACC6C22D38A2400A71D5D /* AccNetworkProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccNetworkProvider.swift; sourceTree = "<group>"; };
+		8F1ACC6C22D38A2400A71D5D /* HoverProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoverProvider.swift; sourceTree = "<group>"; };
 		8F1ACC6D22D38A2400A71D5D /* WorkType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkType.swift; sourceTree = "<group>"; };
-		8F1ACC7C22D38C3700A71D5D /* TestData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
+		8F1ACC7C22D38C3700A71D5D /* TestTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTarget.swift; sourceTree = "<group>"; };
 		8F1ACC7D22D38C3700A71D5D /* WeatherResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherResponse.swift; sourceTree = "<group>"; };
 		8F1ACC7E22D38C3700A71D5D /* TestClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestClass.swift; sourceTree = "<group>"; };
-		8FCCF05C22D38994002C2CAE /* AccNetworkProvider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AccNetworkProvider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8FCCF05F22D38994002C2CAE /* AccNetworkProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AccNetworkProvider.h; sourceTree = "<group>"; };
+		8FCCF05C22D38994002C2CAE /* Hover.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Hover.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FCCF05F22D38994002C2CAE /* Hover.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Hover.h; sourceTree = "<group>"; };
 		8FCCF06022D38994002C2CAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8FCCF06522D38994002C2CAE /* AccNetworkProviderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AccNetworkProviderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8FCCF06A22D38994002C2CAE /* AccNetworkProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccNetworkProviderTests.swift; sourceTree = "<group>"; };
+		8FCCF06522D38994002C2CAE /* HoverTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HoverTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FCCF06A22D38994002C2CAE /* DataTaskPublisherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTaskPublisherTests.swift; sourceTree = "<group>"; };
 		8FCCF06C22D38994002C2CAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8FE14DF422D480A9006DD1FA /* ContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentType.swift; sourceTree = "<group>"; };
 		8FE14E1C22D485CD006DD1FA /* URLRequest+prepareRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+prepareRequest.swift"; sourceTree = "<group>"; };
 		8FE14E2022D488DF006DD1FA /* URL+GenerateURLQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+GenerateURLQuery.swift"; sourceTree = "<group>"; };
-		8FE14E2422D49A27006DD1FA /* AccNetworkProviderCompletionBlockTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccNetworkProviderCompletionBlockTests.swift; sourceTree = "<group>"; };
+		8FE14E2422D49A27006DD1FA /* CompletionBlockTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionBlockTests.swift; sourceTree = "<group>"; };
 		8FE14E2622D49F39006DD1FA /* HttpUrlResponse+IsSuccesfull.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HttpUrlResponse+IsSuccesfull.swift"; sourceTree = "<group>"; };
+		8FF72ED622D733C5008071E9 /* CommentSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentSubscriber.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,17 +81,44 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8FCCF06622D38994002C2CAE /* AccNetworkProvider.framework in Frameworks */,
+				8FCCF06622D38994002C2CAE /* Hover.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8F099E3A22D5D89700A5AC5B /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				8F099E3B22D5D8A800A5AC5B /* PostsResponse.swift */,
+				8F099E3D22D5D95600A5AC5B /* CommentsResponse.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		8F099E4122D5E68D00A5AC5B /* DataTaskPublisherTests */ = {
+			isa = PBXGroup;
+			children = (
+				8FCCF06A22D38994002C2CAE /* DataTaskPublisherTests.swift */,
+				8F099E3F22D5E65B00A5AC5B /* DataTaskPublisherFailingTests.swift */,
+			);
+			path = DataTaskPublisherTests;
+			sourceTree = "<group>";
+		};
+		8F099E4222D5E69600A5AC5B /* CompletionBlockTests */ = {
+			isa = PBXGroup;
+			children = (
+				8FE14E2422D49A27006DD1FA /* CompletionBlockTests.swift */,
+				8F099E4322D5E6B100A5AC5B /* CompletionBlockFailingTests.swift */,
+			);
+			path = CompletionBlockTests;
+			sourceTree = "<group>";
+		};
 		8F1ACC6722D38A0A00A71D5D /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				8FCCF05F22D38994002C2CAE /* AccNetworkProvider.h */,
+				8FCCF05F22D38994002C2CAE /* Hover.h */,
 				8FCCF06022D38994002C2CAE /* Info.plist */,
 			);
 			name = Base;
@@ -90,9 +127,11 @@
 		8F1ACC7B22D38C2B00A71D5D /* Test Source */ = {
 			isa = PBXGroup;
 			children = (
+				8F099E3A22D5D89700A5AC5B /* Response */,
 				8F1ACC7E22D38C3700A71D5D /* TestClass.swift */,
-				8F1ACC7C22D38C3700A71D5D /* TestData.swift */,
+				8F1ACC7C22D38C3700A71D5D /* TestTarget.swift */,
 				8F1ACC7D22D38C3700A71D5D /* WeatherResponse.swift */,
+				8FF72ED622D733C5008071E9 /* CommentSubscriber.swift */,
 			);
 			path = "Test Source";
 			sourceTree = "<group>";
@@ -100,8 +139,8 @@
 		8FCCF05222D38993002C2CAE = {
 			isa = PBXGroup;
 			children = (
-				8FCCF05E22D38994002C2CAE /* AccNetworkProvider */,
-				8FCCF06922D38994002C2CAE /* AccNetworkProviderTests */,
+				8FCCF05E22D38994002C2CAE /* Hover */,
+				8FCCF06922D38994002C2CAE /* HoverTests */,
 				8FCCF05D22D38994002C2CAE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -109,34 +148,34 @@
 		8FCCF05D22D38994002C2CAE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8FCCF05C22D38994002C2CAE /* AccNetworkProvider.framework */,
-				8FCCF06522D38994002C2CAE /* AccNetworkProviderTests.xctest */,
+				8FCCF05C22D38994002C2CAE /* Hover.framework */,
+				8FCCF06522D38994002C2CAE /* HoverTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8FCCF05E22D38994002C2CAE /* AccNetworkProvider */ = {
+		8FCCF05E22D38994002C2CAE /* Hover */ = {
 			isa = PBXGroup;
 			children = (
 				8F1ACC6722D38A0A00A71D5D /* Base */,
 				8FE14E2222D48989006DD1FA /* Extensions */,
 				8FE14E2322D48999006DD1FA /* Types */,
-				8F1ACC6C22D38A2400A71D5D /* AccNetworkProvider.swift */,
+				8F1ACC6C22D38A2400A71D5D /* HoverProvider.swift */,
 				8F1ACC6922D38A2400A71D5D /* NetworkTarget.swift */,
 				8F1ACC6822D38A2400A71D5D /* ProviderError.swift */,
 			);
-			path = AccNetworkProvider;
+			path = Hover;
 			sourceTree = "<group>";
 		};
-		8FCCF06922D38994002C2CAE /* AccNetworkProviderTests */ = {
+		8FCCF06922D38994002C2CAE /* HoverTests */ = {
 			isa = PBXGroup;
 			children = (
 				8F1ACC7B22D38C2B00A71D5D /* Test Source */,
-				8FCCF06A22D38994002C2CAE /* AccNetworkProviderTests.swift */,
+				8F099E4222D5E69600A5AC5B /* CompletionBlockTests */,
+				8F099E4122D5E68D00A5AC5B /* DataTaskPublisherTests */,
 				8FCCF06C22D38994002C2CAE /* Info.plist */,
-				8FE14E2422D49A27006DD1FA /* AccNetworkProviderCompletionBlockTests.swift */,
 			);
-			path = AccNetworkProviderTests;
+			path = HoverTests;
 			sourceTree = "<group>";
 		};
 		8FE14E2222D48989006DD1FA /* Extensions */ = {
@@ -167,16 +206,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8FCCF06D22D38994002C2CAE /* AccNetworkProvider.h in Headers */,
+				8FCCF06D22D38994002C2CAE /* Hover.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		8FCCF05B22D38994002C2CAE /* AccNetworkProvider */ = {
+		8FCCF05B22D38994002C2CAE /* Hover */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8FCCF07022D38994002C2CAE /* Build configuration list for PBXNativeTarget "AccNetworkProvider" */;
+			buildConfigurationList = 8FCCF07022D38994002C2CAE /* Build configuration list for PBXNativeTarget "Hover" */;
 			buildPhases = (
 				8FCCF05722D38994002C2CAE /* Headers */,
 				8FCCF05822D38994002C2CAE /* Sources */,
@@ -187,14 +226,14 @@
 			);
 			dependencies = (
 			);
-			name = AccNetworkProvider;
+			name = Hover;
 			productName = AccNetworkProvider;
-			productReference = 8FCCF05C22D38994002C2CAE /* AccNetworkProvider.framework */;
+			productReference = 8FCCF05C22D38994002C2CAE /* Hover.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		8FCCF06422D38994002C2CAE /* AccNetworkProviderTests */ = {
+		8FCCF06422D38994002C2CAE /* HoverTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8FCCF07322D38994002C2CAE /* Build configuration list for PBXNativeTarget "AccNetworkProviderTests" */;
+			buildConfigurationList = 8FCCF07322D38994002C2CAE /* Build configuration list for PBXNativeTarget "HoverTests" */;
 			buildPhases = (
 				8FCCF06122D38994002C2CAE /* Sources */,
 				8FCCF06222D38994002C2CAE /* Frameworks */,
@@ -205,9 +244,9 @@
 			dependencies = (
 				8FCCF06822D38994002C2CAE /* PBXTargetDependency */,
 			);
-			name = AccNetworkProviderTests;
+			name = HoverTests;
 			productName = AccNetworkProviderTests;
-			productReference = 8FCCF06522D38994002C2CAE /* AccNetworkProviderTests.xctest */;
+			productReference = 8FCCF06522D38994002C2CAE /* HoverTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -229,7 +268,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 8FCCF05622D38993002C2CAE /* Build configuration list for PBXProject "AccNetworkProvider" */;
+			buildConfigurationList = 8FCCF05622D38993002C2CAE /* Build configuration list for PBXProject "Hover" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -242,8 +281,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8FCCF05B22D38994002C2CAE /* AccNetworkProvider */,
-				8FCCF06422D38994002C2CAE /* AccNetworkProviderTests */,
+				8FCCF05B22D38994002C2CAE /* Hover */,
+				8FCCF06422D38994002C2CAE /* HoverTests */,
 			);
 		};
 /* End PBXProject section */
@@ -279,7 +318,7 @@
 				8F1ACC7122D38A2400A71D5D /* MethodType.swift in Sources */,
 				8FE14DF522D480A9006DD1FA /* ContentType.swift in Sources */,
 				8F1ACC6F22D38A2400A71D5D /* NetworkTarget.swift in Sources */,
-				8F1ACC7222D38A2400A71D5D /* AccNetworkProvider.swift in Sources */,
+				8F1ACC7222D38A2400A71D5D /* HoverProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,10 +326,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8FCCF06B22D38994002C2CAE /* AccNetworkProviderTests.swift in Sources */,
+				8F099E3E22D5D95600A5AC5B /* CommentsResponse.swift in Sources */,
+				8F099E3C22D5D8A800A5AC5B /* PostsResponse.swift in Sources */,
+				8FCCF06B22D38994002C2CAE /* DataTaskPublisherTests.swift in Sources */,
+				8FF72ED722D733C5008071E9 /* CommentSubscriber.swift in Sources */,
+				8F099E4422D5E6B100A5AC5B /* CompletionBlockFailingTests.swift in Sources */,
 				8FD07C0C22D3BB63007D9910 /* TestClass.swift in Sources */,
-				8FE14E2522D49A27006DD1FA /* AccNetworkProviderCompletionBlockTests.swift in Sources */,
-				8FD07C0B22D3BB5F007D9910 /* TestData.swift in Sources */,
+				8FE14E2522D49A27006DD1FA /* CompletionBlockTests.swift in Sources */,
+				8FD07C0B22D3BB5F007D9910 /* TestTarget.swift in Sources */,
+				8F099E4022D5E65B00A5AC5B /* DataTaskPublisherFailingTests.swift in Sources */,
 				8FD07C0D22D3BB63007D9910 /* WeatherResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -300,7 +344,7 @@
 /* Begin PBXTargetDependency section */
 		8FCCF06822D38994002C2CAE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8FCCF05B22D38994002C2CAE /* AccNetworkProvider */;
+			target = 8FCCF05B22D38994002C2CAE /* Hover */;
 			targetProxy = 8FCCF06722D38994002C2CAE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -357,7 +401,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -414,7 +458,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -437,14 +481,14 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = AccNetworkProvider/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Hover/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Accenture.AccNetworkProvider;
+				PRODUCT_BUNDLE_IDENTIFIER = onurhuseyincantay.Hover;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -464,14 +508,14 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = AccNetworkProvider/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Hover/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Accenture.AccNetworkProvider;
+				PRODUCT_BUNDLE_IDENTIFIER = onurhuseyincantay.Hover;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -485,13 +529,13 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B4F2B776R3;
-				INFOPLIST_FILE = AccNetworkProviderTests/Info.plist;
+				INFOPLIST_FILE = HoverTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Accenture.AccNetworkProviderTests;
+				PRODUCT_BUNDLE_IDENTIFIER = onurhuseyincantay.Hover;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -504,13 +548,13 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B4F2B776R3;
-				INFOPLIST_FILE = AccNetworkProviderTests/Info.plist;
+				INFOPLIST_FILE = HoverTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Accenture.AccNetworkProviderTests;
+				PRODUCT_BUNDLE_IDENTIFIER = onurhuseyincantay.Hover;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -520,7 +564,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8FCCF05622D38993002C2CAE /* Build configuration list for PBXProject "AccNetworkProvider" */ = {
+		8FCCF05622D38993002C2CAE /* Build configuration list for PBXProject "Hover" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8FCCF06E22D38994002C2CAE /* Debug */,
@@ -529,7 +573,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8FCCF07022D38994002C2CAE /* Build configuration list for PBXNativeTarget "AccNetworkProvider" */ = {
+		8FCCF07022D38994002C2CAE /* Build configuration list for PBXNativeTarget "Hover" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8FCCF07122D38994002C2CAE /* Debug */,
@@ -538,7 +582,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8FCCF07322D38994002C2CAE /* Build configuration list for PBXNativeTarget "AccNetworkProviderTests" */ = {
+		8FCCF07322D38994002C2CAE /* Build configuration list for PBXNativeTarget "HoverTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8FCCF07422D38994002C2CAE /* Debug */,

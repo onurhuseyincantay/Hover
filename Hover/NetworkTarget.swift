@@ -1,6 +1,6 @@
 //
 //  NetworkTarget.swift
-//  Acc
+//  Hover
 //
 //  Created by Onur Hüseyin Çantay on 5.07.2019.
 //  Copyright © 2019 Onur Hüseyin Çantay. All rights reserved.
@@ -15,6 +15,7 @@ public protocol NetworkTarget {
     var workType: WorkType { get }
     var providerType: AuthProviderType { get }
     var contentType: ContentType? { get }
+    var headers: [String: String]? { get }
 }
 
 public extension NetworkTarget {
