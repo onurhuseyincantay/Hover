@@ -1,3 +1,3 @@
 # Hover
-[![Swift Package Manager](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen.svg)](https://github.com/apple/swift-package-manager)
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+Hover is a Network layer which uses Apple's new framework `Combine` and provides async network calls with different kind of request functions.
+Inspired By [Moya](https://github.com/Moya/Moya/blob/master) Developed with 🧡
