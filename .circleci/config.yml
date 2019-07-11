@@ -3,9 +3,16 @@
 # Check https://circleci.com/docs/2.0/ios-migrating-from-1-2/ for more details
 #
 version: 2
+orbs:
+  codecov: codecov/codecov@1.0.2
 jobs:
   build:
-
+    environment:
+      - CODECOV_TOKEN: "fafb9fb4-511d-4847-a653-5e7080f8b64a"
+    steps:
+      - codecov/upload:
+          flags: unittests
+        
     # Specify the Xcode version to use
     macos:
       xcode: "11.0.0"
@@ -37,15 +44,3 @@ jobs:
       - store_artifacts:
           path: ~/Library/Logs/scan
           destination: scan-logs
-
-version: 2.1
-orbs:
-  codecov: codecov/codecov@1.0.2
-jobs:
-  build:
-    environment:
-    - CODECOV_TOKEN: fafb9fb4-511d-4847-a653-5e7080f8b64a
-    steps:
-      - codecov/upload:
-          flags: unittests
-        
