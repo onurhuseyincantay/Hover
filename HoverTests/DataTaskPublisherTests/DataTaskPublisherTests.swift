@@ -21,7 +21,7 @@ class DataTaskPublisherTests: XCTestCase {
     }
     
     func testFetchPosts() {
-        let exp = expectation(description: "Response")
+        let exp = expectation(description: "testFetchPosts")
         testClass.fetchPosts()
         guard let testSubscriber = testClass.postsSubscriber else { return assertionFailure() }
         _ = testSubscriber.sink { response in
@@ -32,7 +32,7 @@ class DataTaskPublisherTests: XCTestCase {
     }
     
     func testFetchPostById() {
-        let exp = expectation(description: "Response")
+        let exp = expectation(description: "testFetchPostById")
         testClass.fetchPostById()
         guard let testSubscriber = testClass.postSubscriber else { return assertionFailure() }
         _ = testSubscriber.sink { response in
@@ -44,7 +44,7 @@ class DataTaskPublisherTests: XCTestCase {
     
     func testCreatePost() {
         testClass.createPost()
-        let exp = expectation(description: "Response")
+        let exp = expectation(description: "testCreatePost")
         guard let testSubscriber = testClass.postSubscriber else { return assertionFailure() }
         _ = testSubscriber.sink { response in
             print(response)
@@ -54,7 +54,7 @@ class DataTaskPublisherTests: XCTestCase {
     }
     
     func testUpdatePostWithPut() {
-        let exp = expectation(description: "Response")
+        let exp = expectation(description: "testUpdatePostWithPut")
         testClass.updatePostWithPut()
         guard let testSubscriber = testClass.postSubscriber else { return assertionFailure() }
         _ = testSubscriber.sink { response in
@@ -65,7 +65,7 @@ class DataTaskPublisherTests: XCTestCase {
     }
     
     func testUpdatePostWithPatch() {
-        let exp = expectation(description: "Response")
+        let exp = expectation(description: "testUpdatePostWithPatch")
         testClass.updatePostWithPatch()
         guard let testSubscriber = testClass.postSubscriber else { return assertionFailure() }
         _ = testSubscriber.sink { response in
@@ -76,7 +76,7 @@ class DataTaskPublisherTests: XCTestCase {
     }
     
     func testFetchPostWithUserId() {
-        let exp = expectation(description: "Response")
+        let exp = expectation(description: "testFetchPostWithUserId")
         testClass.fetchPostsByUserId()
         guard let testSubscriber = testClass.postsSubscriber else { return assertionFailure() }
         _ = testSubscriber.sink { response in
@@ -87,7 +87,7 @@ class DataTaskPublisherTests: XCTestCase {
     }
     
     func testFetchCommentsWithPostId() {
-        let exp = expectation(description: "Response")
+        let exp = expectation(description: "testFetchCommentsWithPostId")
         testClass.fetchCommentsWithPostId()
         guard let testSubscriber = testClass.commentSubscriber else { return assertionFailure() }
         _ = testSubscriber.sink { response in
@@ -98,7 +98,7 @@ class DataTaskPublisherTests: XCTestCase {
     }
     
     func testDeletePost() {
-        let exp = expectation(description: "Response")
+        let exp = expectation(description: "testDeletePost")
         testClass.deletePost()
         guard let testSubscriber = testClass.noBodySubscriber else { return assertionFailure() }
         _ = testSubscriber.sink { response in

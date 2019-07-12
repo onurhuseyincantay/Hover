@@ -10,7 +10,6 @@ import Foundation
 import Combine
 @testable import Hover
 
-typealias ResultCompletion = (Result<WeatherResponse, ProviderError>) -> Void
 typealias PostCompletion = (Result<PostResponseElement,ProviderError>) -> Void
 typealias PostsCompletion = (Result<PostsResponse, ProviderError>) -> Void
 typealias CommentsCompletion = (Result<CommentsResponse,ProviderError>) -> Void

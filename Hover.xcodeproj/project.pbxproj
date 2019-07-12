@@ -22,7 +22,6 @@
 		8FCCF06D22D38994002C2CAE /* Hover.h in Headers */ = {isa = PBXBuildFile; fileRef = 8FCCF05F22D38994002C2CAE /* Hover.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8FD07C0B22D3BB5F007D9910 /* TestTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC7C22D38C3700A71D5D /* TestTarget.swift */; };
 		8FD07C0C22D3BB63007D9910 /* TestClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC7E22D38C3700A71D5D /* TestClass.swift */; };
-		8FD07C0D22D3BB63007D9910 /* WeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC7D22D38C3700A71D5D /* WeatherResponse.swift */; };
 		8FE14DF522D480A9006DD1FA /* ContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE14DF422D480A9006DD1FA /* ContentType.swift */; };
 		8FE14E1D22D485CD006DD1FA /* URLRequest+prepareRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE14E1C22D485CD006DD1FA /* URLRequest+prepareRequest.swift */; };
 		8FE14E2122D488DF006DD1FA /* URL+GenerateURLQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE14E2022D488DF006DD1FA /* URL+GenerateURLQuery.swift */; };
@@ -53,7 +52,6 @@
 		8F1ACC6C22D38A2400A71D5D /* HoverProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoverProvider.swift; sourceTree = "<group>"; };
 		8F1ACC6D22D38A2400A71D5D /* WorkType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkType.swift; sourceTree = "<group>"; };
 		8F1ACC7C22D38C3700A71D5D /* TestTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTarget.swift; sourceTree = "<group>"; };
-		8F1ACC7D22D38C3700A71D5D /* WeatherResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherResponse.swift; sourceTree = "<group>"; };
 		8F1ACC7E22D38C3700A71D5D /* TestClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestClass.swift; sourceTree = "<group>"; };
 		8FCCF05C22D38994002C2CAE /* Hover.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Hover.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FCCF05F22D38994002C2CAE /* Hover.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Hover.h; sourceTree = "<group>"; };
@@ -130,7 +128,6 @@
 				8F099E3A22D5D89700A5AC5B /* Response */,
 				8F1ACC7E22D38C3700A71D5D /* TestClass.swift */,
 				8F1ACC7C22D38C3700A71D5D /* TestTarget.swift */,
-				8F1ACC7D22D38C3700A71D5D /* WeatherResponse.swift */,
 				8FF72ED622D733C5008071E9 /* CommentSubscriber.swift */,
 			);
 			path = "Test Source";
@@ -335,7 +332,6 @@
 				8FE14E2522D49A27006DD1FA /* CompletionBlockTests.swift in Sources */,
 				8FD07C0B22D3BB5F007D9910 /* TestTarget.swift in Sources */,
 				8F099E4022D5E65B00A5AC5B /* DataTaskPublisherFailingTests.swift in Sources */,
-				8FD07C0D22D3BB63007D9910 /* WeatherResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

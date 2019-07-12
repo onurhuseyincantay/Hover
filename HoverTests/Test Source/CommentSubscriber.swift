@@ -11,6 +11,9 @@ import Combine
 @testable import Hover
 
 class CommentSubscriber: Subscriber {
+    typealias Input = CommentsResponse
+    typealias Failure = ProviderError
+    
     let publisher = PassthroughSubject<Input,Failure>()
     
     func receive(subscription: Subscription) {
@@ -24,11 +27,6 @@ class CommentSubscriber: Subscriber {
     
     func receive(completion: Subscribers.Completion<ProviderError>) {
         publisher.send(completion: completion)
-    }
-    
-    typealias Input = CommentsResponse
-    
-    typealias Failure = ProviderError
-    
+    }  
     
 }

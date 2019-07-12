@@ -209,6 +209,7 @@ private extension HoverProvider {
         }
     }
     
+    // TODO: - Similar Functions reduce to one function
     func prepareGetRequest(with target: NetworkTarget) -> URLRequest {
         let url = target.pathAppendedURL
         switch target.workType {
