@@ -112,13 +112,12 @@ class DataTaskPublisherTests: XCTestCase {
         let exp = expectation(description: "testFetchCommentsWithPostIdSubscriber")
         testClass.fetchCommentsWithSubscriber()
         _ = testClass.subscriber.publisher.sink(receiveCompletion: { completion in
-            XCTFail()
             switch completion {
             case .failure(let error):
+                XCTFail()
                 print(error.errorDescription)
             case .finished:
                 print("finished")
-                
             }
         }) { response in
             print(response)

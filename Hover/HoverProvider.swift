@@ -199,11 +199,10 @@ private extension HoverProvider {
         switch target.methodType {
         case .get:
             return prepareGetRequest(with: target)
-        case .post:
-            return preparePostRequest(with: target)
         case .put,
-             .patch:
-            return preparePutRequest(with: target)
+             .patch,
+             .post:
+            return prepareGeneralRequest(with: target)
         case .delete:
             return prepareDeleteRequest(with: target)
         }
@@ -225,52 +224,23 @@ private extension HoverProvider {
         }
     }
     
-    func preparePostRequest(with target: NetworkTarget) -> URLRequest {
+    /// Prepares the request for put post patch
+    /// - Parameter target: `Network Target`
+    func prepareGeneralRequest(with target: NetworkTarget) -> URLRequest {
         let url = target.pathAppendedURL
+        var request = URLRequest(url: url)
+        request.prepareRequest(with: target)
         switch target.workType {
         case .requestParameters(let parameters, _):
-            var request = URLRequest(url: url)
-            request.prepareRequest(with: target)
             request.httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
             return request
         case .requestData(let data):
-            var request = URLRequest(url: url)
-            request.prepareRequest(with: target)
             request.httpBody = data
             return request
         case .requestWithEncodable(let encodable):
-            var request = URLRequest(url: url)
-            request.prepareRequest(with: target)
             request.httpBody = try? JSONSerialization.data(withJSONObject: encodable, options: .prettyPrinted)
             return request
         @unknown default:
-            var request = URLRequest(url: url)
-            request.prepareRequest(with: target)
-            return request
-        }
-    }
-    
-    func preparePutRequest(with target: NetworkTarget) -> URLRequest {
-        let url = target.pathAppendedURL
-        switch target.workType {
-        case .requestParameters(let parameters, _):
-            var request = URLRequest(url: url)
-            request.prepareRequest(with: target)
-            request.httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
-            return request
-        case .requestData(let data):
-            var request = URLRequest(url: url)
-            request.prepareRequest(with: target)
-            request.httpBody = data
-            return request
-        case .requestWithEncodable(let encodable):
-            var request = URLRequest(url: url)
-            request.prepareRequest(with: target)
-            request.httpBody = try? JSONSerialization.data(withJSONObject: encodable, options: .prettyPrinted)
-            return request
-        @unknown default:
-            var request = URLRequest(url: url)
-            request.prepareRequest(with: target)
             return request
         }
     }
