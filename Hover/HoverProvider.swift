@@ -75,7 +75,7 @@ public final class HoverProvider {
     /// - Parameter target: `NetworkTarget`
     /// - Parameter type: Decodable Object Type
     /// - Parameter urlSession: `URLSession`
-    /// - Parameter subscriber: Subscriber
+    /// - Parameter subscriber: `Subscriber`
     @available(iOS 13.0, macOS 10.15,tvOS 13.0, watchOS 6.0, UIKitForMac 13.0, *)
     func request<D,S>(with target: NetworkTarget, class type: D.Type, urlSession: URLSession = URLSession.shared, subscriber: S) where S: Subscriber, D: Decodable, S.Input == D, S.Failure == ProviderError {
         let urlRequest = constructURL(with: target)
