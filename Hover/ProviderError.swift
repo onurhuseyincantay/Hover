@@ -12,6 +12,7 @@ public enum ProviderError: Error {
     case invalidServerResponseWithStatusCode(statusCode: Int)
     case invalidServerResponse
     case missingBodyData
+    case failedToDecodeImage
     case decodingError(Error)
     case connectionError(Error)
     case underlying(Error)
@@ -32,6 +33,8 @@ public extension ProviderError {
             return "The server response didn't fall in the given range Status Code is: \(statusCode)"
         case .missingBodyData:
             return "No body data provided from the server"
+        case .failedToDecodeImage:
+            return "the body doesn't contain a valid data."
         }
     }
 }

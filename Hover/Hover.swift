@@ -1,5 +1,5 @@
 //
-//  HoverProvider.swift
+//  Hover.swift
 //  Hover
 //
 //  Created by Onur Hüseyin Çantay on 5.07.2019.
@@ -11,11 +11,11 @@ import Foundation
 import Combine
 #endif
 
-public typealias VoidResultCompletion = (Result<URLResponse,ProviderError>) -> Void
-// MARK: - HoverProvider Data Task Publisher
-public final class HoverProvider {
+public typealias VoidResultCompletion = (Result<Response,ProviderError>) -> Void
+// MARK: - Hover Data Task Publisher
+public final class Hover {
     public init() {}
-
+    
     private lazy var jsonDecoder = JSONDecoder()
     
     /// Requests for a spesific call with `DataTaskPublisher` for with body response
@@ -47,26 +47,28 @@ public final class HoverProvider {
         }.eraseToAnyPublisher()
     }
     
-   
+    
+    
+    
     /// Requests for a spesific call with `DataTaskPublisher` for non body requests
     /// - Parameter target: `NetworkTarget`
     /// - Parameter urlSession: `URLSession`
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, UIKitForMac 13.0, *)
-    public func request(with target: NetworkTarget, urlSession: URLSession = URLSession.shared) -> AnyPublisher<URLResponse,ProviderError> {
+    public func request(with target: NetworkTarget, urlSession: URLSession = URLSession.shared) -> AnyPublisher<Response,ProviderError> {
         let urlRequest = constructURL(with: target)
         return urlSession.dataTaskPublisher(for: urlRequest).tryCatch { error -> URLSession.DataTaskPublisher in
             guard error.networkUnavailableReason == .constrained else {
                 throw ProviderError.connectionError(error)
             }
             return urlSession.dataTaskPublisher(for: urlRequest)
-        }.tryMap { (data, response) -> URLResponse in
+        }.tryMap { (data, response) -> Response in
             guard let httpResponse = response as? HTTPURLResponse else {
                 throw ProviderError.invalidServerResponse
             }
             if !httpResponse.isSuccessful {
                 throw ProviderError.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)
             }
-            return response
+            return Response(urlResponse: response, data: data)
         }.mapError { $0 as! ProviderError }.eraseToAnyPublisher()
     }
     
@@ -80,11 +82,11 @@ public final class HoverProvider {
     func request<D,S>(with target: NetworkTarget, class type: D.Type, urlSession: URLSession = URLSession.shared, subscriber: S) where S: Subscriber, D: Decodable, S.Input == D, S.Failure == ProviderError {
         let urlRequest = constructURL(with: target)
         urlSession.dataTaskPublisher(for: urlRequest)
-        .tryCatch { error -> URLSession.DataTaskPublisher in
-            guard error.networkUnavailableReason == .constrained else {
-                throw ProviderError.connectionError(error)
-            }
-            return urlSession.dataTaskPublisher(for: urlRequest)
+            .tryCatch { error -> URLSession.DataTaskPublisher in
+                guard error.networkUnavailableReason == .constrained else {
+                    throw ProviderError.connectionError(error)
+                }
+                return urlSession.dataTaskPublisher(for: urlRequest)
         }.tryMap { data, response -> Data in
             guard let httpResponse = response as? HTTPURLResponse else {
                 throw ProviderError.invalidServerResponse
@@ -107,27 +109,27 @@ public final class HoverProvider {
     /// - Parameter urlSession: `URLSession`
     /// - Parameter subscriber: `Subscriber`
     @available(iOS 13.0, macOS 10.15,tvOS 13.0, watchOS 6.0, UIKitForMac 13.0, *)
-    func request<S>(with target: NetworkTarget, urlSession: URLSession = URLSession.shared, subscriber: S) where S: Subscriber, S.Input == URLResponse, S.Failure == ProviderError {
+    func request<S>(with target: NetworkTarget, urlSession: URLSession = URLSession.shared, subscriber: S) where S: Subscriber, S.Input == Response, S.Failure == ProviderError {
         let urlRequest = constructURL(with: target)
         urlSession.dataTaskPublisher(for: urlRequest).tryCatch { error -> URLSession.DataTaskPublisher in
             guard error.networkUnavailableReason == .constrained else {
                 throw ProviderError.connectionError(error)
             }
             return urlSession.dataTaskPublisher(for: urlRequest)
-        }.tryMap { data, response -> URLResponse in
+        }.tryMap { data, response -> Response in
             guard let httpResponse = response as? HTTPURLResponse else {
                 throw ProviderError.invalidServerResponse
             }
             if !httpResponse.isSuccessful {
                 throw ProviderError.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)
             }
-            return response
+            return Response(urlResponse: response, data: data)
         }.mapError { $0 as! ProviderError }.eraseToAnyPublisher().subscribe(subscriber)
     }
 }
 
 // MARK: - Completion Block Requests
-public extension HoverProvider {
+public extension Hover {
     
     /// Requests for a sepecific call with completionBlock
     /// - Parameter target: `NetworkTarget`
@@ -181,17 +183,19 @@ public extension HoverProvider {
                 result(.failure(.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)))
                 return
             }
-            guard let response = response else {
-                result(.failure(.missingBodyData))
-                return
+            guard let response = response,
+                let data = data else {
+                    result(.failure(.missingBodyData))
+                    return
             }
-            result(.success(response))
+            result(.success(Response(urlResponse: response, data: data)))
         }.resume()
     }
 }
 
+
 // MARK: - Private Extension
-private extension HoverProvider {
+private extension Hover {
     
     /// Generates an `URLRequest` based on `MethodType`
     /// - Parameter target: NetworkTarget

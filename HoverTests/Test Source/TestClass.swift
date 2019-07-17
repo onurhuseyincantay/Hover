@@ -16,7 +16,7 @@ typealias CommentsCompletion = (Result<CommentsResponse,ProviderError>) -> Void
 typealias VoidCompletion = (Result<URLResponse,ProviderError>) -> Void
 
 class TestClass {
-    let provider = HoverProvider()
+    let provider = Hover()
     var postsSubscriber: AnyPublisher<PostsResponse, ProviderError>?
     var postSubscriber: AnyPublisher<PostResponseElement,ProviderError>?
     var commentSubscriber: AnyPublisher<CommentsResponse,ProviderError>?
