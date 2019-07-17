@@ -15,7 +15,7 @@ public typealias VoidResultCompletion = (Result<Response,ProviderError>) -> Void
 // MARK: - Hover Data Task Publisher
 public final class Hover {
     public init() {}
-    
+
     private lazy var jsonDecoder = JSONDecoder()
     
     /// Requests for a spesific call with `DataTaskPublisher` for with body response
@@ -49,7 +49,7 @@ public final class Hover {
     
     
     
-    
+   
     /// Requests for a spesific call with `DataTaskPublisher` for non body requests
     /// - Parameter target: `NetworkTarget`
     /// - Parameter urlSession: `URLSession`
@@ -68,7 +68,7 @@ public final class Hover {
             if !httpResponse.isSuccessful {
                 throw ProviderError.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)
             }
-            return Response(urlResponse: response, data: data)
+            return Response(urlResponse: httpResponse, data: data)
         }.mapError { $0 as! ProviderError }.eraseToAnyPublisher()
     }
     
@@ -82,11 +82,11 @@ public final class Hover {
     func request<D,S>(with target: NetworkTarget, class type: D.Type, urlSession: URLSession = URLSession.shared, subscriber: S) where S: Subscriber, D: Decodable, S.Input == D, S.Failure == ProviderError {
         let urlRequest = constructURL(with: target)
         urlSession.dataTaskPublisher(for: urlRequest)
-            .tryCatch { error -> URLSession.DataTaskPublisher in
-                guard error.networkUnavailableReason == .constrained else {
-                    throw ProviderError.connectionError(error)
-                }
-                return urlSession.dataTaskPublisher(for: urlRequest)
+        .tryCatch { error -> URLSession.DataTaskPublisher in
+            guard error.networkUnavailableReason == .constrained else {
+                throw ProviderError.connectionError(error)
+            }
+            return urlSession.dataTaskPublisher(for: urlRequest)
         }.tryMap { data, response -> Data in
             guard let httpResponse = response as? HTTPURLResponse else {
                 throw ProviderError.invalidServerResponse
@@ -123,7 +123,7 @@ public final class Hover {
             if !httpResponse.isSuccessful {
                 throw ProviderError.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)
             }
-            return Response(urlResponse: response, data: data)
+            return Response(urlResponse: httpResponse, data: data)
         }.mapError { $0 as! ProviderError }.eraseToAnyPublisher().subscribe(subscriber)
     }
 }
@@ -183,12 +183,11 @@ public extension Hover {
                 result(.failure(.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)))
                 return
             }
-            guard let response = response,
-                let data = data else {
-                    result(.failure(.missingBodyData))
-                    return
+            guard let data = data else {
+                result(.failure(.missingBodyData))
+                return
             }
-            result(.success(Response(urlResponse: response, data: data)))
+            result(.success(Response(urlResponse: httpResponse, data: data)))
         }.resume()
     }
 }

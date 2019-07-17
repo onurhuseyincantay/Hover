@@ -10,8 +10,16 @@ import Foundation
 import UIKit
 
 public struct Response {
-    let urlResponse: URLResponse
+    let urlResponse: HTTPURLResponse
     let data: Data
+    
+    var statusCode: Int {
+        return urlResponse.statusCode
+    }
+    
+    var localizedStatusCodeDescription: String {
+        return HTTPURLResponse.localizedString(forStatusCode: statusCode)
+    }
     
     func decodeToImage() throws -> UIImage {
         guard let image = UIImage(data: data) else {
