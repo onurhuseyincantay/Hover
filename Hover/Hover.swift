@@ -22,7 +22,7 @@ public final class Hover {
     /// - Parameter target: `NetworkTarget`
     /// - Parameter type: Decodable Object Type
     /// - Parameter urlSession: `URLSession`
-    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, UIKitForMac 13.0, *)
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, macCatalyst 13.0, *)
     public func request<D: Decodable>(with target: NetworkTarget, urlSession: URLSession = URLSession.shared, class type: D.Type) -> AnyPublisher<D, ProviderError> {
         let urlRequest = constructURL(with: target)
         return urlSession.dataTaskPublisher(for: urlRequest).tryCatch { error -> URLSession.DataTaskPublisher in
@@ -46,14 +46,11 @@ public final class Hover {
             }
         }.eraseToAnyPublisher()
     }
-    
-    
-    
    
     /// Requests for a spesific call with `DataTaskPublisher` for non body requests
     /// - Parameter target: `NetworkTarget`
     /// - Parameter urlSession: `URLSession`
-    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, UIKitForMac 13.0, *)
+    @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, macCatalyst 13.0, *)
     public func request(with target: NetworkTarget, urlSession: URLSession = URLSession.shared) -> AnyPublisher<Response,ProviderError> {
         let urlRequest = constructURL(with: target)
         return urlSession.dataTaskPublisher(for: urlRequest).tryCatch { error -> URLSession.DataTaskPublisher in
@@ -78,7 +75,7 @@ public final class Hover {
     /// - Parameter type: Decodable Object Type
     /// - Parameter urlSession: `URLSession`
     /// - Parameter subscriber: `Subscriber`
-    @available(iOS 13.0, macOS 10.15,tvOS 13.0, watchOS 6.0, UIKitForMac 13.0, *)
+    @available(iOS 13.0, macOS 10.15,tvOS 13.0, watchOS 6.0, macCatalyst 13.0, *)
     func request<D,S>(with target: NetworkTarget, class type: D.Type, urlSession: URLSession = URLSession.shared, subscriber: S) where S: Subscriber, D: Decodable, S.Input == D, S.Failure == ProviderError {
         let urlRequest = constructURL(with: target)
         urlSession.dataTaskPublisher(for: urlRequest)
@@ -108,7 +105,7 @@ public final class Hover {
     /// - Parameter target: `NetworkTarget`
     /// - Parameter urlSession: `URLSession`
     /// - Parameter subscriber: `Subscriber`
-    @available(iOS 13.0, macOS 10.15,tvOS 13.0, watchOS 6.0, UIKitForMac 13.0, *)
+    @available(iOS 13.0, macOS 10.15,tvOS 13.0, watchOS 6.0, macCatalyst 13.0, *)
     func request<S>(with target: NetworkTarget, urlSession: URLSession = URLSession.shared, subscriber: S) where S: Subscriber, S.Input == Response, S.Failure == ProviderError {
         let urlRequest = constructURL(with: target)
         urlSession.dataTaskPublisher(for: urlRequest).tryCatch { error -> URLSession.DataTaskPublisher in

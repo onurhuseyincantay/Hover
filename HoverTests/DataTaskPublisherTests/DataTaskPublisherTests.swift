@@ -24,7 +24,14 @@ class DataTaskPublisherTests: XCTestCase {
         let exp = expectation(description: "testFetchPosts")
         testClass.fetchPosts()
         guard let testSubscriber = testClass.postsSubscriber else { return assertionFailure() }
-        _ = testSubscriber.sink { response in
+        _ = testSubscriber.sink(receiveCompletion: { completionResponse in
+            switch completionResponse {
+            case .failure(let error):
+                XCTFail(error.errorDescription)
+            case .finished:
+                break
+            }
+        }) { response in
             print(response)
             exp.fulfill()
         }
@@ -35,7 +42,14 @@ class DataTaskPublisherTests: XCTestCase {
         let exp = expectation(description: "testFetchPostById")
         testClass.fetchPostById()
         guard let testSubscriber = testClass.postSubscriber else { return assertionFailure() }
-        _ = testSubscriber.sink { response in
+        _ = testSubscriber.sink(receiveCompletion: { completionResponse in
+            switch completionResponse {
+            case .failure(let error):
+                XCTFail(error.errorDescription)
+            case .finished:
+                break
+            }
+        }) { response in
             print(response)
             exp.fulfill()
         }
@@ -46,7 +60,14 @@ class DataTaskPublisherTests: XCTestCase {
         testClass.createPost()
         let exp = expectation(description: "testCreatePost")
         guard let testSubscriber = testClass.postSubscriber else { return assertionFailure() }
-        _ = testSubscriber.sink { response in
+        _ = testSubscriber.sink(receiveCompletion: { completionResponse in
+            switch completionResponse {
+            case .failure(let error):
+                XCTFail(error.errorDescription)
+            case .finished:
+                break
+            }
+        }) { response in
             print(response)
             exp.fulfill()
         }
@@ -57,7 +78,14 @@ class DataTaskPublisherTests: XCTestCase {
         let exp = expectation(description: "testUpdatePostWithPut")
         testClass.updatePostWithPut()
         guard let testSubscriber = testClass.postSubscriber else { return assertionFailure() }
-        _ = testSubscriber.sink { response in
+        _ = testSubscriber.sink(receiveCompletion: { completionResponse in
+            switch completionResponse {
+            case .failure(let error):
+                XCTFail(error.errorDescription)
+            case .finished:
+                break
+            }
+        }) { response in
             print(response)
             exp.fulfill()
         }
@@ -68,7 +96,14 @@ class DataTaskPublisherTests: XCTestCase {
         let exp = expectation(description: "testUpdatePostWithPatch")
         testClass.updatePostWithPatch()
         guard let testSubscriber = testClass.postSubscriber else { return assertionFailure() }
-        _ = testSubscriber.sink { response in
+        _ = testSubscriber.sink(receiveCompletion: { completionResponse in
+            switch completionResponse {
+            case .failure(let error):
+                XCTFail(error.errorDescription)
+            case .finished:
+                break
+            }
+        }) { response in
             print(response)
             exp.fulfill()
         }
@@ -79,7 +114,14 @@ class DataTaskPublisherTests: XCTestCase {
         let exp = expectation(description: "testFetchPostWithUserId")
         testClass.fetchPostsByUserId()
         guard let testSubscriber = testClass.postsSubscriber else { return assertionFailure() }
-        _ = testSubscriber.sink { response in
+        _ = testSubscriber.sink(receiveCompletion: { completionResponse in
+            switch completionResponse {
+            case .failure(let error):
+                XCTFail(error.errorDescription)
+            case .finished:
+                break
+            }
+        }) { response in
             print(response)
             exp.fulfill()
         }
@@ -90,7 +132,14 @@ class DataTaskPublisherTests: XCTestCase {
         let exp = expectation(description: "testFetchCommentsWithPostId")
         testClass.fetchCommentsWithPostId()
         guard let testSubscriber = testClass.commentSubscriber else { return assertionFailure() }
-        _ = testSubscriber.sink { response in
+       _ = testSubscriber.sink(receiveCompletion: { completionResponse in
+            switch completionResponse {
+            case .failure(let error):
+                XCTFail(error.errorDescription)
+            case .finished:
+                break
+            }
+        }) { response in
             print(response)
             exp.fulfill()
         }
@@ -101,7 +150,14 @@ class DataTaskPublisherTests: XCTestCase {
         let exp = expectation(description: "testDeletePost")
         testClass.deletePost()
         guard let testSubscriber = testClass.noBodySubscriber else { return assertionFailure() }
-        _ = testSubscriber.sink { response in
+        _ = testSubscriber.sink(receiveCompletion: { completionResponse in
+            switch completionResponse {
+            case .failure(let error):
+                XCTFail(error.errorDescription)
+            case .finished:
+                break
+            }
+        }) { response in
             print(response)
             exp.fulfill()
         }

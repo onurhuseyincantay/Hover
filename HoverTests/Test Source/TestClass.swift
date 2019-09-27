@@ -7,20 +7,23 @@
 //
 
 import Foundation
+#if canImport(Combine)
 import Combine
+#endif
 @testable import Hover
 
 typealias PostCompletion = (Result<PostResponseElement,ProviderError>) -> Void
 typealias PostsCompletion = (Result<PostsResponse, ProviderError>) -> Void
 typealias CommentsCompletion = (Result<CommentsResponse,ProviderError>) -> Void
-typealias VoidCompletion = (Result<URLResponse,ProviderError>) -> Void
+typealias VoidCompletion = (Result<Response,ProviderError>) -> Void
 
+@available(iOS 13.0, macOS 10.15,tvOS 13.0, watchOS 6.0, macCatalyst 13.0, *)
 class TestClass {
     let provider = Hover()
     var postsSubscriber: AnyPublisher<PostsResponse, ProviderError>?
     var postSubscriber: AnyPublisher<PostResponseElement,ProviderError>?
     var commentSubscriber: AnyPublisher<CommentsResponse,ProviderError>?
-    var noBodySubscriber: AnyPublisher<URLResponse,ProviderError>?
+    var noBodySubscriber: AnyPublisher<Response,ProviderError>?
     var subscriber = CommentSubscriber()
     
 }
@@ -28,6 +31,7 @@ class TestClass {
 
 
 // MARK: - Publisher Test Functions
+@available(iOS 13.0, macOS 10.15,tvOS 13.0, watchOS 6.0, macCatalyst 13.0, *)
 extension TestClass {
     func fetchPosts() {
         postsSubscriber = provider.request(
@@ -99,6 +103,7 @@ extension TestClass {
 }
 
 // MARK: - Completion Test Functions
+@available(iOS 13.0, macOS 10.15,tvOS 13.0, watchOS 6.0, macCatalyst 13.0, *)
 extension TestClass {
     
     func fetchPosts(result: @escaping PostsCompletion) {
