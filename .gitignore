@@ -5,6 +5,7 @@ DerivedData/
 ## Various settings
 *.pbxuser
 !default.pbxuser
+*.DS_STORE
 *.mode1v3
 !default.mode1v3
 *.mode2v3
