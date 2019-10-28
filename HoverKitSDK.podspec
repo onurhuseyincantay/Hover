@@ -15,9 +15,9 @@ Pod::Spec.new do |spec|
   #  summary should be tweet-length, and the description more in depth.
   #
 
-  spec.name         = "Hover"
+  spec.name         = "HoverKitSDK"
   spec.version      = "1.0.0"
-  spec.summary      = "Hover is a Network layer which uses Apple's new framework `Combine` and provides async network calls with different kind of request functions."
+  spec.summary      = "Async Network Library"
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -25,7 +25,7 @@ Pod::Spec.new do |spec|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   spec.description  = <<-DESC
-  networklayer network combine async
+  Hover is a Network layer which uses Apple's new framework `Combine` and provides async network calls with different kind of request functions.
                    DESC
 
   spec.homepage     = "https://github.com/onurhuseyincantay/Hover"
