@@ -10,6 +10,11 @@ target 'MyApp' do
 end
 ```
 
+#### Carthage Installation
+```swift
+github "onurhuseyincantay/Hover" ~> 1.0
+```
+
 Tested with [JsonPlaceholder](https://jsonplaceholder.typicode.com)
 Inspired By [Moya](https://github.com/Moya/Moya/blob/master) Developed with 🧡
 
