@@ -20,12 +20,8 @@ enum TestTarget {
     case fetchCommentsByPostId(postId: Int)
 }
 
-
 extension TestTarget: NetworkTarget {
-    
-    
-    
-    
+
     var path: String {
         switch self {
         case .fetchAllPosts,

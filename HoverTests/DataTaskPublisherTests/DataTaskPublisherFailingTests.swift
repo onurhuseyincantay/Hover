@@ -9,6 +9,8 @@
 import XCTest
 @testable import Hover
 
+
+@available(iOS 13.0, macOS 10.15,tvOS 13.0, watchOS 6.0, macCatalyst 13.0, *)
 class DataTaskPublisherFailingTests: XCTestCase {
     #warning("Failing tests are because of the api placeholder the api doesn't return 404")
     var testClass: TestClass!

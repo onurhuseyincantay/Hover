@@ -14,14 +14,16 @@ import Combine
 public typealias VoidResultCompletion = (Result<Response,ProviderError>) -> Void
 // MARK: - Hover Data Task Publisher
 public final class Hover {
-  public init() {}
   
+  public init() {}
+
   private lazy var jsonDecoder = JSONDecoder()
   
   /// Requests for a spesific call with `DataTaskPublisher` for with body response
-  /// - Parameter target: `NetworkTarget`
-  /// - Parameter type: Decodable Object Type
-  /// - Parameter urlSession: `URLSession`
+  /// - Parameters:
+  ///   - target: `NetworkTarget`
+  ///   - type: Decodable Object Type
+  ///   - urlSession: `URLSession`
   @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, macCatalyst 13.0, *)
   public func request<D: Decodable>(with target: NetworkTarget, urlSession: URLSession = URLSession.shared, class type: D.Type) -> AnyPublisher<D, ProviderError> {
     let urlRequest = constructURL(with: target)
@@ -48,8 +50,9 @@ public final class Hover {
   }
   
   /// Requests for a spesific call with `DataTaskPublisher` for non body requests
-  /// - Parameter target: `NetworkTarget`
-  /// - Parameter urlSession: `URLSession`
+  /// - Parameters
+  ///   - target: `NetworkTarget`
+  ///   - urlSession: `URLSession`
   @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, macCatalyst 13.0, *)
   public func request(with target: NetworkTarget, urlSession: URLSession = URLSession.shared) -> AnyPublisher<Response,ProviderError> {
     let urlRequest = constructURL(with: target)
@@ -71,10 +74,11 @@ public final class Hover {
   
   
   /// Requests for a spesific call with `DataTaskPublisher` for with body response
-  /// - Parameter target: `NetworkTarget`
-  /// - Parameter type: Decodable Object Type
-  /// - Parameter urlSession: `URLSession`
-  /// - Parameter subscriber: `Subscriber`
+  /// - Parameters:
+  ///   - target: `NetworkTarget`
+  ///   - type: Decodable Object Type
+  ///   - urlSession: `URLSession`
+  ///   - subscriber: `Subscriber`
   @available(iOS 13.0, macOS 10.15,tvOS 13.0, watchOS 6.0, macCatalyst 13.0, *)
   func request<D,S>(with target: NetworkTarget, class type: D.Type, urlSession: URLSession = URLSession.shared, subscriber: S) where S: Subscriber, D: Decodable, S.Input == D, S.Failure == ProviderError {
     let urlRequest = constructURL(with: target)
@@ -102,9 +106,10 @@ public final class Hover {
   }
   
   /// Requests for a spesific call with `DataTaskPublisher` for non body response
-  /// - Parameter target: `NetworkTarget`
-  /// - Parameter urlSession: `URLSession`
-  /// - Parameter subscriber: `Subscriber`
+  /// - Parameters
+  ///   - target: `NetworkTarget`
+  ///   - urlSession: `URLSession`
+  ///   - subscriber: `Subscriber`
   @available(iOS 13.0, macOS 10.15,tvOS 13.0, watchOS 6.0, macCatalyst 13.0, *)
   func request<S>(with target: NetworkTarget, urlSession: URLSession = URLSession.shared, subscriber: S) where S: Subscriber, S.Input == Response, S.Failure == ProviderError {
     let urlRequest = constructURL(with: target)
@@ -129,10 +134,11 @@ public final class Hover {
 public extension Hover {
   
   /// Requests for a sepecific call with completionBlock
-  /// - Parameter target: `NetworkTarget`
-  /// - Parameter type: Decodable Object Type
-  /// - Parameter urlSession: `URLSession`
-  /// - Parameter result: `Completion Block as (Result<D,ProviderError>) -> ()`
+  /// - Parameters:
+  ///   - target: `NetworkTarget`
+  ///   - type: Decodable Object Type
+  ///   - urlSession: `URLSession`
+  ///   - result: `Completion Block as (Result<D,ProviderError>) -> ()`
   func request<D: Decodable>(with target: NetworkTarget, urlSession: URLSession = URLSession.shared, class type: D.Type, result: @escaping (Result<D,ProviderError>) -> Void) {
     let urlRequest = constructURL(with: target)
     urlSession.dataTask(with: urlRequest) { data, response, error in
@@ -162,9 +168,10 @@ public extension Hover {
   }
   
   /// Requests for a sepecific call with completionBlock for non body request
-  /// - Parameter target: `NetworkTarget`
-  /// - Parameter urlSession: `URLSession`
-  /// - Parameter result: `VoidResultCompletion`
+  /// - Parameters:
+  ///   - target: `NetworkTarget`
+  ///   - urlSession: `URLSession`
+  ///   - result: `VoidResultCompletion`
   func request(with target: NetworkTarget, urlSession: URLSession = URLSession.shared, result: @escaping VoidResultCompletion) {
     let urlRequest = constructURL(with: target)
     urlSession.dataTask(with: urlRequest) { data, response, error in
@@ -235,7 +242,7 @@ public extension Hover {
         return
       }
       result(.success(()))
-    }
+    }.resume()
   }
 }
 
