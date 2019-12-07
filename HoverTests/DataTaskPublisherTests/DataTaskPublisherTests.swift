@@ -12,7 +12,6 @@ import XCTest
 @available(iOS 13.0, macOS 10.15,tvOS 13.0, watchOS 6.0, macCatalyst 13.0, *)
 class DataTaskPublisherTests: XCTestCase {
     var testClass: TestClass!
-    
     override func setUp() {
         testClass = TestClass()
     }
@@ -25,7 +24,7 @@ class DataTaskPublisherTests: XCTestCase {
         let exp = expectation(description: "testFetchPosts")
         testClass.fetchPosts()
         guard let testSubscriber = testClass.postsSubscriber else { return assertionFailure() }
-        _ = testSubscriber.sink(receiveCompletion: { completionResponse in
+        testClass.anyCancellable = testSubscriber.sink(receiveCompletion: { completionResponse in
             switch completionResponse {
             case .failure(let error):
                 XCTFail(error.errorDescription)
@@ -43,7 +42,7 @@ class DataTaskPublisherTests: XCTestCase {
         let exp = expectation(description: "testFetchPostById")
         testClass.fetchPostById()
         guard let testSubscriber = testClass.postSubscriber else { return assertionFailure() }
-        _ = testSubscriber.sink(receiveCompletion: { completionResponse in
+        testClass.anyCancellable = testSubscriber.sink(receiveCompletion: { completionResponse in
             switch completionResponse {
             case .failure(let error):
                 XCTFail(error.errorDescription)
@@ -61,7 +60,7 @@ class DataTaskPublisherTests: XCTestCase {
         testClass.createPost()
         let exp = expectation(description: "testCreatePost")
         guard let testSubscriber = testClass.postSubscriber else { return assertionFailure() }
-        _ = testSubscriber.sink(receiveCompletion: { completionResponse in
+        testClass.anyCancellable = testSubscriber.sink(receiveCompletion: { completionResponse in
             switch completionResponse {
             case .failure(let error):
                 XCTFail(error.errorDescription)
@@ -79,7 +78,7 @@ class DataTaskPublisherTests: XCTestCase {
         let exp = expectation(description: "testUpdatePostWithPut")
         testClass.updatePostWithPut()
         guard let testSubscriber = testClass.postSubscriber else { return assertionFailure() }
-        _ = testSubscriber.sink(receiveCompletion: { completionResponse in
+        testClass.anyCancellable = testSubscriber.sink(receiveCompletion: { completionResponse in
             switch completionResponse {
             case .failure(let error):
                 XCTFail(error.errorDescription)
@@ -97,7 +96,7 @@ class DataTaskPublisherTests: XCTestCase {
         let exp = expectation(description: "testUpdatePostWithPatch")
         testClass.updatePostWithPatch()
         guard let testSubscriber = testClass.postSubscriber else { return assertionFailure() }
-        _ = testSubscriber.sink(receiveCompletion: { completionResponse in
+        testClass.anyCancellable = testSubscriber.sink(receiveCompletion: { completionResponse in
             switch completionResponse {
             case .failure(let error):
                 XCTFail(error.errorDescription)
@@ -115,7 +114,7 @@ class DataTaskPublisherTests: XCTestCase {
         let exp = expectation(description: "testFetchPostWithUserId")
         testClass.fetchPostsByUserId()
         guard let testSubscriber = testClass.postsSubscriber else { return assertionFailure() }
-        _ = testSubscriber.sink(receiveCompletion: { completionResponse in
+        testClass.anyCancellable = testSubscriber.sink(receiveCompletion: { completionResponse in
             switch completionResponse {
             case .failure(let error):
                 XCTFail(error.errorDescription)
@@ -133,7 +132,7 @@ class DataTaskPublisherTests: XCTestCase {
         let exp = expectation(description: "testFetchCommentsWithPostId")
         testClass.fetchCommentsWithPostId()
         guard let testSubscriber = testClass.commentSubscriber else { return assertionFailure() }
-       _ = testSubscriber.sink(receiveCompletion: { completionResponse in
+       testClass.anyCancellable = testSubscriber.sink(receiveCompletion: { completionResponse in
             switch completionResponse {
             case .failure(let error):
                 XCTFail(error.errorDescription)
@@ -151,7 +150,7 @@ class DataTaskPublisherTests: XCTestCase {
         let exp = expectation(description: "testDeletePost")
         testClass.deletePost()
         guard let testSubscriber = testClass.noBodySubscriber else { return assertionFailure() }
-        _ = testSubscriber.sink(receiveCompletion: { completionResponse in
+        testClass.anyCancellable = testSubscriber.sink(receiveCompletion: { completionResponse in
             switch completionResponse {
             case .failure(let error):
                 XCTFail(error.errorDescription)
@@ -168,7 +167,7 @@ class DataTaskPublisherTests: XCTestCase {
     func testFetchCommentsWithPostIdSubscriber() {
         let exp = expectation(description: "testFetchCommentsWithPostIdSubscriber")
         testClass.fetchCommentsWithSubscriber()
-        _ = testClass.subscriber.publisher.sink(receiveCompletion: { completion in
+        testClass.anyCancellable = testClass.subscriber.publisher.sink(receiveCompletion: { completion in
             switch completion {
             case .failure(let error):
                 XCTFail()

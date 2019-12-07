@@ -25,7 +25,7 @@ class TestClass {
     var commentSubscriber: AnyPublisher<CommentsResponse,ProviderError>?
     var noBodySubscriber: AnyPublisher<Response,ProviderError>?
     var subscriber = CommentSubscriber()
-    
+    var anyCancellable: AnyCancellable?
 }
 
 
