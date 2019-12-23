@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 
 public struct Response {
     let urlResponse: HTTPURLResponse
@@ -19,12 +18,5 @@ public struct Response {
     
     var localizedStatusCodeDescription: String {
         return HTTPURLResponse.localizedString(forStatusCode: statusCode)
-    }
-    
-    func decodeToImage() throws -> UIImage {
-        guard let image = UIImage(data: data) else {
-            throw ProviderError.failedToDecodeImage
-        }
-        return image
     }
 }
