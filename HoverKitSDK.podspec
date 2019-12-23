@@ -66,13 +66,13 @@ Pod::Spec.new do |spec|
   #
 
   # spec.platform     = :ios
-  spec.platform     = :ios, "10.0"
+  # spec.platform     = :ios, "10.0"
 
   #  When using multiple platforms
-  # spec.ios.deployment_target = "5.0"
-  # spec.osx.deployment_target = "10.7"
-  # spec.watchos.deployment_target = "2.0"
-  # spec.tvos.deployment_target = "9.0"
+  spec.ios.deployment_target = "13.0"
+  spec.osx.deployment_target = "10.15"
+  spec.watchos.deployment_target = "6.0"
+  spec.tvos.deployment_target = "13.0"
 
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
