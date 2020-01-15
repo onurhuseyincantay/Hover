@@ -25,6 +25,14 @@ end
 github "onurhuseyincantay/Hover" ~> 1.0.2
 ```
 
+#### Swift Package Manager Installation
+Package            |  branch
+:-------------------------:|:-------------------------:
+<img height="250" src="Screenshots/package.png" />  |   <img height="250" src="Screenshots/branchname.png" />
+
+
+
+
 # Sample Usage
 #### Provide Target
 ```swift
