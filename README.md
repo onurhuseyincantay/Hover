@@ -16,21 +16,19 @@ Hover is a Network layer which uses Apple's new framework `Combine` and provides
 #### Cocoapods Installation
 ```swift
 target 'MyApp' do
-  pod 'HoverKitSDK', '~> 1.0.2'
+  pod 'HoverKitSDK', "~> 1.0.3"
 end
 ```
 
 #### Carthage Installation
 ```swift
-github "onurhuseyincantay/Hover" ~> 1.0.2
+github "onurhuseyincantay/Hover" ~> "1.0.3"
 ```
 
 #### Swift Package Manager Installation
 Package            |  branch
 :-------------------------:|:-------------------------:
-<img height="250" src="Screenshots/package.png" />  |   <img height="250" src="Screenshots/branchname.png" />
-
-
+<img height="250" src="Screenshots/package.png" />  |   <img height="250" src="Screenshots/branchInfo.png" />
 
 
 # Sample Usage
