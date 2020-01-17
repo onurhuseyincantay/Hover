@@ -25,5 +25,3 @@ public extension NetworkTarget {
         return url
     }
 }
-
-

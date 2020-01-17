@@ -14,7 +14,6 @@ public enum MethodType: Equatable {
     case put
     case delete
     case patch
-    
     public var methodName: String {
         switch self {
         case .get:

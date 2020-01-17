@@ -9,10 +9,8 @@
 import Foundation
 
 internal extension URLRequest {
-  
   private var headerField: String { "Authorization" }
   private var contentTypeHeader: String { "Content-Type" }
-  
   mutating func prepareRequest(with target: NetworkTarget) {
     let contentTypeHeaderName = contentTypeHeader
     allHTTPHeaderFields = target.headers
@@ -21,7 +19,6 @@ internal extension URLRequest {
     prepareAuthorization(with: target.providerType)
     httpMethod = target.methodType.methodName
   }
-  
   private mutating func prepareAuthorization(with authType: AuthProviderType) {
     switch authType {
     case .basic(let username, let password):
@@ -33,5 +30,4 @@ internal extension URLRequest {
     case .none: break
     }
   }
-  
 }

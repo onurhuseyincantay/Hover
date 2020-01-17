@@ -39,17 +39,12 @@ extension TestTarget: NetworkTarget {
             return "posts/\(postId)/comments"
         }
     }
-    
     var providerType: AuthProviderType {
         return .none
     }
-    
-    
     var baseURL: URL {
-        // TODO: - https://jsonplaceholder.typicode.com/guide.html
         return URL(string: "https://jsonplaceholder.typicode.com")!
     }
-    
     var methodType: MethodType {
         switch self {
         case .fetchAllPosts,
@@ -57,10 +52,8 @@ extension TestTarget: NetworkTarget {
              .fetchPostsByUserId,
              .fetchCommentsByPostId:
             return .get
-            
         case .createPost:
             return .post
-            
         case .updatePostById:
             return .put
         case .updatePostPartly:
@@ -69,7 +62,6 @@ extension TestTarget: NetworkTarget {
             return .delete
         }
     }
-    
     var contentType: ContentType? {
         switch self {
         case .fetchAllPosts,
@@ -84,7 +76,6 @@ extension TestTarget: NetworkTarget {
             return .applicationJson
         }
     }
-    
     var workType: WorkType {
         switch self {
         case .fetchAllPosts,
@@ -92,18 +83,15 @@ extension TestTarget: NetworkTarget {
              .deletePostById,
              .fetchCommentsByPostId:
             return .requestPlain
-            
         case .fetchPostsByUserId(let userId):
             return .requestParameters(parameters: ["userId": userId])
-            
-        case .createPost(let title,let body,let userId):
+        case .createPost(let title, let body, let userId):
             let params: [String: Any] = [
                 "title": title,
                 "body": body,
                 "userId": userId
             ]
             return .requestParameters(parameters: params)
-            
         case .updatePostById(let postId, let title, let body, let userId):
             let params: [String: Any] = [
                 "title": title,
@@ -112,7 +100,6 @@ extension TestTarget: NetworkTarget {
                 "userId": userId
             ]
             return .requestParameters(parameters: params)
-            
         case .updatePostPartly(_, let title):
             let params: [String: Any] = [
                 "title": title
@@ -120,8 +107,7 @@ extension TestTarget: NetworkTarget {
             return .requestParameters(parameters: params)
         }
     }
-    
-    var headers: [String : String]? {
+    var headers: [String: String]? {
         return nil
     }
 }
