@@ -44,7 +44,8 @@ public final class Hover {
         throw ProviderError.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)
       }
       return data
-    }.decode(type: type.self, decoder: jsonDecoder).mapError { error in
+    }
+    .decode(type: type.self, decoder: jsonDecoder).mapError { error in
       if let error = error as? ProviderError {
         return error
       } else {
@@ -68,8 +69,7 @@ public final class Hover {
         throw ProviderError.connectionError(error)
       }
       return urlSession.dataTaskPublisher(for: urlRequest)
-    }
-    .receive(on: scheduler)
+    }.receive(on: scheduler)
     .tryMap { (data, response) -> Response in
       guard let httpResponse = response as? HTTPURLResponse else {
         throw ProviderError.invalidServerResponse
@@ -78,7 +78,8 @@ public final class Hover {
         throw ProviderError.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)
       }
       return Response(urlResponse: httpResponse, data: data)
-    }.mapError {
+    }
+    .mapError {
       guard let error = $0 as? ProviderError else { return ProviderError.underlying($0) }
       return error
     }.eraseToAnyPublisher()
@@ -105,8 +106,7 @@ public final class Hover {
           throw ProviderError.connectionError(error)
         }
         return urlSession.dataTaskPublisher(for: urlRequest)
-    }
-    .receive(on: scheduler)
+    }.receive(on: scheduler)
     .tryMap { data, response -> Data in
       guard let httpResponse = response as? HTTPURLResponse else {
         throw ProviderError.invalidServerResponse
@@ -157,8 +157,7 @@ public final class Hover {
     }.mapError {
       guard let error = $0 as? ProviderError else { return ProviderError.underlying($0) }
       return error
-    }.eraseToAnyPublisher()
-      .subscribe(subscriber)
+    }.eraseToAnyPublisher().subscribe(subscriber)
   }
 }
 
