@@ -20,13 +20,13 @@ The main benefit to use Hover is to abstract the networking layer as much as pos
 #### Cocoapods Installation
 ```swift
 target 'MyApp' do
-  pod 'HoverKitSDK', "~> 1.0.3"
+  pod 'HoverKitSDK', "~> 1.0.4"
 end
 ```
 
 #### Carthage Installation
 ```swift
-github "onurhuseyincantay/Hover" ~> "1.0.3"
+github "onurhuseyincantay/Hover" ~> "1.0.4"
 ```
 
 #### Swift Package Manager Installation
