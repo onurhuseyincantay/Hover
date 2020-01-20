@@ -65,9 +65,9 @@ class DataTaskPublisherFailingTests: XCTestCase {
         exp.fulfill()
       case .finished:
         exp.fulfill()
-        }
-      }, receiveValue: { response in
-          XCTFail("Onur: \(response)")
+      }
+    }, receiveValue: { response in
+      XCTFail("Onur: \(response)")
     })
     wait(for: [exp], timeout: 5)
   }
@@ -83,8 +83,8 @@ class DataTaskPublisherFailingTests: XCTestCase {
       case .finished:
         exp.fulfill()
       }
-      }, receiveValue: { response in
-          XCTFail("Onur: \(response)")
+    }, receiveValue: { response in
+      XCTFail("Onur: \(response)")
     })
     wait(for: [exp], timeout: 5)
   }
@@ -102,8 +102,8 @@ class DataTaskPublisherFailingTests: XCTestCase {
         exp.fulfill()
       }
     }, receiveValue: { response in
-          XCTFail("Onur: \(response)")
-        })
+      XCTFail("Onur: \(response)")
+    })
     wait(for: [exp], timeout: 5)
   }
   func testFetchCommentsWithPostId() {
@@ -120,24 +120,24 @@ class DataTaskPublisherFailingTests: XCTestCase {
       }
     }, receiveValue: { response in
       XCTFail("Onur: \(response)")
-  })
-  wait(for: [exp], timeout: 5)
-}
-func testDeletePost() {
-  let exp = expectation(description: "testDeletePost")
-  testClass.deletePost(with: -125123123123123)
-  guard let testSubscriber = testClass.noBodySubscriber else { return assertionFailure() }
-  _ = testSubscriber.sink(receiveCompletion: { completion in
-    switch completion {
-    case .failure(let error):
-      print("Error:", error.errorDescription)
-      exp.fulfill()
-    case .finished:
-      exp.fulfill()
-    }
-  }, receiveValue: { response in
-    XCTFail("Onur: \(response)")
-  })
-  wait(for: [exp], timeout: 5)
-}
+    })
+    wait(for: [exp], timeout: 5)
+  }
+  func testDeletePost() {
+    let exp = expectation(description: "testDeletePost")
+    testClass.deletePost(with: -125123123123123)
+    guard let testSubscriber = testClass.noBodySubscriber else { return assertionFailure() }
+    _ = testSubscriber.sink(receiveCompletion: { completion in
+      switch completion {
+      case .failure(let error):
+        print("Error:", error.errorDescription)
+        exp.fulfill()
+      case .finished:
+        exp.fulfill()
+      }
+    }, receiveValue: { response in
+      XCTFail("Onur: \(response)")
+    })
+    wait(for: [exp], timeout: 5)
+  }
 }

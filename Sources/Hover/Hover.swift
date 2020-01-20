@@ -20,19 +20,23 @@ public final class Hover {
   ///   - target: `NetworkTarget`
   ///   - type: Decodable Object Type
   ///   - urlSession: `URLSession`
+  ///   - scheduler:  Threading and execution time helper if you want to run it on main thread just use `Runloop.main` or `DispatchQuee.main`
   @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, macCatalyst 13.0, *)
-  public func request<D: Decodable>(
+  public func request<D, T>(
     with target: NetworkTarget,
     urlSession: URLSession = URLSession.shared,
     jsonDecoder: JSONDecoder = .init(),
-    class type: D.Type) -> AnyPublisher<D, ProviderError> {
+    scheduler: T,
+    class type: D.Type) -> AnyPublisher<D, ProviderError> where D: Decodable, T: Scheduler {
     let urlRequest = constructURL(with: target)
     return urlSession.dataTaskPublisher(for: urlRequest).tryCatch { error -> URLSession.DataTaskPublisher in
       guard error.networkUnavailableReason == .constrained else {
         throw ProviderError.connectionError(error)
       }
       return urlSession.dataTaskPublisher(for: urlRequest)
-    }.tryMap { data, response -> Data in
+    }
+    .receive(on: scheduler)
+    .tryMap { data, response -> Data in
       guard let httpResponse = response as? HTTPURLResponse else {
         throw ProviderError.invalidServerResponse
       }
@@ -40,7 +44,8 @@ public final class Hover {
         throw ProviderError.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)
       }
       return data
-    }.decode(type: type.self, decoder: jsonDecoder).mapError { error in
+    }
+    .decode(type: type.self, decoder: jsonDecoder).mapError { error in
       if let error = error as? ProviderError {
         return error
       } else {
@@ -51,10 +56,12 @@ public final class Hover {
   /// Requests for a spesific call with `DataTaskPublisher` for non body requests
   /// - Parameters
   ///   - target: `NetworkTarget`
-  ///   - urlSession: `URLSession`
+  ///   - urlSession: `URLSession
+  ///   - scheduler:  Threading and execution time helper if you want to run it on main thread just use `Runloop.main` or `DispatchQuee.main`
   @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, macCatalyst 13.0, *)
-  public func request(
+  public func request<T: Scheduler>(
     with target: NetworkTarget,
+    scheduler: T,
     urlSession: URLSession = URLSession.shared) -> AnyPublisher<Response, ProviderError> {
     let urlRequest = constructURL(with: target)
     return urlSession.dataTaskPublisher(for: urlRequest).tryCatch { error -> URLSession.DataTaskPublisher in
@@ -62,7 +69,8 @@ public final class Hover {
         throw ProviderError.connectionError(error)
       }
       return urlSession.dataTaskPublisher(for: urlRequest)
-    }.tryMap { (data, response) -> Response in
+    }.receive(on: scheduler)
+    .tryMap { (data, response) -> Response in
       guard let httpResponse = response as? HTTPURLResponse else {
         throw ProviderError.invalidServerResponse
       }
@@ -70,7 +78,8 @@ public final class Hover {
         throw ProviderError.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)
       }
       return Response(urlResponse: httpResponse, data: data)
-    }.mapError {
+    }
+    .mapError {
       guard let error = $0 as? ProviderError else { return ProviderError.underlying($0) }
       return error
     }.eraseToAnyPublisher()
@@ -80,14 +89,16 @@ public final class Hover {
   ///   - target: `NetworkTarget`
   ///   - type: Decodable Object Type
   ///   - urlSession: `URLSession`
+  ///   - scheduler:  Threading and execution time helper if you want to run it on main thread just use `Runloop.main` or `DispatchQuee.main`
   ///   - subscriber: `Subscriber`
   @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, macCatalyst 13.0, *)
-  func request<D, S>(
+  func request<D, S, T>(
     with target: NetworkTarget,
     class type: D.Type,
     urlSession: URLSession = URLSession.shared,
     jsonDecoder: JSONDecoder = .init(),
-    subscriber: S) where S: Subscriber, D: Decodable, S.Input == D, S.Failure == ProviderError {
+    scheduler: T,
+    subscriber: S) where S: Subscriber, T: Scheduler, D: Decodable, S.Input == D, S.Failure == ProviderError {
     let urlRequest = constructURL(with: target)
     urlSession.dataTaskPublisher(for: urlRequest)
       .tryCatch { error -> URLSession.DataTaskPublisher in
@@ -95,7 +106,8 @@ public final class Hover {
           throw ProviderError.connectionError(error)
         }
         return urlSession.dataTaskPublisher(for: urlRequest)
-    }.tryMap { data, response -> Data in
+    }.receive(on: scheduler)
+    .tryMap { data, response -> Data in
       guard let httpResponse = response as? HTTPURLResponse else {
         throw ProviderError.invalidServerResponse
       }
@@ -118,19 +130,23 @@ public final class Hover {
   /// - Parameters
   ///   - target: `NetworkTarget`
   ///   - urlSession: `URLSession`
+  ///   - scheduler:  Threading and execution time helper if you want to run it on main thread just use `Runloop.main` or `DispatchQuee.main`
   ///   - subscriber: `Subscriber`
   @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, macCatalyst 13.0, *)
-  func request<S>(
+  func request<S, T>(
     with target: NetworkTarget,
     urlSession: URLSession = URLSession.shared,
-    subscriber: S) where S: Subscriber, S.Input == Response, S.Failure == ProviderError {
+    scheduler: T,
+    subscriber: S) where T: Scheduler, S: Subscriber, S.Input == Response, S.Failure == ProviderError {
     let urlRequest = constructURL(with: target)
     urlSession.dataTaskPublisher(for: urlRequest).tryCatch { error -> URLSession.DataTaskPublisher in
       guard error.networkUnavailableReason == .constrained else {
         throw ProviderError.connectionError(error)
       }
       return urlSession.dataTaskPublisher(for: urlRequest)
-    }.tryMap { data, response -> Response in
+    }
+    .receive(on: scheduler)
+    .tryMap { data, response -> Response in
       guard let httpResponse = response as? HTTPURLResponse else {
         throw ProviderError.invalidServerResponse
       }
@@ -141,8 +157,7 @@ public final class Hover {
     }.mapError {
       guard let error = $0 as? ProviderError else { return ProviderError.underlying($0) }
       return error
-    }.eraseToAnyPublisher()
-      .subscribe(subscriber)
+    }.eraseToAnyPublisher().subscribe(subscriber)
   }
 }
 

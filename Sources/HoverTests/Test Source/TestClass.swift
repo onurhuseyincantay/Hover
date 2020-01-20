@@ -34,18 +34,21 @@ extension TestClass {
     func fetchPosts() {
         postsSubscriber = provider.request(
             with: TestTarget.fetchAllPosts,
+            scheduler: RunLoop.main,
             class: PostsResponse.self
         )
     }
     func fetchPostById(_ id: Int = 1) {
         postSubscriber = provider.request(
             with: TestTarget.fetchPostById(id: id),
+            scheduler: RunLoop.main,
             class: PostResponseElement.self
         )
     }
     func fetchPostsByUserId(userId: Int = 1) {
         postsSubscriber = provider.request(
             with: TestTarget.fetchPostsByUserId(userId: userId),
+            scheduler: RunLoop.main,
             class: PostsResponse.self
         )
     }
@@ -56,6 +59,7 @@ extension TestClass {
                 body: body,
                 userId: userId
             ),
+            scheduler: RunLoop.main,
             class: PostResponseElement.self
         )
     }
@@ -67,6 +71,7 @@ extension TestClass {
                 body: body,
                 userId: userId
             ),
+            scheduler: RunLoop.main,
             class: PostResponseElement.self)
     }
     func updatePostWithPatch(postId: Int = 1, title: String = "") {
@@ -75,19 +80,24 @@ extension TestClass {
                 postId: postId,
                 title: title
             ),
+            scheduler: RunLoop.main,
             class: PostResponseElement.self)
     }
     func deletePost(with id: Int = 1) {
-        noBodySubscriber = provider.request(with: TestTarget.deletePostById(postId: id))
+        noBodySubscriber = provider.request(
+          with: TestTarget.deletePostById(postId: id),
+          scheduler: RunLoop.main
+      )
     }
     func fetchCommentsWithPostId(_ id: Int = 1) {
         commentSubscriber = provider.request(
             with: TestTarget.fetchCommentsByPostId(postId: id),
+            scheduler: RunLoop.main,
             class: CommentsResponse.self
         )
     }
     func fetchCommentsWithSubscriber(_ id: Int = 1) {
-        provider.request(with: TestTarget.fetchCommentsByPostId(postId: id), class: CommentsResponse.self, subscriber: self.subscriber)
+      provider.request(with: TestTarget.fetchCommentsByPostId(postId: id), class: CommentsResponse.self, scheduler: DispatchQueue.main, subscriber: self.subscriber)
     }
 }
 
