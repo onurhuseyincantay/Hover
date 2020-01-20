@@ -13,6 +13,10 @@
 | macCatalyst   | 13.0          |
 
 Hover is a Network layer which uses Apple's new framework `Combine` and provides async network calls with different kind of request functions.
+
+## Why and When to Use
+The main benefit to use Hover is to abstract the networking layer as much as possible and remove redunant code from your projects as we know `Apple` announced a new framework called `Combine` the main goal is to provide a declarative Swift API for processing values over time. These values can represent many kinds of asynchronous events, so networking calls are the most important async events, which actually needs to have a support for `Combine` to prevent and integrate Apple's native framework. Why you shouldnt use is when you dont have that much networking calls and also not so complex data flows to keep track on which means actually that you dont have states for the UI then dont use it. :) 
+
 #### Cocoapods Installation
 ```swift
 target 'MyApp' do
@@ -93,5 +97,5 @@ provider.request(with: UserTarget.login(email: "ohc3807@gmail.com", password: "1
 ```
 
 Tested with [JsonPlaceholder](https://jsonplaceholder.typicode.com)
-Inspired By [Moya](https://github.com/Moya/Moya/blob/master) Developed with 🧡
+Inspired By [Moya](https://github.com/Moya/Moya) Developed with 🧡
 
