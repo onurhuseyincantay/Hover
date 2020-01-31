@@ -8,8 +8,8 @@ jobs:
     runs-on: macOS-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@master
     - name: Build
       run: swift build -v
-    - name: Run tests
-      run: swift test -v
+    - name: Start xcodebuild test
+      run: xcodebuild clean test -project Hover.xcodeproj -scheme Hover -destination "platform=iOS Simulator,name=iPhone 11 Pro, OS=13.0"
