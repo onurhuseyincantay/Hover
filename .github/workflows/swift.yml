@@ -1,7 +1,8 @@
 name: Swift
-
-on: [push]
-
+on: 
+  push:
+    branches:
+      - master
 jobs:
   build:
 
@@ -9,7 +10,5 @@ jobs:
 
     steps:
     - uses: actions/checkout@master
-    - name: Build
-      run: swift build -v
     - name: Start xcodebuild test
-      run: xcodebuild clean test -project Hover.xcodeproj -scheme Hover -destination "platform=iOS Simulator,name=iPhone 11 Pro, OS=13.0"
+      run: xcodebuild clean test -project Hover.xcodeproj -scheme Hover -destination "platform=iOS Simulator,name=iPhone 11 Pro,OS=13.0"
