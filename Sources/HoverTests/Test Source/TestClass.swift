@@ -97,8 +97,9 @@ extension TestClass {
         )
     }
     func fetchCommentsWithSubscriber(_ id: Int = 1) {
+      let target = TestTarget.fetchCommentsByPostId(postId: id)
       provider
-        .request(with: TestTarget.fetchCommentsByPostId(postId: id), class: CommentsResponse.self, scheduler: DispatchQueue.main, subscriber: self.subscriber)
+        .request(with: target, class: CommentsResponse.self, scheduler: DispatchQueue.main, subscriber: self.subscriber)
     }
 }
 

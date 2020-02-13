@@ -40,7 +40,7 @@ public final class Hover {
       guard let httpResponse = response as? HTTPURLResponse else {
         throw ProviderError.invalidServerResponse
       }
-      if !httpResponse.isUnauthenticated {
+      if httpResponse.isUnauthenticated {
         throw ProviderError.unAuthorized
       } else if !httpResponse.isSuccessful {
         throw ProviderError.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)
@@ -76,7 +76,7 @@ public final class Hover {
       guard let httpResponse = response as? HTTPURLResponse else {
         throw ProviderError.invalidServerResponse
       }
-      if !httpResponse.isUnauthenticated {
+      if httpResponse.isUnauthenticated {
         throw ProviderError.unAuthorized
       } else if !httpResponse.isSuccessful {
         throw ProviderError.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)
@@ -115,7 +115,7 @@ public final class Hover {
       guard let httpResponse = response as? HTTPURLResponse else {
         throw ProviderError.invalidServerResponse
       }
-      if !httpResponse.isUnauthenticated {
+      if httpResponse.isUnauthenticated {
         throw ProviderError.unAuthorized
       } else if !httpResponse.isSuccessful {
         throw ProviderError.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)
@@ -156,7 +156,7 @@ public final class Hover {
       guard let httpResponse = response as? HTTPURLResponse else {
         throw ProviderError.invalidServerResponse
       }
-      if !httpResponse.isUnauthenticated {
+      if httpResponse.isUnauthenticated {
         throw ProviderError.unAuthorized
       } else if !httpResponse.isSuccessful {
         throw ProviderError.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)
@@ -193,7 +193,7 @@ public extension Hover {
         result(.failure(.invalidServerResponse))
         return
       }
-      if !httpResponse.isUnauthenticated {
+      if httpResponse.isUnauthenticated {
         result(.failure(ProviderError.unAuthorized))
       } else if !httpResponse.isSuccessful {
         result(.failure(.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)))
@@ -230,7 +230,7 @@ public extension Hover {
         result(.failure(.invalidServerResponse))
         return
       }
-      if !httpResponse.isUnauthenticated {
+      if httpResponse.isUnauthenticated {
         result(.failure(ProviderError.unAuthorized))
       } else if !httpResponse.isSuccessful {
         result(.failure(.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)))
@@ -264,7 +264,7 @@ public extension Hover {
         result(.failure(.invalidServerResponse))
         return
       }
-      if !httpResponse.isUnauthenticated {
+      if httpResponse.isUnauthenticated {
         result(.failure(ProviderError.unAuthorized))
       } else if !httpResponse.isSuccessful {
         result(.failure(.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)))
@@ -294,7 +294,7 @@ public extension Hover {
         result(.failure(.invalidServerResponse))
         return
       }
-      if !httpResponse.isUnauthenticated {
+      if httpResponse.isUnauthenticated {
         result(.failure(ProviderError.unAuthorized))
       } else if !httpResponse.isSuccessful {
         result(.failure(.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)))

@@ -39,9 +39,10 @@ extension TestTarget: NetworkTarget {
             return "posts/\(postId)/comments"
         }
     }
-    var providerType: AuthProviderType {
-        return .none
+    var providerType: AuthProviderType? {
+      return nil
     }
+  
     var baseURL: URL {
         return URL(string: "https://jsonplaceholder.typicode.com")!
     }
