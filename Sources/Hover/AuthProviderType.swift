@@ -9,7 +9,12 @@
 import Foundation
 
 public enum AuthProviderType {
-    case bearer(token: String)
-    case basic(username: String, password: String)
-    case none
+  case bearer(Bearer)
+  case basic(Basic)
+  case oauth(OAuthType)
+}
+
+public enum OAuthType {
+  case oauth1(OAuth1)
+  case oauth2(OAuth2)
 }

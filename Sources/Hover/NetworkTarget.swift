@@ -13,7 +13,7 @@ public protocol NetworkTarget {
     var path: String { get }
     var methodType: MethodType { get }
     var workType: WorkType { get }
-    var providerType: AuthProviderType { get }
+    var providerType: AuthProviderType? { get set }
     var contentType: ContentType? { get }
     var headers: [String: String]? { get }
 }
@@ -24,4 +24,15 @@ public extension NetworkTarget {
         url.appendPathComponent(path)
         return url
     }
+    
+  var hasProvider: Bool {
+    guard case .none = providerType else {
+      return true
+    }
+    return false
+  }
+  
+  mutating func changeProvider(_ provider: AuthProviderType) {
+    providerType = provider
+  }
 }

@@ -19,15 +19,18 @@ internal extension URLRequest {
     prepareAuthorization(with: target.providerType)
     httpMethod = target.methodType.methodName
   }
-  private mutating func prepareAuthorization(with authType: AuthProviderType) {
+  
+  private mutating func prepareAuthorization(with authType: AuthProviderType?) {
     switch authType {
-    case .basic(let username, let password):
-      let loginString = String(format: "%@:%@", username, password)
-      guard let data = loginString.data(using: .utf8) else { return }
-      setValue("Basic \(data.base64EncodedString())", forHTTPHeaderField: headerField)
-    case .bearer(let token):
-      setValue("Bearer \(token)", forHTTPHeaderField: headerField)
-    case .none: break
+    case .basic(let basic):
+      guard let coded = basic.base64Coded else { return }
+      setValue(coded, forHTTPHeaderField: headerField)
+      
+    case .bearer(let bearer):
+      setValue("Bearer \(bearer.token)", forHTTPHeaderField: headerField)
+      
+    default:
+      break
     }
   }
 }

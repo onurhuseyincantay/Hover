@@ -9,7 +9,12 @@
 import Foundation
 
 extension HTTPURLResponse {
-    var isSuccessful: Bool {
-        return (200..<300).contains(statusCode)
-    }
+  
+  var isSuccessful: Bool {
+    return (200..<300).contains(statusCode)
+  }
+  
+  var isUnauthenticated: Bool {
+    return statusCode == 401
+  }
 }

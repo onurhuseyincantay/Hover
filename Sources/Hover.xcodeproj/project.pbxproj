@@ -29,6 +29,12 @@
 		8FE14E2722D49F39006DD1FA /* HttpUrlResponse+IsSuccesful.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE14E2622D49F39006DD1FA /* HttpUrlResponse+IsSuccesful.swift */; };
 		8FF72ED722D733C5008071E9 /* CommentSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF72ED622D733C5008071E9 /* CommentSubscriber.swift */; };
 		8FF8523B22DF0BAB00841138 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF8523A22DF0BAB00841138 /* Response.swift */; };
+		99B69BE723F543B0002FE17B /* HoverAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B69BE623F543B0002FE17B /* HoverAuth.swift */; };
+		99B69BEA23F545C5002FE17B /* Bearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B69BE923F545C5002FE17B /* Bearer.swift */; };
+		99B69BEC23F545F9002FE17B /* Basic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B69BEB23F545F9002FE17B /* Basic.swift */; };
+		99B69BF223F5528C002FE17B /* OAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B69BF123F5528C002FE17B /* OAuth.swift */; };
+		99B69BF423F555D8002FE17B /* OAuth1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B69BF323F555D8002FE17B /* OAuth1.swift */; };
+		99B69BF723F555F1002FE17B /* OAuth2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B69BF623F555F1002FE17B /* OAuth2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +73,12 @@
 		8FE14E2622D49F39006DD1FA /* HttpUrlResponse+IsSuccesful.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HttpUrlResponse+IsSuccesful.swift"; sourceTree = "<group>"; };
 		8FF72ED622D733C5008071E9 /* CommentSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentSubscriber.swift; sourceTree = "<group>"; };
 		8FF8523A22DF0BAB00841138 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		99B69BE623F543B0002FE17B /* HoverAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoverAuth.swift; sourceTree = "<group>"; };
+		99B69BE923F545C5002FE17B /* Bearer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bearer.swift; sourceTree = "<group>"; };
+		99B69BEB23F545F9002FE17B /* Basic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Basic.swift; sourceTree = "<group>"; };
+		99B69BF123F5528C002FE17B /* OAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth.swift; sourceTree = "<group>"; };
+		99B69BF323F555D8002FE17B /* OAuth1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth1.swift; sourceTree = "<group>"; };
+		99B69BF623F555F1002FE17B /* OAuth2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +168,7 @@
 		8FCCF05E22D38994002C2CAE /* Hover */ = {
 			isa = PBXGroup;
 			children = (
+				99B69BEF23F551B2002FE17B /* Authentication */,
 				8F1ACC6722D38A0A00A71D5D /* Base */,
 				8FE14E2222D48989006DD1FA /* Extensions */,
 				8FE14E2322D48999006DD1FA /* Types */,
@@ -191,12 +204,41 @@
 		8FE14E2322D48999006DD1FA /* Types */ = {
 			isa = PBXGroup;
 			children = (
-				8F1ACC6A22D38A2400A71D5D /* AuthProviderType.swift */,
 				8F1ACC6B22D38A2400A71D5D /* MethodType.swift */,
+				8F1ACC6A22D38A2400A71D5D /* AuthProviderType.swift */,
 				8F1ACC6D22D38A2400A71D5D /* WorkType.swift */,
 				8FE14DF422D480A9006DD1FA /* ContentType.swift */,
 			);
 			name = Types;
+			sourceTree = "<group>";
+		};
+		99B69BE823F545B3002FE17B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				99B69BF523F555E2002FE17B /* OAuth */,
+				99B69BE923F545C5002FE17B /* Bearer.swift */,
+				99B69BEB23F545F9002FE17B /* Basic.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		99B69BEF23F551B2002FE17B /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				99B69BE823F545B3002FE17B /* Model */,
+				99B69BE623F543B0002FE17B /* HoverAuth.swift */,
+			);
+			name = Authentication;
+			sourceTree = "<group>";
+		};
+		99B69BF523F555E2002FE17B /* OAuth */ = {
+			isa = PBXGroup;
+			children = (
+				99B69BF123F5528C002FE17B /* OAuth.swift */,
+				99B69BF323F555D8002FE17B /* OAuth1.swift */,
+				99B69BF623F555F1002FE17B /* OAuth2.swift */,
+			);
+			name = OAuth;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -333,10 +375,16 @@
 			files = (
 				8F1ACC6E22D38A2400A71D5D /* ProviderError.swift in Sources */,
 				8FE14E2722D49F39006DD1FA /* HttpUrlResponse+IsSuccesful.swift in Sources */,
+				99B69BEC23F545F9002FE17B /* Basic.swift in Sources */,
 				8FE14E2122D488DF006DD1FA /* URL+GenerateURLQuery.swift in Sources */,
 				8F1ACC7022D38A2400A71D5D /* AuthProviderType.swift in Sources */,
+				99B69BEA23F545C5002FE17B /* Bearer.swift in Sources */,
+				99B69BE723F543B0002FE17B /* HoverAuth.swift in Sources */,
 				8FE14E1D22D485CD006DD1FA /* URLRequest+prepareRequest.swift in Sources */,
+				99B69BF723F555F1002FE17B /* OAuth2.swift in Sources */,
 				8F1ACC7322D38A2400A71D5D /* WorkType.swift in Sources */,
+				99B69BF423F555D8002FE17B /* OAuth1.swift in Sources */,
+				99B69BF223F5528C002FE17B /* OAuth.swift in Sources */,
 				8F1ACC7122D38A2400A71D5D /* MethodType.swift in Sources */,
 				8FF8523B22DF0BAB00841138 /* Response.swift in Sources */,
 				8FE14DF522D480A9006DD1FA /* ContentType.swift in Sources */,
