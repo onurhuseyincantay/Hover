@@ -12,15 +12,31 @@ import Combine
 #endif
 
 public final class HoverAuth {
-  
-  func authenticate(with type: AuthProviderType) {
-    if case .oauth(let oauthType) = type {
-      switch oauthType {
-      case .oauth1(let oauth1):
-        print(oauth1.authorizeUrl)
-      case .oauth2(let oauth2):
-        print(oauth2.consumerKey)
-      }
+  private let headerField: String = "Authorization"
+  func authenticate(with type: AuthProviderType, urlRequest: inout URLRequest ) {
+    switch type {
+    case .oauth:
+      self.authenticateForOAuth(with: type, urlRequest: &urlRequest)
+    case .basic(let basic):
+      guard let base64Coded = basic.base64Coded else { return }
+      urlRequest.addValue(base64Coded, forHTTPHeaderField: headerField)
+    case .bearer(let bearer):
+      urlRequest.addValue(bearer.authToken, forHTTPHeaderField: headerField)
     }
+  }
+}
+
+// MARK: - Private
+private extension HoverAuth {
+  
+  func authenticateForOAuth(with type: AuthProviderType, urlRequest: inout URLRequest) {
+      if case .oauth(let oauthType) = type {
+        switch oauthType {
+        case .oauth1(let oauth1):
+          print(oauth1.authorizeUrl)
+        case .oauth2(let oauth2):
+          print(oauth2.consumerKey)
+        }
+      }
   }
 }

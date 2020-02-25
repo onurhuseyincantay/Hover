@@ -12,4 +12,7 @@ public struct Bearer {
   let token: String
   let refreshToken: String
   let expireTime: TimeInterval
+  
+  /// "Bearer \(token)"
+  var authToken: String {  "Bearer \(token)" }
 }

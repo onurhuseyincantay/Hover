@@ -11,10 +11,11 @@ import Foundation
 public struct Basic {
   let username: String
   let password: String
+  let encodingType: String.Encoding = .utf8
   
   var base64Coded: String? {
     let loginString = String(format: "%@:%@", username, password)
-    guard let data = loginString.data(using: .utf8) else { return nil }
+    guard let data = loginString.data(using: encodingType) else { return nil }
     return "Basic \(data.base64EncodedString())"
   }
 }

@@ -15,6 +15,7 @@ public typealias VoidResultCompletion = (Result<Response, ProviderError>) -> Voi
 
 public final class Hover {
   public init() { }
+  lazy var hoverAuth = HoverAuth()
   /// Requests for a spesific call with `DataTaskPublisher` for with body response
   /// - Parameters:
   ///   - target: `NetworkTarget`
@@ -28,12 +29,16 @@ public final class Hover {
     jsonDecoder: JSONDecoder = .init(),
     scheduler: T,
     class type: D.Type) -> AnyPublisher<D, ProviderError> where D: Decodable, T: Scheduler {
-    let urlRequest = constructURL(with: target)
-    return urlSession.dataTaskPublisher(for: urlRequest).tryCatch { error -> URLSession.DataTaskPublisher in
-      guard error.networkUnavailableReason == .constrained else {
-        throw ProviderError.connectionError(error)
-      }
-      return urlSession.dataTaskPublisher(for: urlRequest)
+    var urlRequest = constructURL(with: target)
+    if let type = target.providerType {
+      hoverAuth.authenticate(with: type, urlRequest: &urlRequest)
+    }
+    return urlSession.dataTaskPublisher(for: urlRequest)
+      .tryCatch { error -> URLSession.DataTaskPublisher in
+        guard error.networkUnavailableReason == .constrained else {
+          throw ProviderError.connectionError(error)
+        }
+        return urlSession.dataTaskPublisher(for: urlRequest)
     }
     .receive(on: scheduler)
     .tryMap { data, response -> Data in
@@ -65,23 +70,26 @@ public final class Hover {
     with target: NetworkTarget,
     scheduler: T,
     urlSession: URLSession = URLSession.shared) -> AnyPublisher<Response, ProviderError> {
-    let urlRequest = constructURL(with: target)
+    var urlRequest = constructURL(with: target)
+    if let type = target.providerType {
+      hoverAuth.authenticate(with: type, urlRequest: &urlRequest)
+    }
     return urlSession.dataTaskPublisher(for: urlRequest).tryCatch { error -> URLSession.DataTaskPublisher in
       guard error.networkUnavailableReason == .constrained else {
         throw ProviderError.connectionError(error)
       }
       return urlSession.dataTaskPublisher(for: urlRequest)
     }.receive(on: scheduler)
-    .tryMap { (data, response) -> Response in
-      guard let httpResponse = response as? HTTPURLResponse else {
-        throw ProviderError.invalidServerResponse
-      }
-      if httpResponse.isUnauthenticated {
-        throw ProviderError.unAuthorized
-      } else if !httpResponse.isSuccessful {
-        throw ProviderError.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)
-      }
-      return Response(urlResponse: httpResponse, data: data)
+      .tryMap { (data, response) -> Response in
+        guard let httpResponse = response as? HTTPURLResponse else {
+          throw ProviderError.invalidServerResponse
+        }
+        if httpResponse.isUnauthenticated {
+          throw ProviderError.unAuthorized
+        } else if !httpResponse.isSuccessful {
+          throw ProviderError.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)
+        }
+        return Response(urlResponse: httpResponse, data: data)
     }
     .mapError {
       guard let error = $0 as? ProviderError else { return ProviderError.underlying($0) }
@@ -103,7 +111,10 @@ public final class Hover {
     jsonDecoder: JSONDecoder = .init(),
     scheduler: T,
     subscriber: S) where S: Subscriber, T: Scheduler, D: Decodable, S.Input == D, S.Failure == ProviderError {
-    let urlRequest = constructURL(with: target)
+    var urlRequest = constructURL(with: target)
+    if let type = target.providerType {
+      hoverAuth.authenticate(with: type, urlRequest: &urlRequest)
+    }
     urlSession.dataTaskPublisher(for: urlRequest)
       .tryCatch { error -> URLSession.DataTaskPublisher in
         guard error.networkUnavailableReason == .constrained else {
@@ -111,16 +122,16 @@ public final class Hover {
         }
         return urlSession.dataTaskPublisher(for: urlRequest)
     }.receive(on: scheduler)
-    .tryMap { data, response -> Data in
-      guard let httpResponse = response as? HTTPURLResponse else {
-        throw ProviderError.invalidServerResponse
-      }
-      if httpResponse.isUnauthenticated {
-        throw ProviderError.unAuthorized
-      } else if !httpResponse.isSuccessful {
-        throw ProviderError.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)
-      }
-      return data
+      .tryMap { data, response -> Data in
+        guard let httpResponse = response as? HTTPURLResponse else {
+          throw ProviderError.invalidServerResponse
+        }
+        if httpResponse.isUnauthenticated {
+          throw ProviderError.unAuthorized
+        } else if !httpResponse.isSuccessful {
+          throw ProviderError.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)
+        }
+        return data
     }.decode(
       type: type.self,
       decoder: jsonDecoder
@@ -144,7 +155,10 @@ public final class Hover {
     urlSession: URLSession = URLSession.shared,
     scheduler: T,
     subscriber: S) where T: Scheduler, S: Subscriber, S.Input == Response, S.Failure == ProviderError {
-    let urlRequest = constructURL(with: target)
+    var urlRequest = constructURL(with: target)
+    if let type = target.providerType {
+      hoverAuth.authenticate(with: type, urlRequest: &urlRequest)
+    }
     urlSession.dataTaskPublisher(for: urlRequest).tryCatch { error -> URLSession.DataTaskPublisher in
       guard error.networkUnavailableReason == .constrained else {
         throw ProviderError.connectionError(error)
@@ -183,7 +197,10 @@ public extension Hover {
     jsonDecoder: JSONDecoder = .init(),
     class type: D.Type,
     result: @escaping (Result<D, ProviderError>) -> Void) {
-    let urlRequest = constructURL(with: target)
+    var urlRequest = constructURL(with: target)
+    if let type = target.providerType {
+      hoverAuth.authenticate(with: type, urlRequest: &urlRequest)
+    }
     urlSession.dataTask(with: urlRequest) { data, response, error in
       guard error == nil else {
         result(.failure(.connectionError(error!)))
@@ -220,7 +237,10 @@ public extension Hover {
     with target: NetworkTarget,
     urlSession: URLSession = URLSession.shared,
     result: @escaping VoidResultCompletion) {
-    let urlRequest = constructURL(with: target)
+    var urlRequest = constructURL(with: target)
+    if let type = target.providerType {
+      hoverAuth.authenticate(with: type, urlRequest: &urlRequest)
+    }
     urlSession.dataTask(with: urlRequest) { data, response, error in
       guard error == nil else {
         result(.failure(.connectionError(error!)))
@@ -254,7 +274,10 @@ public extension Hover {
     urlSession: URLSession = URLSession.shared,
     data: Data,
     result: @escaping (Result<(HTTPURLResponse, Data?), ProviderError>) -> Void) {
-    let urlRequest = constructURL(with: target)
+    var urlRequest = constructURL(with: target)
+    if let type = target.providerType {
+      hoverAuth.authenticate(with: type, urlRequest: &urlRequest)
+    }
     urlSession.uploadTask(with: urlRequest, from: data) { data, response, error in
       guard error == nil else {
         result(.failure(.underlying(error!)))
@@ -284,7 +307,10 @@ public extension Hover {
     urlSession: URLSession = URLSession.shared,
     data: Data,
     result: @escaping (Result<Void, ProviderError>) -> Void) {
-    let urlRequest = constructURL(with: target)
+    var urlRequest = constructURL(with: target)
+    if let type = target.providerType {
+      hoverAuth.authenticate(with: type, urlRequest: &urlRequest)
+    }
     urlSession.downloadTask(with: urlRequest) { _, response, error in
       guard error == nil else {
         result(.failure(.underlying(error!)))
