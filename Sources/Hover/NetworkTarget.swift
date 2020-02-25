@@ -42,10 +42,10 @@ public extension NetworkTarget {
       return prepareDeleteRequest()
     }
   }
-  
 }
 
 private extension NetworkTarget {
+  
   func prepareGetRequest() -> URLRequest {
     switch workType {
     case .requestParameters(let parameters):
@@ -59,6 +59,7 @@ private extension NetworkTarget {
       return request
     }
   }
+  
   func prepareGeneralRequest() -> URLRequest {
     var request = URLRequest(url: pathAppendedURL)
     request.prepareRequest(with: self)
@@ -76,6 +77,7 @@ private extension NetworkTarget {
       return request
     }
   }
+  
   func prepareDeleteRequest() -> URLRequest {
     switch workType {
     case .requestParameters(let parameters):
