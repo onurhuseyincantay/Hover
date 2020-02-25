@@ -29,7 +29,7 @@ public final class Hover {
     jsonDecoder: JSONDecoder = .init(),
     scheduler: T,
     class type: D.Type) -> AnyPublisher<D, ProviderError> where D: Decodable, T: Scheduler {
-    var urlRequest = constructURL(with: target)
+    var urlRequest = target.constructURL()
     if let type = target.providerType {
       hoverAuth.authenticate(with: type, urlRequest: &urlRequest)
     }
@@ -70,7 +70,7 @@ public final class Hover {
     with target: NetworkTarget,
     scheduler: T,
     urlSession: URLSession = URLSession.shared) -> AnyPublisher<Response, ProviderError> {
-    var urlRequest = constructURL(with: target)
+    var urlRequest = target.constructURL()
     if let type = target.providerType {
       hoverAuth.authenticate(with: type, urlRequest: &urlRequest)
     }
@@ -111,7 +111,7 @@ public final class Hover {
     jsonDecoder: JSONDecoder = .init(),
     scheduler: T,
     subscriber: S) where S: Subscriber, T: Scheduler, D: Decodable, S.Input == D, S.Failure == ProviderError {
-    var urlRequest = constructURL(with: target)
+    var urlRequest = target.constructURL()
     if let type = target.providerType {
       hoverAuth.authenticate(with: type, urlRequest: &urlRequest)
     }
@@ -155,7 +155,7 @@ public final class Hover {
     urlSession: URLSession = URLSession.shared,
     scheduler: T,
     subscriber: S) where T: Scheduler, S: Subscriber, S.Input == Response, S.Failure == ProviderError {
-    var urlRequest = constructURL(with: target)
+    var urlRequest = target.constructURL()
     if let type = target.providerType {
       hoverAuth.authenticate(with: type, urlRequest: &urlRequest)
     }
@@ -197,7 +197,7 @@ public extension Hover {
     jsonDecoder: JSONDecoder = .init(),
     class type: D.Type,
     result: @escaping (Result<D, ProviderError>) -> Void) {
-    var urlRequest = constructURL(with: target)
+    var urlRequest = target.constructURL()
     if let type = target.providerType {
       hoverAuth.authenticate(with: type, urlRequest: &urlRequest)
     }
@@ -237,7 +237,7 @@ public extension Hover {
     with target: NetworkTarget,
     urlSession: URLSession = URLSession.shared,
     result: @escaping VoidResultCompletion) {
-    var urlRequest = constructURL(with: target)
+    var urlRequest = target.constructURL()
     if let type = target.providerType {
       hoverAuth.authenticate(with: type, urlRequest: &urlRequest)
     }
@@ -274,7 +274,7 @@ public extension Hover {
     urlSession: URLSession = URLSession.shared,
     data: Data,
     result: @escaping (Result<(HTTPURLResponse, Data?), ProviderError>) -> Void) {
-    var urlRequest = constructURL(with: target)
+    var urlRequest = target.constructURL()
     if let type = target.providerType {
       hoverAuth.authenticate(with: type, urlRequest: &urlRequest)
     }
@@ -307,7 +307,7 @@ public extension Hover {
     urlSession: URLSession = URLSession.shared,
     data: Data,
     result: @escaping (Result<Void, ProviderError>) -> Void) {
-    var urlRequest = constructURL(with: target)
+    var urlRequest = target.constructURL()
     if let type = target.providerType {
       hoverAuth.authenticate(with: type, urlRequest: &urlRequest)
     }
@@ -328,77 +328,5 @@ public extension Hover {
       }
       result(.success(()))
     }.resume()
-  }
-}
-
-// MARK: - Private Extension
-private extension Hover {
-  func constructURL(with target: NetworkTarget) -> URLRequest {
-    switch target.methodType {
-    case .get:
-      return prepareGetRequest(with: target)
-    case .put,
-         .patch,
-         .post:
-      return prepareGeneralRequest(with: target)
-    case .delete:
-      return prepareDeleteRequest(with: target)
-    }
-  }
-  func prepareGetRequest(with target: NetworkTarget) -> URLRequest {
-    let url = target.pathAppendedURL
-    switch target.workType {
-    case .requestParameters(let parameters, _):
-      let url = url.generateUrlWithQuery(with: parameters)
-      var request = URLRequest(url: url)
-      request.prepareRequest(with: target)
-      return request
-    default:
-      var request = URLRequest(url: url)
-      request.prepareRequest(with: target)
-      return request
-    }
-  }
-  func prepareGeneralRequest(with target: NetworkTarget) -> URLRequest {
-    let url = target.pathAppendedURL
-    var request = URLRequest(url: url)
-    request.prepareRequest(with: target)
-    switch target.workType {
-    case .requestParameters(let parameters, _):
-      request.httpBody = try? JSONSerialization.data(withJSONObject: parameters)
-      return request
-    case .requestData(let data):
-      request.httpBody = data
-      return request
-    case .requestWithEncodable(let encodable):
-      request.httpBody = try? JSONSerialization.data(withJSONObject: encodable)
-      return request
-    default:
-      return request
-    }
-  }
-  func prepareDeleteRequest(with target: NetworkTarget) -> URLRequest {
-    let url = target.pathAppendedURL
-    switch target.workType {
-    case .requestParameters(let parameters, _):
-      var request = URLRequest(url: url)
-      request.prepareRequest(with: target)
-      request.httpBody = try? JSONSerialization.data(withJSONObject: parameters)
-      return request
-    case .requestData(let data):
-      var request = URLRequest(url: url)
-      request.prepareRequest(with: target)
-      request.httpBody = data
-      return request
-    case .requestWithEncodable(let encodable):
-      var request = URLRequest(url: url)
-      request.prepareRequest(with: target)
-      request.httpBody = try? JSONSerialization.data(withJSONObject: encodable)
-      return request
-    default:
-      var request = URLRequest(url: url)
-      request.httpMethod = target.methodType.methodName
-      return request
-    }
   }
 }

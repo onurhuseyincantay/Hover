@@ -9,28 +9,11 @@
 import Foundation
 
 internal extension URLRequest {
-  private var headerField: String { "Authorization" }
   private var contentTypeHeader: String { "Content-Type" }
-  mutating func prepareRequest(with target: NetworkTarget) {
-    let contentTypeHeaderName = contentTypeHeader
-    allHTTPHeaderFields = target.headers
-    allowsCellularAccess = false
-    setValue(target.contentType?.rawValue, forHTTPHeaderField: contentTypeHeaderName)
-    prepareAuthorization(with: target.providerType)
-    httpMethod = target.methodType.methodName
-  }
   
-  private mutating func prepareAuthorization(with authType: AuthProviderType?) {
-    switch authType {
-    case .basic(let basic):
-      guard let coded = basic.base64Coded else { return }
-      setValue(coded, forHTTPHeaderField: headerField)
-      
-    case .bearer(let bearer):
-      setValue("Bearer \(bearer.token)", forHTTPHeaderField: headerField)
-      
-    default:
-      break
-    }
+  mutating func prepareRequest(with target: NetworkTarget) {
+    allHTTPHeaderFields = target.headers
+    setValue(target.contentType?.rawValue, forHTTPHeaderField: contentTypeHeader)
+    httpMethod = target.methodType.methodName
   }
 }
