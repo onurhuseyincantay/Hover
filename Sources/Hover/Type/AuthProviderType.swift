@@ -15,6 +15,6 @@ public enum AuthProviderType {
 }
 
 public enum OAuthType {
-  case oauth1(OAuth1)
-  case oauth2(OAuth2)
+  case oAuth1(OAuth1)
+  case oAuth2(OAuth2)
 }

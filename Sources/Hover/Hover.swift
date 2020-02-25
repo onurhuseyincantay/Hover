@@ -12,10 +12,10 @@ import Combine
 #endif
 
 public typealias VoidResultCompletion = (Result<Response, ProviderError>) -> Void
-
 public final class Hover {
   public init() { }
-  lazy var hoverAuth = HoverAuth()
+  /// Authentication layer
+  private lazy var hoverAuth = HoverAuth()
   /// Requests for a spesific call with `DataTaskPublisher` for with body response
   /// - Parameters:
   ///   - target: `NetworkTarget`
@@ -365,13 +365,13 @@ private extension Hover {
     request.prepareRequest(with: target)
     switch target.workType {
     case .requestParameters(let parameters, _):
-      request.httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+      request.httpBody = try? JSONSerialization.data(withJSONObject: parameters)
       return request
     case .requestData(let data):
       request.httpBody = data
       return request
     case .requestWithEncodable(let encodable):
-      request.httpBody = try? JSONSerialization.data(withJSONObject: encodable, options: .prettyPrinted)
+      request.httpBody = try? JSONSerialization.data(withJSONObject: encodable)
       return request
     default:
       return request
@@ -383,7 +383,7 @@ private extension Hover {
     case .requestParameters(let parameters, _):
       var request = URLRequest(url: url)
       request.prepareRequest(with: target)
-      request.httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+      request.httpBody = try? JSONSerialization.data(withJSONObject: parameters)
       return request
     case .requestData(let data):
       var request = URLRequest(url: url)
@@ -393,7 +393,7 @@ private extension Hover {
     case .requestWithEncodable(let encodable):
       var request = URLRequest(url: url)
       request.prepareRequest(with: target)
-      request.httpBody = try? JSONSerialization.data(withJSONObject: encodable, options: .prettyPrinted)
+      request.httpBody = try? JSONSerialization.data(withJSONObject: encodable)
       return request
     default:
       var request = URLRequest(url: url)

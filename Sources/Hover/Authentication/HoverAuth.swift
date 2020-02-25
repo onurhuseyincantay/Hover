@@ -32,9 +32,9 @@ private extension HoverAuth {
   func authenticateForOAuth(with type: AuthProviderType, urlRequest: inout URLRequest) {
       if case .oauth(let oauthType) = type {
         switch oauthType {
-        case .oauth1(let oauth1):
+        case .oAuth1(let oauth1):
           print(oauth1.authorizeUrl)
-        case .oauth2(let oauth2):
+        case .oAuth2(let oauth2):
           print(oauth2.consumerKey)
         }
       }
