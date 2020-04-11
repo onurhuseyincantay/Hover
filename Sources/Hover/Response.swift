@@ -11,11 +11,9 @@ import Foundation
 public struct Response {
     let urlResponse: HTTPURLResponse
     let data: Data
-    
     var statusCode: Int {
         return urlResponse.statusCode
     }
-    
     var localizedStatusCodeDescription: String {
         return HTTPURLResponse.localizedString(forStatusCode: statusCode)
     }

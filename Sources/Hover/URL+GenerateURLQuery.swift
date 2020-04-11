@@ -17,6 +17,5 @@ extension URL {
         urlComponents.queryItems = quearyItems
         guard let url = urlComponents.url else { fatalError("Wrong URL Provided") }
         return url
-        
     }
 }

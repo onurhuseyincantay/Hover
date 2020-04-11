@@ -26,7 +26,7 @@ class CompletionBlockFailingTests: XCTestCase {
         testClass.fetchPostById(with: 1231234123) { result in
             switch result {
             case .success:
-                XCTFail()
+               XCTFail("shouldn't success the request is not valid")
             case .failure(let error):
                 print(error.errorDescription)
                 exp.fulfill()
@@ -34,13 +34,12 @@ class CompletionBlockFailingTests: XCTestCase {
         }
         wait(for: [exp], timeout: 5)
     }
-    
     func testCreatePost() {
         let exp = expectation(description: "testCreatePost")
         testClass.createPost(title: "", body: "", userId: 0) { result in
             switch result {
             case .success:
-                XCTFail()
+                XCTFail("shouldn't success the request is not valid")
             case .failure(let error):
                 print(error.errorDescription)
                 exp.fulfill()
@@ -48,13 +47,12 @@ class CompletionBlockFailingTests: XCTestCase {
         }
         wait(for: [exp], timeout: 5)
     }
-    
     func testUpdatePostWithPut() {
        let exp = expectation(description: "testUpdatePostWithPut")
-        testClass.updatePostWithPut(postId: 52491293012, userId: 1293419230123, title: "", body: "")  { result in
+        testClass.updatePostWithPut(postId: 52491293012, userId: 1293419230123, title: "", body: "") { result in
             switch result {
             case .success:
-                XCTFail()
+               XCTFail("shouldn't success the request is not valid")
             case .failure(let error):
                 print(error.errorDescription)
                 exp.fulfill()
@@ -62,13 +60,12 @@ class CompletionBlockFailingTests: XCTestCase {
         }
         wait(for: [exp], timeout: 5)
     }
-    
     func testUpdatePostWithPatch() {
         let exp = expectation(description: "testUpdatePostWithPatch")
-        testClass.updatePostWithPatch(postId: 741298371293, title: "")  { result in
+        testClass.updatePostWithPatch(postId: 741298371293, title: "") { result in
             switch result {
             case .success:
-                XCTFail()
+                XCTFail("shouldn't success the request is not valid")
             case .failure(let error):
                 print(error.errorDescription)
                 exp.fulfill()
@@ -76,13 +73,12 @@ class CompletionBlockFailingTests: XCTestCase {
         }
         wait(for: [exp], timeout: 5)
     }
-    
     func testFetchPostWithUserId() {
        let exp = expectation(description: "testFetchPostWithUserId")
         testClass.fetchPostsByUserId(741298371293) { result in
             switch result {
             case .success:
-                XCTFail()
+                XCTFail("shouldn't success the request is not valid")
             case .failure(let error):
                 print(error.errorDescription)
                 exp.fulfill()
@@ -90,13 +86,12 @@ class CompletionBlockFailingTests: XCTestCase {
         }
         wait(for: [exp], timeout: 5)
     }
-    
     func testFetchCommentsWithPostId() {
         let exp = expectation(description: "testFetchPostWithUserId")
         testClass.fetchCommentsWithPostId(12314123123123) { result in
             switch result {
             case .success:
-                XCTFail()
+                XCTFail("shouldn't success the request is not valid")
             case .failure(let error):
                 print(error.errorDescription)
                 exp.fulfill()
@@ -104,13 +99,12 @@ class CompletionBlockFailingTests: XCTestCase {
         }
         wait(for: [exp], timeout: 5)
     }
-    
     func testDeletePost() {
        let exp = expectation(description: "testFetchPostWithUserId")
         testClass.deletePost(with: 125123123123123) { result in
             switch result {
             case .success:
-                XCTFail()
+                XCTFail("shouldn't success the request is not valid")
             case .failure(let error):
                 print(error.errorDescription)
                 exp.fulfill()
@@ -120,4 +114,3 @@ class CompletionBlockFailingTests: XCTestCase {
     }
     
 }
-

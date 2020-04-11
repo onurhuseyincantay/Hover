@@ -9,7 +9,7 @@
 import XCTest
 @testable import Hover
 
-@available(iOS 13.0, macOS 10.15,tvOS 13.0, watchOS 6.0, macCatalyst 13.0, *)
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, macCatalyst 13.0, *)
 class DataTaskPublisherTests: XCTestCase {
     var testClass: TestClass!
     override func setUp() {
@@ -31,10 +31,10 @@ class DataTaskPublisherTests: XCTestCase {
             case .finished:
                 break
             }
-        }) { response in
+        }, receiveValue: { response in
             print(response)
             exp.fulfill()
-        }
+        })
         wait(for: [exp], timeout: 5)
     }
     
@@ -49,10 +49,10 @@ class DataTaskPublisherTests: XCTestCase {
             case .finished:
                 break
             }
-        }) { response in
+        }, receiveValue: { response in
             print(response)
             exp.fulfill()
-        }
+        })
         wait(for: [exp], timeout: 5)
     }
     
@@ -67,10 +67,10 @@ class DataTaskPublisherTests: XCTestCase {
             case .finished:
                 break
             }
-        }) { response in
+        }, receiveValue: { response in
             print(response)
             exp.fulfill()
-        }
+        })
         wait(for: [exp], timeout: 5)
     }
     
@@ -85,10 +85,10 @@ class DataTaskPublisherTests: XCTestCase {
             case .finished:
                 break
             }
-        }) { response in
+        }, receiveValue: { response in
             print(response)
             exp.fulfill()
-        }
+        })
         wait(for: [exp], timeout: 5)
     }
     
@@ -103,10 +103,10 @@ class DataTaskPublisherTests: XCTestCase {
             case .finished:
                 break
             }
-        }) { response in
+        }, receiveValue: { response in
             print(response)
             exp.fulfill()
-        }
+        })
         wait(for: [exp], timeout: 5)
     }
     
@@ -121,10 +121,10 @@ class DataTaskPublisherTests: XCTestCase {
             case .finished:
                 break
             }
-        }) { response in
+        }, receiveValue: { response in
             print(response)
             exp.fulfill()
-        }
+        })
         wait(for: [exp], timeout: 5)
     }
     
@@ -139,10 +139,10 @@ class DataTaskPublisherTests: XCTestCase {
             case .finished:
                 break
             }
-        }) { response in
+       }, receiveValue: {response in
             print(response)
             exp.fulfill()
-        }
+        })
         wait(for: [exp], timeout: 5)
     }
     
@@ -157,10 +157,10 @@ class DataTaskPublisherTests: XCTestCase {
             case .finished:
                 break
             }
-        }) { response in
+        }, receiveValue: { response in
             print(response)
             exp.fulfill()
-        }
+        })
         wait(for: [exp], timeout: 5)
     }
 
@@ -170,15 +170,14 @@ class DataTaskPublisherTests: XCTestCase {
         testClass.anyCancellable = testClass.subscriber.publisher.sink(receiveCompletion: { completion in
             switch completion {
             case .failure(let error):
-                XCTFail()
-                print(error.errorDescription)
+               XCTFail("Onur: \(error.errorDescription)")
             case .finished:
                 print("finished")
             }
-        }) { response in
+        }, receiveValue: { response in
             print(response)
             exp.fulfill()
-        }
+        })
         wait(for: [exp], timeout: 10)
     }
 }

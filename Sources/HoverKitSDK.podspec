@@ -17,7 +17,7 @@ Pod::Spec.new do |spec|
 
   spec.name         = "HoverKitSDK"
   spec.swift_versions = "5.0"
-  spec.version      = "1.0.2"
+  spec.version      = "1.0.4"
   spec.summary      = "Async Network Library"
 
   # This description is used to generate tags and improve search results.
@@ -92,7 +92,7 @@ Pod::Spec.new do |spec|
   #  Not including the public_header_files will make all headers public.
   #
 
-  spec.source_files  = "Hover", "Hover/**/*.{h,m}"
+  spec.source_files  = "Sources/Hover", "Sources/Hover/**/*.{h,m}"
   #spec.exclude_files = "Classes/Exclude"
 
   # spec.public_header_files = "Classes/**/*.h"

@@ -12,7 +12,6 @@ import XCTest
 class CompletionBlockTests: XCTestCase {
     var testClass: TestClass!
    
-    
     override func setUp() {
         testClass = TestClass()
     }
@@ -29,8 +28,7 @@ class CompletionBlockTests: XCTestCase {
                 print(response)
                 exp.fulfill()
             case .failure(let error):
-                print("Onur:",error.errorDescription)
-                XCTFail()
+                XCTFail("Onur: \(error.errorDescription)")
             }
         }
         wait(for: [exp], timeout: 5)
@@ -44,8 +42,7 @@ class CompletionBlockTests: XCTestCase {
                 print(response)
                 exp.fulfill()
             case .failure(let error):
-                print("Onur:",error.errorDescription)
-                XCTFail()
+                XCTFail("Onur: \(error.errorDescription)")
             }
         }
         wait(for: [exp], timeout: 5)
@@ -59,8 +56,7 @@ class CompletionBlockTests: XCTestCase {
                 print(response)
                 exp.fulfill()
             case .failure(let error):
-                print("Onur:",error.errorDescription)
-                XCTFail()
+                XCTFail("Onur: \(error.errorDescription)")
             }
         }
         wait(for: [exp], timeout: 5)
@@ -74,8 +70,7 @@ class CompletionBlockTests: XCTestCase {
                 print(response)
                 exp.fulfill()
             case .failure(let error):
-                print("Onur:",error.errorDescription)
-                XCTFail()
+               XCTFail("Onur: \(error.errorDescription)")
             }
         }
         wait(for: [exp], timeout: 5)
@@ -89,8 +84,7 @@ class CompletionBlockTests: XCTestCase {
                 print(response)
                 exp.fulfill()
             case .failure(let error):
-                print("Onur:",error.errorDescription)
-                XCTFail()
+                XCTFail("Onur: \(error.errorDescription)")
             }
         }
         wait(for: [exp], timeout: 5)
@@ -104,8 +98,7 @@ class CompletionBlockTests: XCTestCase {
                 print(response)
                 exp.fulfill()
             case .failure(let error):
-                print("Onur:",error.errorDescription)
-                XCTFail()
+               XCTFail("Onur: \(error.errorDescription)")
             }
         }
         wait(for: [exp], timeout: 5)
@@ -119,8 +112,7 @@ class CompletionBlockTests: XCTestCase {
                 print(response)
                 exp.fulfill()
             case .failure(let error):
-                print("Onur:",error.errorDescription)
-                XCTFail()
+                XCTFail("Onur: \(error.errorDescription)")
                 
             }
         }
@@ -134,9 +126,7 @@ class CompletionBlockTests: XCTestCase {
                 print(response)
                 exp.fulfill()
             case .failure(let error):
-                print("Onur:",error.errorDescription)
-                XCTFail()
-                
+               XCTFail("Onur: \(error.errorDescription)")
             }
         }
         wait(for: [exp], timeout: 5)
