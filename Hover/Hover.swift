@@ -67,7 +67,8 @@ public final class Hover {
                 throw ProviderError.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)
             }
             return Response(urlResponse: httpResponse, data: data)
-        }.mapError { $0 as! ProviderError }.eraseToAnyPublisher()
+        }.mapError { $0 as! ProviderError }
+            .eraseToAnyPublisher()
     }
     
     
@@ -78,9 +79,10 @@ public final class Hover {
     ///   - urlSession: `URLSession`
     ///   - subscriber: `Subscriber`
     @available(iOS 13.0, macOS 10.15,tvOS 13.0, watchOS 6.0, macCatalyst 13.0, *)
-    func request<D,S>(with target: NetworkTarget, class type: D.Type, urlSession: URLSession = URLSession.shared, jsonDecoder: JSONDecoder = .init(), subscriber: S) where S: Subscriber, D: Decodable, S.Input == D, S.Failure == ProviderError {
+    @discardableResult
+    func request<D, S>(with target: NetworkTarget, class type: D.Type, urlSession: URLSession = URLSession.shared, jsonDecoder: JSONDecoder = .init(), subscriber: S) -> AnyPublisher<D, ProviderError> where S: Subscriber, D: Decodable, S.Input == D, S.Failure == ProviderError {
         let urlRequest = constructURL(with: target)
-        urlSession.dataTaskPublisher(for: urlRequest)
+        let publisher = urlSession.dataTaskPublisher(for: urlRequest)
             .tryCatch { error -> URLSession.DataTaskPublisher in
                 guard error.networkUnavailableReason == .constrained else {
                     throw ProviderError.connectionError(error)
@@ -100,7 +102,9 @@ public final class Hover {
             } else {
                 return ProviderError.decodingError(error)
             }
-        }.eraseToAnyPublisher().subscribe(subscriber)
+        }.eraseToAnyPublisher()
+        publisher.subscribe(subscriber)
+        return publisher
     }
     
     /// Requests for a spesific call with `DataTaskPublisher` for non body response
@@ -109,9 +113,10 @@ public final class Hover {
     ///   - urlSession: `URLSession`
     ///   - subscriber: `Subscriber`
     @available(iOS 13.0, macOS 10.15,tvOS 13.0, watchOS 6.0, macCatalyst 13.0, *)
-    func request<S>(with target: NetworkTarget, urlSession: URLSession = URLSession.shared, subscriber: S) where S: Subscriber, S.Input == Response, S.Failure == ProviderError {
+    @discardableResult
+    func request<S>(with target: NetworkTarget, urlSession: URLSession = URLSession.shared, subscriber: S) -> AnyPublisher<Response, ProviderError> where S: Subscriber, S.Input == Response, S.Failure == ProviderError {
         let urlRequest = constructURL(with: target)
-        urlSession.dataTaskPublisher(for: urlRequest).tryCatch { error -> URLSession.DataTaskPublisher in
+        let publisher = urlSession.dataTaskPublisher(for: urlRequest).tryCatch { error -> URLSession.DataTaskPublisher in
             guard error.networkUnavailableReason == .constrained else {
                 throw ProviderError.connectionError(error)
             }
@@ -124,7 +129,10 @@ public final class Hover {
                 throw ProviderError.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)
             }
             return Response(urlResponse: httpResponse, data: data)
-        }.mapError { $0 as! ProviderError }.eraseToAnyPublisher().subscribe(subscriber)
+        }.mapError { $0 as! ProviderError }
+            .eraseToAnyPublisher()
+        publisher.subscribe(subscriber)
+        return publisher
     }
 }
 
@@ -137,32 +145,35 @@ public extension Hover {
     ///   - type: Decodable Object Type
     ///   - urlSession: `URLSession`
     ///   - result: `Completion Block as (Result<D,ProviderError>) -> ()`
-    func request<D: Decodable>(with target: NetworkTarget, urlSession: URLSession = URLSession.shared, jsonDecoder: JSONDecoder = .init(), class type: D.Type, result: @escaping (Result<D,ProviderError>) -> Void) {
-        let urlRequest = constructURL(with: target)
-        urlSession.dataTask(with: urlRequest) { data, response, error in
-            guard error == nil else {
-                result(.failure(.connectionError(error!)))
-                return
-            }
-            guard let httpResponse = response as? HTTPURLResponse else {
-                result(.failure(.invalidServerResponse))
-                return
-            }
-            if !httpResponse.isSuccessful {
-                result(.failure(.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)))
-                return
-            }
-            do {
-                guard let data = data else {
-                    result(.failure(.missingBodyData))
+    @discardableResult
+    func request<D: Decodable>(with target: NetworkTarget, urlSession: URLSession = URLSession.shared, jsonDecoder: JSONDecoder = .init(), class type: D.Type, result: @escaping (Result<D, ProviderError>) -> Void) -> URLSessionTask {
+            let urlRequest = constructURL(with: target)
+            let task = urlSession.dataTask(with: urlRequest) { data, response, error in
+                guard error == nil else {
+                    result(.failure(.connectionError(error!)))
                     return
                 }
-                let decoded = try jsonDecoder.decode(type.self, from: data)
-                result(.success(decoded))
-            } catch {
-                result(.failure(.decodingError(error)))
+                guard let httpResponse = response as? HTTPURLResponse else {
+                    result(.failure(.invalidServerResponse))
+                    return
+                }
+                if !httpResponse.isSuccessful {
+                    result(.failure(.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)))
+                    return
+                }
+                do {
+                    guard let data = data else {
+                        result(.failure(.missingBodyData))
+                        return
+                    }
+                    let decoded = try jsonDecoder.decode(type.self, from: data)
+                    result(.success(decoded))
+                } catch {
+                    result(.failure(.decodingError(error)))
+                }
             }
-        }.resume()
+            task.resume()
+            return task
     }
     
     /// Requests for a sepecific call with completionBlock for non body request
@@ -170,27 +181,30 @@ public extension Hover {
     ///   - target: `NetworkTarget`
     ///   - urlSession: `URLSession`
     ///   - result: `VoidResultCompletion`
-    func request(with target: NetworkTarget, urlSession: URLSession = URLSession.shared, result: @escaping VoidResultCompletion) {
-        let urlRequest = constructURL(with: target)
-        urlSession.dataTask(with: urlRequest) { data, response, error in
-            guard error == nil else {
-                result(.failure(.connectionError(error!)))
-                return
+    @discardableResult
+    func request(with target: NetworkTarget, urlSession: URLSession = URLSession.shared, result: @escaping VoidResultCompletion) -> URLSessionTask {
+            let urlRequest = constructURL(with: target)
+            let task = urlSession.dataTask(with: urlRequest) { data, response, error in
+                guard error == nil else {
+                    result(.failure(.connectionError(error!)))
+                    return
+                }
+                guard let httpResponse = response as? HTTPURLResponse else {
+                    result(.failure(.invalidServerResponse))
+                    return
+                }
+                if !httpResponse.isSuccessful {
+                    result(.failure(.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)))
+                    return
+                }
+                guard let data = data else {
+                    result(.failure(.missingBodyData))
+                    return
+                }
+                result(.success(Response(urlResponse: httpResponse, data: data)))
             }
-            guard let httpResponse = response as? HTTPURLResponse else {
-                result(.failure(.invalidServerResponse))
-                return
-            }
-            if !httpResponse.isSuccessful {
-                result(.failure(.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)))
-                return
-            }
-            guard let data = data else {
-                result(.failure(.missingBodyData))
-                return
-            }
-            result(.success(Response(urlResponse: httpResponse, data: data)))
-        }.resume()
+            task.resume()
+            return task
     }
     
     /// Uploads a file to a given target
@@ -199,23 +213,27 @@ public extension Hover {
     ///   - urlSession: `URLSession`
     ///   - data: file that needs to be uploaded
     ///   - result: `Result<(HTTPURLResponse,Data?),ProviderError>`
-    func uploadRequest(with target: NetworkTarget, urlSession: URLSession = URLSession.shared, data: Data, result: @escaping (Result<(HTTPURLResponse,Data?),ProviderError>) -> Void) {
-        let urlRequest = constructURL(with: target)
-        urlSession.uploadTask(with: urlRequest, from: data) { data, response, error in
-            guard error == nil else {
-                result(.failure(.underlying(error!)))
-                return
+    @discardableResult
+    func uploadRequest(with target: NetworkTarget, urlSession: URLSession = URLSession.shared, data: Data, result: @escaping (Result<(HTTPURLResponse, Data?), ProviderError>) -> Void) -> URLSessionUploadTask {
+        
+            let urlRequest = constructURL(with: target)
+            let task = urlSession.uploadTask(with: urlRequest, from: data) { data, response, error in
+                guard error == nil else {
+                    result(.failure(.underlying(error!)))
+                    return
+                }
+                guard let httpResponse = response as? HTTPURLResponse else {
+                    result(.failure(.invalidServerResponse))
+                    return
+                }
+                if !httpResponse.isSuccessful {
+                    result(.failure(.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)))
+                    return
+                }
+                result(.success((httpResponse, data)))
             }
-            guard let httpResponse = response as? HTTPURLResponse else {
-                result(.failure(.invalidServerResponse))
-                return
-            }
-            if !httpResponse.isSuccessful {
-                result(.failure(.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)))
-                return
-            }
-            result(.success((httpResponse, data)))
-        }.resume()
+            task.resume()
+            return task
     }
     
     /// Downloads a spesific file
@@ -224,23 +242,26 @@ public extension Hover {
     ///   - urlSession: `URLSession`
     ///   - data: optional data response
     ///   - result: Result<Void,ProviderError>
-    func downloadRequest(with target: NetworkTarget,urlSession: URLSession = URLSession.shared, data: Data, result: @escaping (Result<Void,ProviderError>) -> Void) {
-        let urlRequest = constructURL(with: target)
-        urlSession.downloadTask(with: urlRequest) { url, response, error in
-            guard error == nil else {
-                result(.failure(.underlying(error!)))
-                return
+    @discardableResult
+    func downloadRequest(with target: NetworkTarget,urlSession: URLSession = URLSession.shared, data: Data, result: @escaping (Result<Void, ProviderError>) -> Void) -> URLSessionDownloadTask {
+            let urlRequest = constructURL(with: target)
+            let task = urlSession.downloadTask(with: urlRequest) { url, response, error in
+                guard error == nil else {
+                    result(.failure(.underlying(error!)))
+                    return
+                }
+                guard let httpResponse = response as? HTTPURLResponse else {
+                    result(.failure(.invalidServerResponse))
+                    return
+                }
+                if !httpResponse.isSuccessful {
+                    result(.failure(.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)))
+                    return
+                }
+                result(.success(()))
             }
-            guard let httpResponse = response as? HTTPURLResponse else {
-                result(.failure(.invalidServerResponse))
-                return
-            }
-            if !httpResponse.isSuccessful {
-                result(.failure(.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)))
-                return
-            }
-            result(.success(()))
-        }.resume()
+            task.resume()
+            return task
     }
 }
 
