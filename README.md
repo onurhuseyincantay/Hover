@@ -32,7 +32,7 @@ end
 
 #### Carthage Installation
 ```swift
-github "onurhuseyincantay/Hover" ~> "1.0.4"
+github "onurhuseyincantay/Hover" ~> 1.0.4
 ```
 
 #### Swift Package Manager Installation
