@@ -1,0 +1,14 @@
+name: Swift
+on: 
+  push:
+    branches:
+      - master
+jobs:
+  build:
+
+    runs-on: macOS-latest
+
+    steps:
+    - uses: actions/checkout@master
+    - name: Start xcodebuild test
+      run: xcodebuild clean test -project Sources/Hover.xcodeproj -scheme Hover -destination "platform=iOS Simulator,name=iPhone 8,OS=13.6"

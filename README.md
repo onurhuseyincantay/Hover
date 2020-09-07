@@ -1,7 +1,13 @@
-<img height="125" src="Screenshots/Hover.png"/></br></br>
+<p align="center">
+  <img height="250" src="Screenshots/Hover.png"/>
+</p>
+
+# Version 1.0.4
+
 [![apm](https://img.shields.io/apm/l/vim-mode.svg)](https://github.com/onurhuseyincantay/Hover/blob/develop/License.md)[![CocoaPods compatible](https://img.shields.io/cocoapods/v/HoverKitSDK.svg)](https://cocoapods.org/pods/HoverKitSDK)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![Swift Package Manager compatible](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen.svg)](https://github.com/apple/swift-package-manager)</br>
+[![Swift Package Manager compatible](https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen.svg)](https://github.com/apple/swift-package-manager)
+![Swift](https://github.com/onurhuseyincantay/Hover/workflows/Swift/badge.svg)</br>
 
 ## Currently Available
 | Platform      | Version       |
@@ -20,13 +26,13 @@ The main benefit to use Hover is to abstract the networking layer as much as pos
 #### Cocoapods Installation
 ```swift
 target 'MyApp' do
-  pod 'HoverKitSDK', "~> 1.0.3"
+  pod 'HoverKitSDK', "~> 1.0.4"
 end
 ```
 
 #### Carthage Installation
 ```swift
-github "onurhuseyincantay/Hover" ~> "1.0.3"
+github "onurhuseyincantay/Hover" ~> 1.0.4
 ```
 
 #### Swift Package Manager Installation
