@@ -10,7 +10,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@master
-    - with:
+      with:
         xcode-version: 11
     - name: Start xcodebuild test
       run: xcodebuild clean test -project Sources/Hover.xcodeproj -scheme Hover -destination "platform=iOS Simulator,name=iPhone 8,OS=13.0"
