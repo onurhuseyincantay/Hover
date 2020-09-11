@@ -20,7 +20,7 @@ public final class Hover {
     ///   - target: `NetworkTarget`
     ///   - type: Decodable Object Type
     ///   - urlSession: `URLSession`
-    ///   - scheduler:  Threading and execution time helper if you want to run it on main thread just use `Runloop.main` or `DispatchQuee.main`
+    ///   - scheduler:  Threading and execution time helper if you want to run it on main thread just use `Runloop.main` or `DispatchQueue.main`
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, macCatalyst 13.0, *)
     public func request<D, T>(
         with target: NetworkTarget,
@@ -57,7 +57,7 @@ public final class Hover {
     /// - Parameters
     ///   - target: `NetworkTarget`
     ///   - urlSession: `URLSession
-    ///   - scheduler:  Threading and execution time helper if you want to run it on main thread just use `Runloop.main` or `DispatchQuee.main`
+    ///   - scheduler:  Threading and execution time helper if you want to run it on main thread just use `Runloop.main` or `DispatchQueue.main`
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, macCatalyst 13.0, *)
     public func request<T: Scheduler>(
         with target: NetworkTarget,
@@ -89,7 +89,7 @@ public final class Hover {
     ///   - target: `NetworkTarget`
     ///   - type: Decodable Object Type
     ///   - urlSession: `URLSession`
-    ///   - scheduler:  Threading and execution time helper if you want to run it on main thread just use `Runloop.main` or `DispatchQuee.main`
+    ///   - scheduler:  Threading and execution time helper if you want to run it on main thread just use `Runloop.main` or `DispatchQueue.main`
     ///   - subscriber: `Subscriber`
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, macCatalyst 13.0, *)
     @discardableResult
@@ -133,7 +133,7 @@ public final class Hover {
     /// - Parameters
     ///   - target: `NetworkTarget`
     ///   - urlSession: `URLSession`
-    ///   - scheduler:  Threading and execution time helper if you want to run it on main thread just use `Runloop.main` or `DispatchQuee.main`
+    ///   - scheduler:  Threading and execution time helper if you want to run it on main thread just use `Runloop.main` or `DispatchQueue.main`
     ///   - subscriber: `Subscriber`
     @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, macCatalyst 13.0, *)
     func request<S, T>(
