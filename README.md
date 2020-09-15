@@ -88,7 +88,8 @@ Package            |  branch
 ```swift
 let provider = Hover()
 let publisher = provider.request(
-            with: UserTarget.login(email: "ohc3807@gmail.com", password: "123456")
+            with: UserTarget.login(email: "ohc3807@gmail.com", password: "123456"),
+            scheduler: DispatchQueue.main,
             class: UserModel.self
         )
 ...
