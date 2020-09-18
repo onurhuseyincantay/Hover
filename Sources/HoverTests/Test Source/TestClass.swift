@@ -7,9 +7,8 @@
 //
 
 import Foundation
-#if canImport(Combine)
 import Combine
-#endif
+
 @testable import Hover
 
 typealias PostCompletion = (Result<PostResponseElement, ProviderError>) -> Void

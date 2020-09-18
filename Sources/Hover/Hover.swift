@@ -7,9 +7,7 @@
 //
 
 import Foundation
-#if canImport(Combine)
 import Combine
-#endif
 
 public typealias VoidResultCompletion = (Result<Response, ProviderError>) -> Void
 
