@@ -34,6 +34,31 @@ end
 ```swift
 github "onurhuseyincantay/Hover" ~> 1.0.4
 ```
+**if you are using Xcode 12 there are additional steps to take:**
+  1. create a carthage.sh file
+  2. add the following code
+  ```
+  #!/usr/bin/env bash
+
+# carthage-build.sh
+# Usage example: ./carthage-build.sh --platform iOS
+
+set -euo pipefail
+
+xcconfig=$(mktemp /tmp/static.xcconfig.XXXXXX)
+trap 'rm -f "$xcconfig"' INT TERM HUP EXIT
+
+# For Xcode 12 (beta 3+) make sure EXCLUDED_ARCHS is set to arm architectures otherwise
+# the build will fail on lipo due to duplicate architectures.
+echo 'EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_simulator__NATIVE_ARCH_64_BIT_x86_64__XCODE_1200 = arm64 arm64e armv7 armv7s armv6 armv8' >> $xcconfig
+echo 'EXCLUDED_ARCHS = $(inherited) $(EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_$(EFFECTIVE_PLATFORM_SUFFIX)__NATIVE_ARCH_64_BIT_$(NATIVE_ARCH_64_BIT)__XCODE_$(XCODE_VERSION_MAJOR))' >> $xcconfig
+
+export XCODE_XCCONFIG_FILE="$xcconfig"
+carthage build "$@"
+
+  ```
+  3. use chmod +x carthage.sh to make it executable
+  4. rather than running carthage run ./carthage-build.sh { any carthage command you need }
 
 #### Swift Package Manager Installation
 Package            |  branch
