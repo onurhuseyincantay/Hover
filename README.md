@@ -38,11 +38,6 @@ github "onurhuseyincantay/Hover" ~> 1.0.4
   1. create a carthage.sh file
   2. add the following code
   ```
-  #!/usr/bin/env bash
-
-# carthage-build.sh
-# Usage example: ./carthage-build.sh --platform iOS
-
 set -euo pipefail
 
 xcconfig=$(mktemp /tmp/static.xcconfig.XXXXXX)
