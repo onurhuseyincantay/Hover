@@ -17,6 +17,7 @@
 		8F1ACC7122D38A2400A71D5D /* MethodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC6B22D38A2400A71D5D /* MethodType.swift */; };
 		8F1ACC7222D38A2400A71D5D /* Hover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC6C22D38A2400A71D5D /* Hover.swift */; };
 		8F1ACC7322D38A2400A71D5D /* WorkType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC6D22D38A2400A71D5D /* WorkType.swift */; };
+		8FBEE1B1253221F4007B1DD0 /* ResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBEE1B0253221F4007B1DD0 /* ResponseTests.swift */; };
 		8FCCF06622D38994002C2CAE /* Hover.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FCCF05C22D38994002C2CAE /* Hover.framework */; };
 		8FCCF06B22D38994002C2CAE /* DataTaskPublisherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCCF06A22D38994002C2CAE /* DataTaskPublisherTests.swift */; };
 		8FCCF06D22D38994002C2CAE /* Hover.h in Headers */ = {isa = PBXBuildFile; fileRef = 8FCCF05F22D38994002C2CAE /* Hover.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -54,6 +55,7 @@
 		8F1ACC6D22D38A2400A71D5D /* WorkType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkType.swift; sourceTree = "<group>"; };
 		8F1ACC7C22D38C3700A71D5D /* TestTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTarget.swift; sourceTree = "<group>"; };
 		8F1ACC7E22D38C3700A71D5D /* TestClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestClass.swift; sourceTree = "<group>"; };
+		8FBEE1B0253221F4007B1DD0 /* ResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseTests.swift; sourceTree = "<group>"; };
 		8FCCF05C22D38994002C2CAE /* Hover.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Hover.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FCCF05F22D38994002C2CAE /* Hover.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Hover.h; sourceTree = "<group>"; };
 		8FCCF06022D38994002C2CAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				8F1ACC7B22D38C2B00A71D5D /* Test Source */,
 				8F099E4222D5E69600A5AC5B /* CompletionBlockTests */,
 				8F099E4122D5E68D00A5AC5B /* DataTaskPublisherTests */,
+				8FBEE1B0253221F4007B1DD0 /* ResponseTests.swift */,
 				8FCCF06C22D38994002C2CAE /* Info.plist */,
 			);
 			path = HoverTests;
@@ -349,6 +352,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FBEE1B1253221F4007B1DD0 /* ResponseTests.swift in Sources */,
 				8F099E3E22D5D95600A5AC5B /* CommentsResponse.swift in Sources */,
 				8F099E3C22D5D8A800A5AC5B /* PostsResponse.swift in Sources */,
 				8FCCF06B22D38994002C2CAE /* DataTaskPublisherTests.swift in Sources */,
