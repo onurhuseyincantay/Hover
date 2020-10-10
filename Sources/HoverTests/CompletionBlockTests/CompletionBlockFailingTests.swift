@@ -10,7 +10,6 @@ import XCTest
 @testable import Hover
 
 final class CompletionBlockFailingTests: XCTestCase {
-  
   var testClass: TestClass!
   
   override func setUp() {
@@ -55,6 +54,7 @@ extension CompletionBlockFailingTests {
     }
     wait(for: [exp], timeout: 5)
   }
+  
   func testUpdatePostWithPatch() {
     let exp = expectation(description: "testUpdatePostWithPatch")
     testClass.updatePostWithPatch(postId: 741298371293, title: "") { result in

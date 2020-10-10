@@ -23,7 +23,7 @@ final class DataTaskPublisherTests: XCTestCase {
   }
 }
 
-
+// MARK: - Tests
 extension DataTaskPublisherTests {
   
   func testFetchPosts() {
