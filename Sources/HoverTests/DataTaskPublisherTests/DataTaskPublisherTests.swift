@@ -15,6 +15,7 @@ final class DataTaskPublisherTests: XCTestCase {
   override func setUp() {
     super.setUp()
     testClass = TestClass()
+    testClass.isDebugEnabled = false
   }
   
   override func tearDown() {
@@ -37,8 +38,7 @@ extension DataTaskPublisherTests {
       case .finished:
         break
       }
-    }, receiveValue: { response in
-      print(response)
+    }, receiveValue: { _ in
       exp.fulfill()
     })
     wait(for: [exp], timeout: 5)
@@ -56,7 +56,6 @@ extension DataTaskPublisherTests {
         break
       }
     }, receiveValue: { response in
-      print(response)
       exp.fulfill()
     })
     wait(for: [exp], timeout: 5)
@@ -73,8 +72,7 @@ extension DataTaskPublisherTests {
       case .finished:
         break
       }
-    }, receiveValue: { response in
-      print(response)
+    }, receiveValue: { _ in
       exp.fulfill()
     })
     wait(for: [exp], timeout: 5)
@@ -91,8 +89,7 @@ extension DataTaskPublisherTests {
       case .finished:
         break
       }
-    }, receiveValue: { response in
-      print(response)
+    }, receiveValue: { _ in
       exp.fulfill()
     })
     wait(for: [exp], timeout: 5)
@@ -109,8 +106,7 @@ extension DataTaskPublisherTests {
       case .finished:
         break
       }
-    }, receiveValue: { response in
-      print(response)
+    }, receiveValue: { _ in
       exp.fulfill()
     })
     wait(for: [exp], timeout: 5)
@@ -127,8 +123,7 @@ extension DataTaskPublisherTests {
       case .finished:
         break
       }
-    }, receiveValue: { response in
-      print(response)
+    }, receiveValue: { _ in
       exp.fulfill()
     })
     wait(for: [exp], timeout: 5)
@@ -145,8 +140,7 @@ extension DataTaskPublisherTests {
       case .finished:
         break
       }
-    }, receiveValue: {response in
-      print(response)
+    }, receiveValue: { _ in
       exp.fulfill()
     })
     wait(for: [exp], timeout: 5)
@@ -163,8 +157,7 @@ extension DataTaskPublisherTests {
       case .finished:
         break
       }
-    }, receiveValue: { response in
-      print(response)
+    }, receiveValue: { _ in
       exp.fulfill()
     })
     wait(for: [exp], timeout: 5)
@@ -180,8 +173,7 @@ extension DataTaskPublisherTests {
       case .finished:
         print("finished")
       }
-    }, receiveValue: { response in
-      print(response)
+    }, receiveValue: { _ in
       exp.fulfill()
     })
     wait(for: [exp], timeout: 10)

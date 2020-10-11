@@ -11,11 +11,11 @@ import Foundation
 typealias PostsResponse = [PostResponseElement]
 
 struct PostResponseElement: Decodable {
-    let userID, id: Int
-    let title, body: String
-    
-    enum CodingKeys: String, CodingKey {
-        case userID = "userId"
-        case id, title, body
-    }
+  let userID, id: Int
+  let title, body: String
+  
+  enum CodingKeys: String, CodingKey {
+    case userID = "userId"
+    case id, title, body
+  }
 }
