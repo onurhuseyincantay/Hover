@@ -33,8 +33,7 @@ extension CompletionBlockFailingTests {
       switch result {
       case .success:
         XCTFail("shouldn't success the request is not valid")
-      case .failure(let error):
-        print(error.errorDescription)
+      case .failure:
         exp.fulfill()
       }
     }
@@ -47,8 +46,7 @@ extension CompletionBlockFailingTests {
       switch result {
       case .success:
         XCTFail("shouldn't success the request is not valid")
-      case .failure(let error):
-        print(error.errorDescription)
+      case .failure:
         exp.fulfill()
       }
     }
@@ -61,8 +59,7 @@ extension CompletionBlockFailingTests {
       switch result {
       case .success:
         XCTFail("shouldn't success the request is not valid")
-      case .failure(let error):
-        print(error.errorDescription)
+      case .failure:
         exp.fulfill()
       }
     }
