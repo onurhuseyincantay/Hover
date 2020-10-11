@@ -17,6 +17,8 @@
 		8F1ACC7122D38A2400A71D5D /* MethodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC6B22D38A2400A71D5D /* MethodType.swift */; };
 		8F1ACC7222D38A2400A71D5D /* Hover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC6C22D38A2400A71D5D /* Hover.swift */; };
 		8F1ACC7322D38A2400A71D5D /* WorkType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1ACC6D22D38A2400A71D5D /* WorkType.swift */; };
+		8F89B23C25338C110052BA37 /* HoverDebugger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F89B23B25338C110052BA37 /* HoverDebugger.swift */; };
+		8F89B24025338C6B0052BA37 /* Preferrence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F89B23F25338C6B0052BA37 /* Preferrence.swift */; };
 		8FBEE1B1253221F4007B1DD0 /* ResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBEE1B0253221F4007B1DD0 /* ResponseTests.swift */; };
 		8FCCF06622D38994002C2CAE /* Hover.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FCCF05C22D38994002C2CAE /* Hover.framework */; };
 		8FCCF06B22D38994002C2CAE /* DataTaskPublisherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCCF06A22D38994002C2CAE /* DataTaskPublisherTests.swift */; };
@@ -55,6 +57,8 @@
 		8F1ACC6D22D38A2400A71D5D /* WorkType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkType.swift; sourceTree = "<group>"; };
 		8F1ACC7C22D38C3700A71D5D /* TestTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTarget.swift; sourceTree = "<group>"; };
 		8F1ACC7E22D38C3700A71D5D /* TestClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestClass.swift; sourceTree = "<group>"; };
+		8F89B23B25338C110052BA37 /* HoverDebugger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoverDebugger.swift; sourceTree = "<group>"; };
+		8F89B23F25338C6B0052BA37 /* Preferrence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferrence.swift; sourceTree = "<group>"; };
 		8FBEE1B0253221F4007B1DD0 /* ResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseTests.swift; sourceTree = "<group>"; };
 		8FCCF05C22D38994002C2CAE /* Hover.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Hover.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FCCF05F22D38994002C2CAE /* Hover.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Hover.h; sourceTree = "<group>"; };
@@ -137,6 +141,15 @@
 			path = "Test Source";
 			sourceTree = "<group>";
 		};
+		8F89B2432533931A0052BA37 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8F89B23B25338C110052BA37 /* HoverDebugger.swift */,
+				8F89B23F25338C6B0052BA37 /* Preferrence.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		8FCCF05222D38993002C2CAE = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +171,7 @@
 		8FCCF05E22D38994002C2CAE /* Hover */ = {
 			isa = PBXGroup;
 			children = (
+				8F89B2432533931A0052BA37 /* Helpers */,
 				8F1ACC6722D38A0A00A71D5D /* Base */,
 				8FE14E2222D48989006DD1FA /* Extensions */,
 				8FE14E2322D48999006DD1FA /* Types */,
@@ -334,6 +348,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F89B24025338C6B0052BA37 /* Preferrence.swift in Sources */,
 				8F1ACC6E22D38A2400A71D5D /* ProviderError.swift in Sources */,
 				8FE14E2722D49F39006DD1FA /* HttpUrlResponse+IsSuccesful.swift in Sources */,
 				8FE14E2122D488DF006DD1FA /* URL+GenerateURLQuery.swift in Sources */,
@@ -341,6 +356,7 @@
 				8FE14E1D22D485CD006DD1FA /* URLRequest+prepareRequest.swift in Sources */,
 				8F1ACC7322D38A2400A71D5D /* WorkType.swift in Sources */,
 				8F1ACC7122D38A2400A71D5D /* MethodType.swift in Sources */,
+				8F89B23C25338C110052BA37 /* HoverDebugger.swift in Sources */,
 				8FF8523B22DF0BAB00841138 /* Response.swift in Sources */,
 				8FE14DF522D480A9006DD1FA /* ContentType.swift in Sources */,
 				8F1ACC6F22D38A2400A71D5D /* NetworkTarget.swift in Sources */,
