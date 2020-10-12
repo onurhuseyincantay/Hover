@@ -2,7 +2,7 @@
   <img height="250" src="Screenshots/Hover.png"/>
 </p>
 
-# Version 1.0.4
+# Version 1.0.6
 
 [![apm](https://img.shields.io/apm/l/vim-mode.svg)](https://github.com/onurhuseyincantay/Hover/blob/develop/License.md)[![CocoaPods compatible](https://img.shields.io/cocoapods/v/HoverKitSDK.svg)](https://cocoapods.org/pods/HoverKitSDK)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
@@ -12,10 +12,10 @@
 ## Currently Available
 | Platform      | Version       |
 | ------------- |:------------- | 
-| iOS           | 13.0          |
-| tvOS          | 13.0          |
+| iOS           | 12.0          |
+| tvOS          | 10.0          |
 | macOS         | 10.15         |
-| watchOS       | 6.0           |
+| watchOS       | 3.0           |
 | macCatalyst   | 13.0          |
 
 Hover is a Network layer which uses Apple's new framework `Combine` and provides async network calls with different kind of request functions.
@@ -26,14 +26,34 @@ The main benefit to use Hover is to abstract the networking layer as much as pos
 #### Cocoapods Installation
 ```swift
 target 'MyApp' do
-  pod 'HoverKitSDK', "~> 1.0.4"
+  pod 'HoverKitSDK', "~> 1.0.6"
 end
 ```
 
 #### Carthage Installation
 ```swift
-github "onurhuseyincantay/Hover" ~> 1.0.4
+github "onurhuseyincantay/Hover" ~> 1.0.6
 ```
+**if you are using Xcode 12 there are additional steps to take:**
+  1. create a carthage.sh file
+  2. add the following code
+  ```
+set -euo pipefail
+
+xcconfig=$(mktemp /tmp/static.xcconfig.XXXXXX)
+trap 'rm -f "$xcconfig"' INT TERM HUP EXIT
+
+# For Xcode 12 (beta 3+) make sure EXCLUDED_ARCHS is set to arm architectures otherwise
+# the build will fail on lipo due to duplicate architectures.
+echo 'EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_simulator__NATIVE_ARCH_64_BIT_x86_64__XCODE_1200 = arm64 arm64e armv7 armv7s armv6 armv8' >> $xcconfig
+echo 'EXCLUDED_ARCHS = $(inherited) $(EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_$(EFFECTIVE_PLATFORM_SUFFIX)__NATIVE_ARCH_64_BIT_$(NATIVE_ARCH_64_BIT)__XCODE_$(XCODE_VERSION_MAJOR))' >> $xcconfig
+
+export XCODE_XCCONFIG_FILE="$xcconfig"
+carthage build "$@"
+
+  ```
+  3. use chmod +x carthage.sh to make it executable
+  4. rather than running carthage run ./carthage-build.sh { any carthage command you need }
 
 #### Swift Package Manager Installation
 Package            |  branch
