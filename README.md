@@ -53,7 +53,7 @@ carthage build "$@"
 
   ```
   3. use chmod +x carthage.sh to make it executable
-  4. rather than running carthage run ./carthage-build.sh { any carthage command you need }
+  4. rather than running carthage run ./carthage.sh { any carthage command you need }
 
 #### Swift Package Manager Installation
 Package            |  branch
