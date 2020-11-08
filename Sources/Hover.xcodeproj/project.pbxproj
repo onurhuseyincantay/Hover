@@ -127,7 +127,7 @@
 				8FCCF05F22D38994002C2CAE /* Hover.h */,
 				8FCCF06022D38994002C2CAE /* Info.plist */,
 			);
-			name = Base;
+			path = Base;
 			sourceTree = "<group>";
 		};
 		8F1ACC7B22D38C2B00A71D5D /* Test Source */ = {
@@ -147,7 +147,7 @@
 				8F89B23B25338C110052BA37 /* HoverDebugger.swift */,
 				8F89B23F25338C6B0052BA37 /* Preferrence.swift */,
 			);
-			name = Helpers;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		8FCCF05222D38993002C2CAE = {
@@ -202,7 +202,7 @@
 				8FE14E2022D488DF006DD1FA /* URL+GenerateURLQuery.swift */,
 				8FE14E2622D49F39006DD1FA /* HttpUrlResponse+IsSuccesful.swift */,
 			);
-			name = Extensions;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		8FE14E2322D48999006DD1FA /* Types */ = {
@@ -213,7 +213,7 @@
 				8F1ACC6D22D38A2400A71D5D /* WorkType.swift */,
 				8FE14DF422D480A9006DD1FA /* ContentType.swift */,
 			);
-			name = Types;
+			path = Types;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -523,7 +523,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "$(SRCROOT)/Hover/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Hover/Base/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 12.0;
@@ -555,7 +555,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "$(SRCROOT)/Hover/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Hover/Base/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 12.0;
