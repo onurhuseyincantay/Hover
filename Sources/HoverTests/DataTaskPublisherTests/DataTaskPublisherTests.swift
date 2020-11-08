@@ -55,7 +55,7 @@ extension DataTaskPublisherTests {
       case .finished:
         break
       }
-    }, receiveValue: { response in
+    }, receiveValue: { _ in
       exp.fulfill()
     })
     wait(for: [exp], timeout: 5)

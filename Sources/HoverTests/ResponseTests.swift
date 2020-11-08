@@ -19,7 +19,11 @@ extension ResponseTests {
     let testStatusCode = 200
     let testHeaderFields: [String: String] = ["Test": "Value"]
     let testData = "Some Test Data".data(using: .utf8)!
-    let response = Response(urlResponse: HTTPURLResponse(url: testURL, statusCode: testStatusCode, httpVersion: nil, headerFields: testHeaderFields)!, data: testData)
+    let response = Response(urlResponse: HTTPURLResponse(url: testURL,
+                                                         statusCode: testStatusCode,
+                                                         httpVersion: nil,
+                                                         headerFields: testHeaderFields)!,
+                            data: testData)
     
     XCTAssertEqual(response.statusCode, testStatusCode)
     XCTAssertEqual(response.data, testData)
