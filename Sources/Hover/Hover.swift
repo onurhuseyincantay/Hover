@@ -329,9 +329,9 @@ public extension Hover {
         return
       }
       guard let httpResponse = response as? HTTPURLResponse else {
-          let error = ProviderError.invalidServerResponse
-          HoverDebugger.printDebugDescriptionIfNeeded(from: urlRequest, error: error)
-          result(.failure(error))
+        let error = ProviderError.invalidServerResponse
+        HoverDebugger.printDebugDescriptionIfNeeded(from: urlRequest, error: error)
+        result(.failure(error))
         return
       }
       guard httpResponse.isSuccessful else {
@@ -359,9 +359,9 @@ public extension Hover {
     let urlRequest = constructURL(with: target)
     let task = urlSession.downloadTask(with: urlRequest) { _, response, error in
       guard error == nil else {
-          let error = ProviderError.underlying(error!)
-          HoverDebugger.printDebugDescriptionIfNeeded(from: urlRequest, error: error)
-          result(.failure(error))
+        let error = ProviderError.underlying(error!)
+        HoverDebugger.printDebugDescriptionIfNeeded(from: urlRequest, error: error)
+        result(.failure(error))
         return
       }
       guard let httpResponse = response as? HTTPURLResponse else {
@@ -391,10 +391,12 @@ private extension Hover {
     switch target.methodType {
     case .get:
       return prepareGetRequest(with: target)
+      
     case .put,
          .patch,
          .post:
       return prepareGeneralRequest(with: target)
+      
     case .delete:
       return prepareDeleteRequest(with: target)
     }
@@ -404,9 +406,15 @@ private extension Hover {
     let url = target.pathAppendedURL
     switch target.workType {
     case .requestParameters(let parameters, _):
-      let url = url.generateUrlWithQuery(with: parameters)
+      guard let contentType = target.contentType,
+            contentType == .urlFormEncoded else {
+        let url = url.generateUrlWithQuery(with: parameters)
+        var request = URLRequest(url: url)
+        request.prepareRequest(with: target)
+        return request
+      }
       var request = URLRequest(url: url)
-      request.prepareRequest(with: target)
+      request.httpBody = contentType.prepareContentBody(parameters: parameters)
       return request
     default:
       var request = URLRequest(url: url)
@@ -421,7 +429,7 @@ private extension Hover {
     request.prepareRequest(with: target)
     switch target.workType {
     case .requestParameters(let parameters, _):
-      request.httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+      request.httpBody = target.contentType?.prepareContentBody(parameters: parameters)
       return request
     case .requestData(let data):
       request.httpBody = data
@@ -440,7 +448,7 @@ private extension Hover {
     case .requestParameters(let parameters, _):
       var request = URLRequest(url: url)
       request.prepareRequest(with: target)
-      request.httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+      request.httpBody = target.contentType?.prepareContentBody(parameters: parameters)
       return request
     case .requestData(let data):
       var request = URLRequest(url: url)
