@@ -2,7 +2,7 @@
   <img height="250" src="Screenshots/Hover.png"/>
 </p>
 
-# Version 1.0.7
+# Version 1.0.9
 
 [![apm](https://img.shields.io/apm/l/vim-mode.svg)](https://github.com/onurhuseyincantay/Hover/blob/develop/License.md)[![CocoaPods compatible](https://img.shields.io/cocoapods/v/HoverKitSDK.svg)](https://cocoapods.org/pods/HoverKitSDK)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
@@ -26,13 +26,13 @@ The main benefit to use Hover is to abstract the networking layer as much as pos
 #### Cocoapods Installation
 ```swift
 target 'MyApp' do
-  pod 'HoverKitSDK', "~> 1.0.7"
+  pod 'HoverKitSDK', "~> 1.0.9"
 end
 ```
 
 #### Carthage Installation
 ```swift
-github "onurhuseyincantay/Hover" ~> 1.0.7
+github "onurhuseyincantay/Hover" ~> 1.0.9
 ```
 **if you are using Xcode 12 there are additional steps to take:**
   1. create a carthage.sh file
