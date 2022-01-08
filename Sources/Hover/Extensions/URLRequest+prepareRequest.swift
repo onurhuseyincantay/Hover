@@ -23,15 +23,16 @@ internal extension URLRequest {
     
   private mutating func prepareAuthorization(with authType: AuthProviderType) {
     switch authType {
-    case .basic(let username, let password):
+    case let .basic(username, password):
       let loginString = String(format: "%@:%@", username, password)
       guard let data = loginString.data(using: .utf8) else { return }
       setValue("Basic \(data.base64EncodedString())", forHTTPHeaderField: headerField)
         
-    case .bearer(let token):
+    case let .bearer(token):
       setValue("Bearer \(token)", forHTTPHeaderField: headerField)
         
-    case .none: break
+    case .none:
+      break
     }
   }
 }

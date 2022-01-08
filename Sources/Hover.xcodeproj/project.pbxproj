@@ -32,6 +32,9 @@
 		8FE14E2722D49F39006DD1FA /* HttpUrlResponse+IsSuccesful.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE14E2622D49F39006DD1FA /* HttpUrlResponse+IsSuccesful.swift */; };
 		8FF72ED722D733C5008071E9 /* CommentSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF72ED622D733C5008071E9 /* CommentSubscriber.swift */; };
 		8FF8523B22DF0BAB00841138 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF8523A22DF0BAB00841138 /* Response.swift */; };
+		99A1AAD72789B20900E9CC13 /* AnyEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A1AAD62789B20900E9CC13 /* AnyEncodable.swift */; };
+		99A1AAD92789B5A500E9CC13 /* HoverProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A1AAD82789B5A500E9CC13 /* HoverProtocol.swift */; };
+		99A1AADC2789BB1D00E9CC13 /* HoverEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A1AADB2789BB1D00E9CC13 /* HoverEnvironment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +76,9 @@
 		8FE14E2622D49F39006DD1FA /* HttpUrlResponse+IsSuccesful.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HttpUrlResponse+IsSuccesful.swift"; sourceTree = "<group>"; };
 		8FF72ED622D733C5008071E9 /* CommentSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentSubscriber.swift; sourceTree = "<group>"; };
 		8FF8523A22DF0BAB00841138 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		99A1AAD62789B20900E9CC13 /* AnyEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyEncodable.swift; sourceTree = "<group>"; };
+		99A1AAD82789B5A500E9CC13 /* HoverProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoverProtocol.swift; sourceTree = "<group>"; };
+		99A1AADB2789BB1D00E9CC13 /* HoverEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoverEnvironment.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +130,9 @@
 		8F1ACC6722D38A0A00A71D5D /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				99A1AAD82789B5A500E9CC13 /* HoverProtocol.swift */,
+				8F1ACC6C22D38A2400A71D5D /* Hover.swift */,
+				99A1AADB2789BB1D00E9CC13 /* HoverEnvironment.swift */,
 				8FCCF05F22D38994002C2CAE /* Hover.h */,
 				8FCCF06022D38994002C2CAE /* Info.plist */,
 			);
@@ -175,10 +184,10 @@
 				8F1ACC6722D38A0A00A71D5D /* Base */,
 				8FE14E2222D48989006DD1FA /* Extensions */,
 				8FE14E2322D48999006DD1FA /* Types */,
-				8F1ACC6C22D38A2400A71D5D /* Hover.swift */,
 				8F1ACC6922D38A2400A71D5D /* NetworkTarget.swift */,
 				8F1ACC6822D38A2400A71D5D /* ProviderError.swift */,
 				8FF8523A22DF0BAB00841138 /* Response.swift */,
+				99A1AAD62789B20900E9CC13 /* AnyEncodable.swift */,
 			);
 			path = Hover;
 			sourceTree = "<group>";
@@ -358,6 +367,9 @@
 				8F1ACC7122D38A2400A71D5D /* MethodType.swift in Sources */,
 				8F89B23C25338C110052BA37 /* HoverDebugger.swift in Sources */,
 				8FF8523B22DF0BAB00841138 /* Response.swift in Sources */,
+				99A1AADC2789BB1D00E9CC13 /* HoverEnvironment.swift in Sources */,
+				99A1AAD92789B5A500E9CC13 /* HoverProtocol.swift in Sources */,
+				99A1AAD72789B20900E9CC13 /* AnyEncodable.swift in Sources */,
 				8FE14DF522D480A9006DD1FA /* ContentType.swift in Sources */,
 				8F1ACC6F22D38A2400A71D5D /* NetworkTarget.swift in Sources */,
 				8F1ACC7222D38A2400A71D5D /* Hover.swift in Sources */,

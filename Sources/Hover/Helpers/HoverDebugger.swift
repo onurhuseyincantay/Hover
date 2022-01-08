@@ -8,9 +8,9 @@
 
 import Foundation
 
-enum HoverDebugger {
+public enum HoverDebugger {
   
-  static func printDebugDescriptionIfNeeded(from urlRequest: URLRequest, error: Error?) {
+  public static func printDebugDescriptionIfNeeded(from urlRequest: URLRequest, error: Error?) {
     guard Hover.prefference.isDebuggingEnabled else {
       return
     }

@@ -12,5 +12,5 @@ public enum WorkType {
     case requestPlain
     case requestData(data: Data)
     case requestParameters(parameters: [String: Any], encoding: JSONEncoder = JSONEncoder())
-    case requestWithEncodable(encodable: Encodable)
+    case requestWithEncodable(encodable: AnyEncodable)
 }
