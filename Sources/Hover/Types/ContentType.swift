@@ -20,7 +20,7 @@ public extension ContentType {
   
   func prepareContentBody(parameters: [String: Any]) -> Data? {
     switch self {
-    #warning("Multipart needs to be seperated")
+    //TODO:  Multipart needs to be seperated
     case .applicationJson,
          .multipartFormData:
       return try? JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
