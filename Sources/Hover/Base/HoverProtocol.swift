@@ -128,4 +128,29 @@ public protocol HoverProtocol {
     urlSession: URLSession,
     result: @escaping (Result<HTTPURLResponse, ProviderError>) -> Void
   ) -> URLSessionDownloadTask
+  
+  // MARK: Async Await
+  @available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *)
+  func request<D: Decodable>(
+    with target: NetworkTarget,
+    urlSession: URLSession,
+    jsonDecoder: JSONDecoder,
+    class type: D.Type,
+    delegate: URLSessionTaskDelegate?
+  ) async throws -> D
+  
+  @available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *)
+  func request(
+    with target: NetworkTarget,
+    urlSession: URLSession,
+    jsonDecoder: JSONDecoder,
+    delegate: URLSessionTaskDelegate?
+  ) async throws -> HTTPURLResponse
+  
+  @available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *)
+  func downloadRequest(
+    with target: NetworkTarget,
+    urlSession: URLSession,
+    delegate: URLSessionTaskDelegate?
+  ) async throws -> URL
 }
