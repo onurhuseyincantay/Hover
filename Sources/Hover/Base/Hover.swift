@@ -78,7 +78,7 @@ extension Hover: HoverProtocol {
   public func request<T: Scheduler>(
     with target: NetworkTarget,
     scheduler: T,
-    urlSession: URLSession = URLSession.shared
+    urlSession: URLSession = .shared
   ) -> AnyPublisher<Response, ProviderError> {
     let urlRequest = constructURL(with: target)
     let printDebugDescriptionIfNeeded = environment.printDebugDescriptionIfNeeded
@@ -90,30 +90,30 @@ extension Hover: HoverProtocol {
       }
       return urlSession.dataTaskPublisher(for: urlRequest)
     }.receive(on: scheduler)
-    .tryMap { (data, response) -> Response in
-      guard let httpResponse = response as? HTTPURLResponse else {
-        let error = ProviderError.invalidServerResponse
-        printDebugDescriptionIfNeeded(urlRequest, error)
-        throw error
+      .tryMap { (data, response) -> Response in
+        guard let httpResponse = response as? HTTPURLResponse else {
+          let error = ProviderError.invalidServerResponse
+          printDebugDescriptionIfNeeded(urlRequest, error)
+          throw error
+        }
+        
+        guard httpResponse.isSuccessful else {
+          let error = ProviderError.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)
+          printDebugDescriptionIfNeeded(urlRequest, error)
+          throw error
+        }
+        printDebugDescriptionIfNeeded(urlRequest, nil)
+        return Response(urlResponse: httpResponse, data: data)
       }
-      
-      guard httpResponse.isSuccessful else {
-        let error = ProviderError.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)
-        printDebugDescriptionIfNeeded(urlRequest, error)
-        throw error
-      }
-      printDebugDescriptionIfNeeded(urlRequest, nil)
-      return Response(urlResponse: httpResponse, data: data)
-    }
-    .mapError {
-      guard let error = $0 as? ProviderError else {
-        let error = ProviderError.underlying($0)
+      .mapError {
+        guard let error = $0 as? ProviderError else {
+          let error = ProviderError.underlying($0)
+          printDebugDescriptionIfNeeded(urlRequest, error)
+          return error
+        }
         printDebugDescriptionIfNeeded(urlRequest, error)
         return error
-      }
-      printDebugDescriptionIfNeeded(urlRequest, error)
-      return error
-    }.eraseToAnyPublisher()
+      }.eraseToAnyPublisher()
   }
   
   @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, macCatalyst 13.0, *)
@@ -335,7 +335,7 @@ extension Hover: HoverProtocol {
     task.resume()
     return task
   }
- 
+  
   @discardableResult
   public func downloadRequest(
     with target: NetworkTarget,
@@ -369,7 +369,141 @@ extension Hover: HoverProtocol {
     task.resume()
     return task
   }
+  
+  // MARK: - Async Await
+  
+  @available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *)
+  public func request<D: Decodable>(
+    with target: NetworkTarget,
+    urlSession: URLSession = .shared,
+    jsonDecoder: JSONDecoder = .init(),
+    class type: D.Type,
+    delegate: URLSessionTaskDelegate? = nil
+  ) async throws -> D {
+    let urlRequest = constructURL(with: target)
+    do {
+      let (data, urlResponse) = try await urlSession
+        .data(
+          for: urlRequest,
+             delegate: delegate
+        )
+      guard let httpResponse = urlResponse as? HTTPURLResponse else {
+        let error = ProviderError.invalidServerResponse
+        environment.printDebugDescriptionIfNeeded(urlRequest, error)
+        throw error
+      }
+      guard httpResponse.isSuccessful else {
+        let error = ProviderError.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)
+        environment.printDebugDescriptionIfNeeded(urlRequest, error)
+        throw error
+      }
+      return try jsonDecoder.decode(type, from: data)
+    } catch let error as DecodingError {
+      throw ProviderError.decodingError(error)
+    } catch let error as URLError {
+      throw ProviderError.connectionError(error)
+    } catch {
+      throw ProviderError.underlying(error)
+    }
+  }
+  
+  @available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *)
+  public func request(
+    with target: NetworkTarget,
+    urlSession: URLSession = .shared,
+    jsonDecoder: JSONDecoder = .init(),
+    delegate: URLSessionTaskDelegate? = nil
+  ) async throws -> HTTPURLResponse {
+    let urlRequest = constructURL(with: target)
+    do {
+      let (_, urlResponse) = try await urlSession
+        .data(
+          for: urlRequest,
+             delegate: delegate
+        )
+      guard let httpResponse = urlResponse as? HTTPURLResponse else {
+        let error = ProviderError.invalidServerResponse
+        environment.printDebugDescriptionIfNeeded(urlRequest, error)
+        throw error
+      }
+      guard httpResponse.isSuccessful else {
+        let error = ProviderError.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)
+        environment.printDebugDescriptionIfNeeded(urlRequest, error)
+        throw error
+      }
+      return httpResponse
+    } catch let error as URLError {
+      throw ProviderError.connectionError(error)
+    } catch {
+      throw ProviderError.underlying(error)
+    }
+  }
+  
+  @available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *)
+  public func uploadRequest(
+    with target: NetworkTarget,
+    urlSession: URLSession = .shared,
+    data: Data,
+    delegate: URLSessionTaskDelegate? = nil
+  ) async throws -> HTTPURLResponse {
+    let urlRequest = constructURL(with: target)
+    do {
+      let (_, urlResponse) = try await urlSession
+        .upload(
+          for: urlRequest,
+             from: data,
+             delegate: delegate
+        )
+      guard let httpResponse = urlResponse as? HTTPURLResponse else {
+        let error = ProviderError.invalidServerResponse
+        environment.printDebugDescriptionIfNeeded(urlRequest, error)
+        throw error
+      }
+      guard httpResponse.isSuccessful else {
+        let error = ProviderError.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)
+        environment.printDebugDescriptionIfNeeded(urlRequest, error)
+        throw error
+      }
+      return httpResponse
+    } catch let error as URLError {
+      throw ProviderError.connectionError(error)
+    } catch {
+      throw ProviderError.underlying(error)
+    }
+  }
+  
+  @available(macOS 12.0, iOS 15.0, watchOS 8.0, tvOS 15.0, *)
+  public func downloadRequest(
+    with target: NetworkTarget,
+    urlSession: URLSession = .shared,
+    delegate: URLSessionTaskDelegate? = nil
+  ) async throws -> URL {
+    let urlRequest = constructURL(with: target)
+    do {
+      let (localURL, urlResponse) = try await urlSession
+        .download(
+          for: urlRequest,
+             delegate: delegate
+        )
+      guard let httpResponse = urlResponse as? HTTPURLResponse else {
+        let error = ProviderError.invalidServerResponse
+        environment.printDebugDescriptionIfNeeded(urlRequest, error)
+        throw error
+      }
+      guard httpResponse.isSuccessful else {
+        let error = ProviderError.invalidServerResponseWithStatusCode(statusCode: httpResponse.statusCode)
+        environment.printDebugDescriptionIfNeeded(urlRequest, error)
+        throw error
+      }
+      return localURL
+    } catch let error as URLError {
+      throw ProviderError.connectionError(error)
+    } catch {
+      throw ProviderError.underlying(error)
+    }
+  }
 }
+
 
 // MARK: - Private Extension
 private extension Hover {
@@ -380,8 +514,8 @@ private extension Hover {
       return prepareGetRequest(with: target)
       
     case .put,
-         .patch,
-         .post:
+        .patch,
+        .post:
       return prepareGeneralRequest(with: target)
       
     case .delete:
@@ -395,11 +529,11 @@ private extension Hover {
     case .requestParameters(let parameters, _):
       guard let contentType = target.contentType,
             contentType == .urlFormEncoded else {
-        let url = url.generateUrlWithQuery(with: parameters)
-        var request = URLRequest(url: url)
-        request.prepareRequest(with: target)
-        return request
-      }
+              let url = url.generateUrlWithQuery(with: parameters)
+              var request = URLRequest(url: url)
+              request.prepareRequest(with: target)
+              return request
+            }
       var request = URLRequest(url: url)
       request.httpBody = contentType.prepareContentBody(parameters: parameters)
       return request

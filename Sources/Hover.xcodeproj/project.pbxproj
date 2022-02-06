@@ -32,6 +32,7 @@
 		8FE14E2722D49F39006DD1FA /* HttpUrlResponse+IsSuccesful.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE14E2622D49F39006DD1FA /* HttpUrlResponse+IsSuccesful.swift */; };
 		8FF72ED722D733C5008071E9 /* CommentSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF72ED622D733C5008071E9 /* CommentSubscriber.swift */; };
 		8FF8523B22DF0BAB00841138 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF8523A22DF0BAB00841138 /* Response.swift */; };
+		998415BD27B006A20035ADE9 /* AsyncAwaitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998415BC27B006A20035ADE9 /* AsyncAwaitTests.swift */; };
 		99A1AAD72789B20900E9CC13 /* AnyEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A1AAD62789B20900E9CC13 /* AnyEncodable.swift */; };
 		99A1AAD92789B5A500E9CC13 /* HoverProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A1AAD82789B5A500E9CC13 /* HoverProtocol.swift */; };
 		99A1AADC2789BB1D00E9CC13 /* HoverEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A1AADB2789BB1D00E9CC13 /* HoverEnvironment.swift */; };
@@ -76,6 +77,7 @@
 		8FE14E2622D49F39006DD1FA /* HttpUrlResponse+IsSuccesful.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HttpUrlResponse+IsSuccesful.swift"; sourceTree = "<group>"; };
 		8FF72ED622D733C5008071E9 /* CommentSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentSubscriber.swift; sourceTree = "<group>"; };
 		8FF8523A22DF0BAB00841138 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		998415BC27B006A20035ADE9 /* AsyncAwaitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncAwaitTests.swift; sourceTree = "<group>"; };
 		99A1AAD62789B20900E9CC13 /* AnyEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyEncodable.swift; sourceTree = "<group>"; };
 		99A1AAD82789B5A500E9CC13 /* HoverProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoverProtocol.swift; sourceTree = "<group>"; };
 		99A1AADB2789BB1D00E9CC13 /* HoverEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoverEnvironment.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 		8FCCF06922D38994002C2CAE /* HoverTests */ = {
 			isa = PBXGroup;
 			children = (
+				998415BB27B006760035ADE9 /* AsyncAwaitTests */,
 				8F1ACC7B22D38C2B00A71D5D /* Test Source */,
 				8F099E4222D5E69600A5AC5B /* CompletionBlockTests */,
 				8F099E4122D5E68D00A5AC5B /* DataTaskPublisherTests */,
@@ -223,6 +226,14 @@
 				8FE14DF422D480A9006DD1FA /* ContentType.swift */,
 			);
 			path = Types;
+			sourceTree = "<group>";
+		};
+		998415BB27B006760035ADE9 /* AsyncAwaitTests */ = {
+			isa = PBXGroup;
+			children = (
+				998415BC27B006A20035ADE9 /* AsyncAwaitTests.swift */,
+			);
+			path = AsyncAwaitTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -388,6 +399,7 @@
 				8F099E4422D5E6B100A5AC5B /* CompletionBlockFailingTests.swift in Sources */,
 				8FD07C0C22D3BB63007D9910 /* TestClass.swift in Sources */,
 				8FE14E2522D49A27006DD1FA /* CompletionBlockTests.swift in Sources */,
+				998415BD27B006A20035ADE9 /* AsyncAwaitTests.swift in Sources */,
 				8FD07C0B22D3BB5F007D9910 /* TestTarget.swift in Sources */,
 				8F099E4022D5E65B00A5AC5B /* DataTaskPublisherFailingTests.swift in Sources */,
 			);
