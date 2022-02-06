@@ -17,7 +17,7 @@ Pod::Spec.new do |spec|
 
   spec.name         = "HoverKitSDK"
   spec.swift_versions = "5.3"
-  spec.version      = "1.0.10"
+  spec.version      = "1.1"
   spec.summary      = "Async Network Library"
 
   # This description is used to generate tags and improve search results.
