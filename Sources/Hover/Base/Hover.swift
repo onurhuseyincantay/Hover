@@ -562,7 +562,7 @@ private extension Hover {
       request.httpBody = data
       return request
     case let .requestWithEncodable(encodable, encoder):
-			request.httpBody = try? encoder.encode(encodable.wrappedValue)
+			request.httpBody = try? encoder.encode(encodable)
       return request
     default:
       return request
@@ -588,7 +588,7 @@ private extension Hover {
     case let .requestWithEncodable(encodable, encoder):
       var request = URLRequest(url: url)
       request.prepareRequest(with: target)
-			request.httpBody = try? encoder.encode(encodable.wrappedValue)
+			request.httpBody = try? encoder.encode(encodable)
       return request
     default:
       var request = URLRequest(url: url)
