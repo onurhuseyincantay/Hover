@@ -11,4 +11,4 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Start xcodebuild test
-      run: xcodebuild clean test -project Sources/Hover.xcodeproj -scheme Hover -destination "platform=iOS Simulator,name=iPhone 12"
+      run: xcodebuild clean test -project Sources/Hover.xcodeproj -scheme Hover -destination "platform=iOS Simulator,name=iPhone 14 Pro"
