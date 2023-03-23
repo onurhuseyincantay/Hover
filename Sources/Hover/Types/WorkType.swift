@@ -11,6 +11,6 @@ import Foundation
 public enum WorkType {
     case requestPlain
     case requestData(data: Data)
-    case requestParameters(parameters: [String: Any], encoding: JSONEncoder = JSONEncoder())
-    case requestWithEncodable(encodable: AnyEncodable)
+    case requestParameters(parameters: [String: Any])
+    case requestWithEncodable(encodable: AnyEncodable, encoding: JSONEncoder = JSONEncoder())
 }

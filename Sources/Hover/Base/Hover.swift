@@ -526,7 +526,7 @@ private extension Hover {
   func prepareGetRequest(with target: NetworkTarget) -> URLRequest {
     let url = target.pathAppendedURL
     switch target.workType {
-    case .requestParameters(let parameters, _):
+    case let .requestParameters(parameters):
       guard let contentType = target.contentType,
             contentType == .urlFormEncoded else {
               let url = url.generateUrlWithQuery(with: parameters)
@@ -535,7 +535,10 @@ private extension Hover {
               return request
             }
       var request = URLRequest(url: url)
-      request.httpBody = contentType.prepareContentBody(parameters: parameters)
+			request.httpBody = contentType.prepareContentBody(
+				parameters: parameters,
+				jsonSerializationData: environment.jsonSerializationData
+			)
       return request
     default:
       var request = URLRequest(url: url)
@@ -549,14 +552,17 @@ private extension Hover {
     var request = URLRequest(url: url)
     request.prepareRequest(with: target)
     switch target.workType {
-    case .requestParameters(let parameters, _):
-      request.httpBody = target.contentType?.prepareContentBody(parameters: parameters)
+    case let .requestParameters(parameters):
+      request.httpBody = target.contentType?.prepareContentBody(
+				parameters: parameters,
+				jsonSerializationData: environment.jsonSerializationData
+			)
       return request
-    case .requestData(let data):
+    case let .requestData(data):
       request.httpBody = data
       return request
-    case .requestWithEncodable(let encodable):
-      request.httpBody = try? environment.jsonSerializationData(encodable, .prettyPrinted)
+    case let .requestWithEncodable(encodable, encoder):
+			request.httpBody = try? encoder.encode(encodable.wrappedValue)
       return request
     default:
       return request
@@ -566,20 +572,23 @@ private extension Hover {
   func prepareDeleteRequest(with target: NetworkTarget) -> URLRequest {
     let url = target.pathAppendedURL
     switch target.workType {
-    case .requestParameters(let parameters, _):
+    case let .requestParameters(parameters):
       var request = URLRequest(url: url)
       request.prepareRequest(with: target)
-      request.httpBody = target.contentType?.prepareContentBody(parameters: parameters)
+      request.httpBody = target.contentType?.prepareContentBody(
+				parameters: parameters,
+				jsonSerializationData: environment.jsonSerializationData
+			)
       return request
     case .requestData(let data):
       var request = URLRequest(url: url)
       request.prepareRequest(with: target)
       request.httpBody = data
       return request
-    case .requestWithEncodable(let encodable):
+    case let .requestWithEncodable(encodable, encoder):
       var request = URLRequest(url: url)
       request.prepareRequest(with: target)
-      request.httpBody = try? environment.jsonSerializationData(encodable, .prettyPrinted)
+			request.httpBody = try? encoder.encode(encodable.wrappedValue)
       return request
     default:
       var request = URLRequest(url: url)

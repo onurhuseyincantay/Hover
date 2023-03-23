@@ -18,12 +18,15 @@ public enum ContentType: String {
 // MARK: - Public
 public extension ContentType {
   
-  func prepareContentBody(parameters: [String: Any]) -> Data? {
+  func prepareContentBody(
+		parameters: [String: Any],
+		jsonSerializationData: @escaping (Any, JSONSerialization.WritingOptions) throws -> Data
+	) -> Data? {
     switch self {
     //TODO:  Multipart needs to be seperated
     case .applicationJson,
          .multipartFormData:
-      return try? JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+      return try? jsonSerializationData(parameters, [])
     
     case .urlFormEncoded:
       var urlComponents = URLComponents()
